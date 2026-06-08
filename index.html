@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P3K0NTCX8W"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-P3K0NTCX8W');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oklahoma Inc. — A Financial Portrait of the Sooner State</title>
+<style>
+  :root{
+    --bg:#0c0e13; --bg2:#13161f; --panel:#181c27; --panel2:#1f2433;
+    --ink:#f2efe6; --muted:#9b9aa6; --faint:#6b6a76;
+    --crude:#0a0a0a;
+    --wheat:#e6b13d; --wheat2:#f4cf6b;
+    --redbud:#e0436f; --redbud2:#f06d92;
+    --sky:#48a6d8; --sky2:#74c6ee;
+    --land:#5ea173; --land2:#7fc294;
+    --oil:#c0563a; --oil2:#e07a54;
+    --line:#2a2f3e; --grid:#222634;
+    --good:#5ea173; --bad:#e0436f; --warn:#e6b13d;
+    --serif:'Georgia','Times New Roman',serif;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .wrap{max-width:73.75rem;margin:0 auto;padding:0 1.75rem}
+  section{padding:5rem 0;border-bottom:0.0625rem solid var(--line)}
+  h1,h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:-.01em}
+  .eyebrow{font-family:var(--sans);text-transform:uppercase;letter-spacing:.22em;
+    font-size:0.6875rem;font-weight:700;color:var(--wheat);margin-bottom:1rem}
+  h2{font-size:clamp(1.75rem,4vw,2.875rem);line-height:1.1;margin-bottom:0.5rem}
+  .dek{font-size:clamp(1rem,1.6vw,1.1875rem);color:var(--muted);max-width:42.5rem;margin-bottom:0.5rem}
+  .src{font-size:0.75rem;color:var(--faint);margin-top:1.875rem;font-style:italic}
+  p.body{font-size:1.0625rem;color:#d9d6cd;max-width:42.5rem;margin:1.125rem 0}
+  .accent{color:var(--wheat)}
+
+  /* HERO */
+  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+    position:relative;border-bottom:none;overflow:hidden;
+    background:radial-gradient(75rem 43.75rem at 70% 10%,rgba(224,67,111,.10),transparent 60%),
+               radial-gradient(56.25rem 37.5rem at 10% 90%,rgba(72,166,216,.10),transparent 60%),
+               linear-gradient(180deg,#0c0e13,#0a0c10)}
+  .hero .wrap{position:relative;z-index:3}
+  .hero h1{font-size:clamp(2.875rem,9vw,7.375rem);line-height:.92;letter-spacing:-.03em;margin:0}
+  .hero h1 .l2{color:var(--wheat)}
+  .hero .sub{font-size:clamp(1.0625rem,2.2vw,1.4375rem);color:var(--muted);margin-top:1.625rem;max-width:40rem;font-family:var(--serif);font-style:italic}
+  .hero .meta{margin-top:2.625rem;display:flex;gap:2.125rem;flex-wrap:wrap;font-size:0.8125rem;color:var(--faint);
+    text-transform:uppercase;letter-spacing:.12em}
+  .hero .meta b{color:var(--ink);font-weight:600}
+  .scrollcue{position:absolute;bottom:2.125rem;left:50%;transform:translateX(-50%);z-index:3;
+    font-size:0.6875rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);text-align:center}
+  .scrollcue .arrow{display:block;margin:0.5rem auto 0;width:0.875rem;height:0.875rem;border-right:0.125rem solid var(--wheat);
+    border-bottom:0.125rem solid var(--wheat);transform:rotate(45deg);animation:bob 1.8s infinite}
+  @keyframes bob{0%,100%{transform:rotate(45deg) translate(0,0);opacity:.4}50%{transform:rotate(45deg) translate(0.25rem,0.25rem);opacity:1}}
+  /* faint skyline strip */
+  .skyline{position:absolute;left:0;right:0;bottom:0;height:15rem;z-index:1;opacity:.5}
+
+  /* KPI dashboard */
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:0.0625rem;background:var(--line);
+    border:0.0625rem solid var(--line);border-radius:0.875rem;overflow:hidden;margin-top:0.625rem}
+  .kpi{background:var(--panel);padding:1.625rem 1.375rem}
+  .kpi .v{font-family:var(--serif);font-size:clamp(1.625rem,3.3vw,2.5rem);font-weight:600;line-height:1}
+  .kpi .k{font-size:0.78125rem;color:var(--muted);margin-top:0.625rem;text-transform:uppercase;letter-spacing:.08em}
+  .kpi .d{font-size:0.78125rem;margin-top:0.375rem}
+  .up{color:var(--good)} .down{color:var(--bad)} .flat{color:var(--warn)}
+  .kpi.c-wheat .v{color:var(--wheat2)} .kpi.c-sky .v{color:var(--sky2)}
+  .kpi.c-redbud .v{color:var(--redbud2)} .kpi.c-land .v{color:var(--land2)}
+  .kpi.c-warn .v{color:var(--wheat2)}
+
+  /* generic card grid */
+  .grid2{display:grid;grid-template-columns:1.1fr .9fr;gap:2.5rem;align-items:center}
+  .grid2.rev{grid-template-columns:.9fr 1.1fr}
+  @media(max-width:53.75rem){.grid2,.grid2.rev{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,1fr)}}
+
+  .panel{background:var(--panel);border:0.0625rem solid var(--line);border-radius:1rem;padding:1.75rem}
+  .panel h3{font-size:1.25rem;margin-bottom:0.25rem}
+  .panel .cap{font-size:0.8125rem;color:var(--faint);margin-bottom:1.375rem}
+
+  /* bars */
+  .bar-row{display:flex;align-items:center;gap:0.875rem;margin:0.6875rem 0}
+  .bar-lab{width:9.375rem;font-size:0.8125rem;color:var(--muted);text-align:right;flex-shrink:0}
+  .bar-track{flex:1;height:1.625rem;background:var(--grid);border-radius:0.3125rem;overflow:hidden;position:relative}
+  .bar-fill{height:100%;border-radius:0.3125rem;width:0;transition:width 1.3s cubic-bezier(.2,.7,.2,1)}
+  .bar-val{width:6rem;font-size:0.8125rem;font-weight:600;flex-shrink:0;font-variant-numeric:tabular-nums}
+
+  table.fin{width:100%;border-collapse:collapse;font-size:0.90625rem;font-variant-numeric:tabular-nums}
+  table.fin th{text-align:left;font-size:0.6875rem;text-transform:uppercase;letter-spacing:.1em;
+    color:var(--faint);padding:0.625rem 0.75rem;border-bottom:0.125rem solid var(--line);font-family:var(--sans)}
+  table.fin td{padding:0.625rem 0.75rem;border-bottom:0.0625rem solid var(--grid)}
+  table.fin td.num{text-align:right;font-weight:600}
+  table.fin tr.total td{border-top:0.125rem solid var(--line);border-bottom:none;font-weight:700;
+    font-family:var(--serif);font-size:1rem;padding-top:0.875rem}
+  table.fin tr.sub td{color:var(--muted)}
+  table.fin .dot{display:inline-block;width:0.5625rem;height:0.5625rem;border-radius:0.125rem;margin-right:0.5625rem;vertical-align:middle}
+
+  .lede-num{font-family:var(--serif);font-size:clamp(2.5rem,6vw,4.5rem);font-weight:600;line-height:1;letter-spacing:-.02em}
+  .twocol{column-count:2;column-gap:2.125rem}
+  @media(max-width:45rem){.twocol{column-count:1}}
+  .pill{display:inline-block;padding:0.1875rem 0.6875rem;border-radius:1.25rem;font-size:0.75rem;font-weight:600;
+    border:0.0625rem solid var(--line);color:var(--muted);margin:0.1875rem 0.25rem 0.1875rem 0}
+
+  .note{border-left:0.1875rem solid var(--wheat);padding:0.375rem 0 0.375rem 1.125rem;color:#cfccc2;font-size:0.96875rem;margin:1.375rem 0;max-width:42.5rem}
+  .fignote{font-size:0.75rem;color:var(--faint);margin-top:0.875rem}
+  svg{display:block;max-width:100%;overflow:visible}
+  .legend{display:flex;gap:1.125rem;flex-wrap:wrap;font-size:0.78125rem;color:var(--muted);margin-top:1rem}
+  .legend span{display:flex;align-items:center;gap:0.4375rem}
+  .legend i{width:0.75rem;height:0.75rem;border-radius:0.1875rem;display:inline-block}
+  .tag{font-size:0.6875rem;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);font-weight:700}
+  .section-no{font-family:var(--serif);font-size:0.875rem;color:var(--wheat);opacity:.8;margin-bottom:0.375rem}
+  .reveal{opacity:0;transform:translateY(1.75rem);transition:opacity .8s ease,transform .8s ease}
+  .reveal.in{opacity:1;transform:none}
+  a{color:var(--sky2)}
+
+:root{--nav-h:3.4rem}
+/* ── Light theme ── */
+:root{--bg:#f3f5ec;--bg2:#eef1e6;--panel:#fff;--panel2:#f6f8f0;--ink:#16180f;--muted:#4c5046;--faint:#73776b;
+  --line:#d9ddcd;--grid:#e7eadd;--wheat:#b07d12;--wheat2:#8f6410;--sky2:#2f6f97;--good:#2f7d4f;--bad:#c0395f;--warn:#b07d12}
+body{background:var(--bg);color:var(--ink)}
+p.body{color:#2b2e24}.dek{color:var(--muted)}
+.eyebrow,.section-no,.accent{color:var(--wheat)}
+.note{color:#34372c;border-left-color:var(--wheat)}
+a{color:#2f6f97}
+.hero h1{color:#fff}.hero h1 .l2{color:#f4cf6b}.hero .eyebrow{color:#f4cf6b}
+.hero .sub{color:#ece9df}.hero .meta{color:#d6d3c8}.hero .meta b{color:#fff}.scrollcue{color:#d6d3c8}
+/* ── Nav ── */
+#topnav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;
+  gap:.3rem;padding:.5rem clamp(.8rem,3vw,1.6rem);background:rgba(243,245,236,.95);
+  backdrop-filter:blur(.5rem);border-bottom:0.07rem solid var(--line)}
+#topnav .brand{font-family:var(--serif);font-weight:700;color:var(--wheat);
+  font-size:clamp(.85rem,2vw,1.1rem);margin-right:auto;letter-spacing:-.01em;text-decoration:none}
+#navlinks{display:flex;flex-wrap:wrap;gap:.15rem;justify-content:flex-end}
+#topnav button{font-family:var(--sans);background:none;border:0.07rem solid transparent;color:var(--muted);
+  padding:.35rem .65rem;border-radius:.5rem;cursor:pointer;font-weight:600;
+  font-size:clamp(.68rem,1.4vw,.82rem);white-space:nowrap;transition:color .15s,background .15s}
+#topnav button:hover{color:var(--ink)}
+#topnav button.on{color:var(--ink);background:var(--grid);border-color:var(--line)}
+/* ── Hamburger ── */
+.ham{display:none;flex-direction:column;justify-content:center;gap:.27rem;
+  background:none;border:none;cursor:pointer;padding:.35rem;margin-left:.4rem}
+.ham span{display:block;width:1.35rem;height:0.12rem;background:var(--wheat);border-radius:1px;transition:transform .22s,opacity .22s}
+.ham.open span:nth-child(1){transform:rotate(45deg) translate(.28rem,.28rem)}
+.ham.open span:nth-child(2){opacity:0}
+.ham.open span:nth-child(3){transform:rotate(-45deg) translate(.28rem,-.28rem)}
+body{padding-top:var(--nav-h)}
+/* ── Pages ── */
+.page{display:none}
+.page.active{display:block;animation:pin .4s ease}
+@keyframes pin{from{opacity:0;transform:translateY(.5rem)}to{opacity:1;transform:none}}
+.banner{height:clamp(11rem,28vw,20rem);background-size:cover;background-position:center;
+  position:relative;margin-bottom:1.5rem}
+.banner::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(15,18,14,.08),var(--bg) 96%)}
+.page>.banner{margin-top:-5rem}
+.hero{min-height:82vh}
+.mapwrap{width:100%;border:0.07rem solid var(--line);border-radius:.7rem;overflow:hidden}
+.mapwrap svg{width:100%;height:auto;display:block}
+.dwmap{margin:1.25rem 0;border:0.07rem solid var(--line);border-radius:.6rem;overflow:hidden;background:#fff}
+.dwmap iframe{width:100%!important;border:none;display:block}
+#vpaterrain,#okmap,#edugauge,#healthgauge{background:#0c0e13;border-radius:.6rem;padding:.5rem .3rem}
+/* ── New section styles ── */
+.sankey-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;margin-top:1.5rem}
+.flow-wrap{overflow-x:auto;border:0.07rem solid var(--line);border-radius:.6rem;
+  background:var(--panel);padding:.6rem .4rem .4rem}
+.flow-wrap svg{min-width:300px;width:100%;height:auto}
+.flow-title{font-family:var(--serif);font-size:1.05rem;font-weight:600;margin-bottom:.25rem}
+.flow-sub{font-size:.78rem;color:var(--faint);margin-bottom:.4rem}
+.mult-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin:1.5rem 0}
+.gap-item{display:flex;align-items:flex-start;gap:.5rem;padding:.4rem 0}
+.gap-dot{width:.5rem;height:.5rem;border-radius:50%;flex-shrink:0;margin-top:.35rem}
+.momentum-list{margin:2rem 0}
+.mom-panel{padding:2rem 0;border-bottom:0.07rem solid var(--line);
+  opacity:0;transform:translateY(1.2rem);
+  transition:opacity .7s ease var(--md,0s),transform .7s ease var(--md,0s)}
+.mom-panel.in{opacity:1;transform:none}
+.mom-panel:last-child{border-bottom:none}
+.mom-num{font-family:var(--serif);font-size:clamp(2.8rem,9vw,6rem);font-weight:600;
+  line-height:.92;letter-spacing:-.03em;color:var(--good);margin-bottom:.5rem}
+.mom-ctx{font-size:clamp(.95rem,1.6vw,1.1rem);color:var(--muted);max-width:38rem;line-height:1.7}
+.pillar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:1.5rem}
+.pillar-action{margin-top:1rem;padding-top:.85rem;border-top:0.07rem solid var(--grid);
+  font-size:.82rem;font-style:italic;color:var(--good);line-height:1.5}
+.elect-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:2rem;align-items:start;margin-top:1.5rem}
+/* ── Responsive ── */
+@media(max-width:52rem){
+  .sankey-grid,.mult-grid,.pillar-grid,.elect-grid{grid-template-columns:1fr}
+}
+@media(max-width:48rem){
+  .ham{display:flex}
+  #navlinks{display:none;position:absolute;top:var(--nav-h);left:0;right:0;
+    flex-direction:column;background:rgba(243,245,236,.98);
+    padding:.5rem .8rem .8rem;border-bottom:0.07rem solid var(--line);box-shadow:0 4px 12px rgba(0,0,0,.08)}
+  #navlinks.open{display:flex}
+  #navlinks button{width:100%;text-align:left;padding:.55rem .7rem}
+  body{padding-top:3rem}
+  section{padding:2.5rem 0}
+  .wrap{padding:0 1rem}
+  h2{font-size:clamp(1.5rem,7vw,2.2rem)}
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .panel{padding:1rem;overflow-x:auto}
+  .banner{height:clamp(8rem,40vw,13rem)}
+  .page>.banner{margin-top:-2.5rem}
+  .hero{min-height:75vh}
+  .hero h1{font-size:clamp(2.4rem,14vw,4rem)}
+  .mom-num{font-size:clamp(2.5rem,12vw,4rem)}
+}
+@media(max-width:28rem){.kpis{grid-template-columns:1fr}}
+
+</style>
+<script src="https://t.contentsquare.net/uxa/457de47d9eba9.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer></script>
+</head>
+<body>
+<nav id="topnav"><a class="brand" href="#">Oklahoma as a Business</a><div id="navlinks"></div><button class="ham" id="hamBtn" aria-label="Toggle menu"><span></span><span></span><span></span></button></nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero page" data-page="overview" style="background:linear-gradient(rgba(12,14,19,.55),rgba(10,12,16,.93)),url(img/hero.jpg) center/cover no-repeat">
+  <svg class="skyline" viewBox="0 0 1440 240" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <defs><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1a1f2c"/><stop offset="1" stop-color="#0a0c10"/></linearGradient></defs>
+    <g fill="url(#sg)">
+      <rect x="60" y="120" width="34" height="120"/><rect x="100" y="80" width="40" height="160"/>
+      <rect x="150" y="140" width="26" height="100"/><rect x="600" y="60" width="46" height="180"/>
+      <rect x="650" y="30" width="54" height="210"/><rect x="710" y="90" width="34" height="150"/>
+      <rect x="748" y="150" width="22" height="90"/><rect x="1180" y="110" width="38" height="130"/>
+      <rect x="1224" y="70" width="44" height="170"/><rect x="1274" y="130" width="30" height="110"/>
+    </g>
+    <!-- pumpjacks / oil derricks suggestion -->
+    <g stroke="#2a3140" stroke-width="3" fill="none" opacity=".8">
+      <path d="M300 240 L320 180 L340 240 M310 210 L330 210"/>
+      <path d="M980 240 L1000 175 L1020 240 M990 208 L1010 208"/>
+    </g>
+  </svg>
+  <div class="wrap">
+    <div class="eyebrow">An integrated financial &amp; economic atlas · FY2024–2026 data</div>
+    <h1>Oklahoma<br><span class="l2">Inc.</span></h1>
+    <p class="sub">The Sooner State read like a company — a profit-and-loss statement, a balance sheet, and the land, oil, people and politics behind every number.</p>
+    <div class="meta">
+      <div><b>$34.1B</b><br>net position</div>
+      <div><b>$213.5B</b><br>economy (GDP)</div>
+      <div><b>4.05M</b><br>residents</div>
+      <div><b>77</b><br>counties</div>
+      <div><b>39</b><br>tribal nations</div>
+    </div>
+    </div>
+  <div class="scrollcue">Scroll to open the books<span class="arrow"></span></div>
+</header>
+
+<!-- ============ EXECUTIVE DASHBOARD ============ -->
+<section class="page" data-page="overview" id="dashboard">
+  <div class="wrap reveal">    <h2>Oklahoma at a glance</h2>
+    <p class="dek">Two sets of books. The <em>government</em> — a low-debt, oil-levered public enterprise with a growing net worth. And the <em>economy</em> — a $213-billion machine still pumping crude, but quietly rebuilt on aerospace, wind, and tribal enterprise.</p>
+
+    <div class="kpis" style="margin-top:2.125rem">
+      <div class="kpi c-wheat"><div class="v" data-count="34.08" data-suffix="B" data-prefix="$">$34.1B</div><div class="k">Govt net position (FY24)</div><div class="d up">▲ 5.9% year over year</div></div>
+      <div class="kpi c-sky"><div class="v">$213.5B</div><div class="k">State GDP (2025)</div><div class="d up">▲ 1.5% real growth</div></div>
+      <div class="kpi c-redbud"><div class="v">$12.08B</div><div class="k">FY26 appropriated budget</div><div class="d down">▼ 11.8% vs FY00 (real, per-capita)</div></div>
+      <div class="kpi c-land"><div class="v">$2.31B</div><div class="k">Total state savings</div><div class="d up">Rainy-day cushion</div></div>
+      <div class="kpi c-wheat"><div class="v">23%</div><div class="k">Economy from oil &amp; gas</div><div class="d flat">$60.3B in activity</div></div>
+      <div class="kpi c-sky"><div class="v">#3</div><div class="k">US wind-power producer</div><div class="d up">Behind only TX, IA</div></div>
+      <div class="kpi c-redbud"><div class="v">50th</div><div class="k">Public-education ranking</div><div class="d down">49th in per-pupil spend</div></div>
+      <div class="kpi c-land"><div class="v">$23.4B</div><div class="k">Tribal-nation output</div><div class="d up">~8% of state GDP</div></div>
+      <div class="kpi c-sky"><div class="v">+23,370</div><div class="k">Net in-migration (2023)</div><div class="d up">~88 people/day</div></div>
+      <div class="kpi c-land"><div class="v">3.8%</div><div class="k">Unemployment (2025)</div><div class="d up">Below US 4.3%</div></div>
+      <div class="kpi c-redbud"><div class="v">−43.7%</div><div class="k">Household savings, 2019-23</div><div class="d down">2nd-worst in US</div></div>
+      <div class="kpi c-redbud"><div class="v">#4</div><div class="k">Incarceration rate (US)</div><div class="d down">905/100k all-forms</div></div>
+    </div>
+    <p class="fignote">Sources: State of Oklahoma ACFR FY2024 (OMES); U.S. Bureau of Economic Analysis; Oklahoma Policy Institute; OERB; United for Oklahoma; BLS; Census; HUD. Government figures are for the fiscal year ended June 30, 2024 — the most recent audited report. Full source list at the end.</p>
+  </div>
+</section>
+
+<!-- ============ 01b — OK vs US 1:1 ============ -->
+<section class="page" data-page="overview" id="vsus">
+  <div class="wrap reveal">    <h2>Oklahoma vs. the United States</h2>
+    <p class="dek">Every row below is a strict 1:1: the <em>same</em> metric, the <em>same</em> year, the <em>same</em> source. Oklahoma against the U.S. average. The only thing that changes is the geography — so the gap is the story.</p>
+
+    <div class="panel" style="margin-top:2rem">
+      <table class="fin">
+        <tr><th>Metric</th><th style="text-align:right">Oklahoma</th><th style="text-align:right">U.S.</th><th style="text-align:right">Gap</th><th style="text-align:right">Verdict</th><th>Same source · year</th></tr>
+        <tr><td>Unemployment (U-3)</td><td class="num">3.8%</td><td class="num">4.3%</td><td class="num">−0.5 pt</td><td class="num" style="color:var(--good)">Better</td><td>BLS · 2025</td></tr>
+        <tr><td>Underemployment (U-6)</td><td class="num">7.2%</td><td class="num">8.0%</td><td class="num">−0.8 pt</td><td class="num" style="color:var(--good)">Better</td><td>BLS · 2025</td></tr>
+        <tr><td>Per-capita personal income</td><td class="num">$62,661</td><td class="num">$72,425</td><td class="num">−13.5%</td><td class="num" style="color:var(--bad)">Below</td><td>BEA · 2024</td></tr>
+        <tr><td>Uninsured rate</td><td class="num">11.5%</td><td class="num">8.0%</td><td class="num">+3.5 pt</td><td class="num" style="color:var(--bad)">Worse</td><td>Census · 2024</td></tr>
+        <tr><td>Life expectancy</td><td class="num">72.8 yrs</td><td class="num">78.4 yrs</td><td class="num">−5.6 yrs</td><td class="num" style="color:var(--bad)">Worse</td><td>CDC · 2023</td></tr>
+        <tr><td>Incarceration (all forms, per 100k)</td><td class="num">905</td><td class="num">664</td><td class="num">+36%</td><td class="num" style="color:var(--bad)">Worse</td><td>Prison Policy Initiative · 2024</td></tr>
+        <tr class="total"><td>Pattern</td><td class="num" colspan="5" style="text-align:left;font-family:var(--serif);color:var(--ink)">Oklahoma beats the U.S. on jobs — and trails it on income, health, coverage and incarceration.</td></tr>
+      </table>
+      <p class="fignote">Where a clean same-year, same-source U.S. figure could not be confirmed (e.g. median household income, food insecurity), the metric is shown elsewhere as Oklahoma-only rather than forced into an unfair comparison. "Gap" is OK minus U.S. (points) or percent difference. Verdict reflects whether the gap is good or bad for residents.</p>
+    </div>
+  </div>
+</section>
+
+<!-- spending clock -->
+<section class="page" data-page="overview" id="spend-clock">
+  <div class="wrap reveal">
+    <div class="eyebrow">Live estimate &nbsp;&middot;&nbsp; BEA personal consumption</div>
+    <h2>Oklahoma spends while you read</h2>
+    <p class="dek">Oklahoma households collectively generate roughly <strong>$130 billion</strong> in personal consumption expenditure each year &mdash; about $4,122 every second. This counter tracks estimated spending since you opened this page.</p>
+    <div style="text-align:center;padding:2.5rem 1rem">
+      <div style="font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-bottom:.8rem">Estimated dollars spent by Oklahomans since page load</div>
+      <div style="display:flex;justify-content:center">
+        <span id="spend-counter" style="font-family:var(--serif);font-size:clamp(2.5rem,8vw,4.8rem);font-weight:600;color:var(--wheat2);font-variant-numeric:tabular-nums;letter-spacing:-.02em;min-width:14ch;text-align:right;display:inline-block">$0</span>
+      </div>
+      <div style="font-size:.7rem;color:var(--faint);margin-top:.75rem;font-style:italic">~$4,122 per second &nbsp;&middot;&nbsp; ~$130B per year &nbsp;&middot;&nbsp; Source: BEA Regional Economic Accounts &nbsp;&middot;&nbsp; Resets each 60-second cycle &nbsp;&middot;&nbsp; Labeled as an estimate</div>
+    </div>
+    <div class="note"><b>Why this matters:</b> that $130B moves through local businesses, national chains, and online retailers at very different rates of local recirculation. Where it lands determines how much stays in Oklahoma.</div>
+  </div>
+</section>
+
+<!-- ============ 02 — THE P&L ============ -->
+<section class="page" data-page="books" id="pl">
+  <div class="banner" style="background-image:url(img/books.jpg)"></div>
+  <div class="wrap reveal">    <h2>The State's profit &amp; loss</h2>
+    <p class="dek">Government-wide statement of activities, all funds, fiscal year ended June 30, 2024. The State took in <span class="accent">$33.3&nbsp;billion</span> and spent <span class="accent">$31.5&nbsp;billion</span> — booking a <span class="accent">$1.89&nbsp;billion</span> surplus that lifted its net worth.</p>
+
+    <!-- FISCAL SKYLINE -->
+    <div class="panel" style="margin-top:2.125rem;background:linear-gradient(180deg,#161a24,#10131b)">
+      <h3>Where the money goes — the fiscal skyline</h3>
+      <div class="cap">Each tower is a function of government, extruded to the dollars it consumed in FY2024. Health care dwarfs the rest.</div>
+      <div id="skyline"></div>
+      <div class="legend">
+        <span><i style="background:var(--redbud)"></i>Health &amp; social</span>
+        <span><i style="background:var(--wheat)"></i>Education</span>
+        <span><i style="background:var(--sky)"></i>Administration &amp; safety</span>
+        <span><i style="background:var(--land)"></i>Infrastructure &amp; resources</span>
+        <span><i style="background:#6b6a76"></i>Other / business-type</span>
+      </div>
+      <p class="fignote">Health Services alone ($11.1B) is larger than education, social services and government administration would be if you removed any one of them. Source: ACFR FY2024, Statement of Activities.</p>
+    </div>
+
+    <!-- two statements side by side -->
+    <div class="grid2" style="margin-top:2.5rem;align-items:start">
+      <div class="panel">
+        <span class="tag">Revenues · FY2024</span>
+        <h3 style="margin:0.375rem 0 0.125rem">$33.29 billion in</h3>
+        <div class="cap">Federal grants and taxes do most of the lifting; oil &amp; gas is a swing line.</div>
+        <table class="fin">
+          <tr><td><span class="dot" style="background:var(--land2)"></span>Operating grants &amp; contributions (mostly federal)</td><td class="num">$14.49B</td></tr>
+          <tr><td><span class="dot" style="background:var(--sky2)"></span>Charges for services</td><td class="num">$5.35B</td></tr>
+          <tr><td><span class="dot" style="background:var(--wheat2)"></span>Individual income tax</td><td class="num">$4.52B</td></tr>
+          <tr><td><span class="dot" style="background:var(--wheat)"></span>Sales tax</td><td class="num">$3.78B</td></tr>
+          <tr><td><span class="dot" style="background:var(--oil2)"></span>Gross production (oil &amp; gas)</td><td class="num">$1.07B</td></tr>
+          <tr><td><span class="dot" style="background:var(--redbud2)"></span>Motor-vehicle tax</td><td class="num">$1.02B</td></tr>
+          <tr><td><span class="dot" style="background:#8a8794"></span>Corporate income tax</td><td class="num">$0.65B</td></tr>
+          <tr><td><span class="dot" style="background:#6b6a76"></span>Fuel, other taxes &amp; earnings</td><td class="num">$2.41B</td></tr>
+          <tr class="total"><td>Total revenues</td><td class="num">$33.29B</td></tr>
+        </table>
+      </div>
+      <div class="panel">
+        <span class="tag">Expenses · FY2024</span>
+        <h3 style="margin:0.375rem 0 0.125rem">$31.45 billion out</h3>
+        <div class="cap">One dollar in three goes to health care.</div>
+        <table class="fin">
+          <tr><td><span class="dot" style="background:var(--redbud)"></span>Health services</td><td class="num">$11.10B</td></tr>
+          <tr><td><span class="dot" style="background:var(--wheat2)"></span>Education — general</td><td class="num">$5.75B</td></tr>
+          <tr><td><span class="dot" style="background:var(--redbud2)"></span>Social services</td><td class="num">$3.89B</td></tr>
+          <tr><td><span class="dot" style="background:var(--sky)"></span>Government administration</td><td class="num">$3.53B</td></tr>
+          <tr><td><span class="dot" style="background:var(--land)"></span>Transportation</td><td class="num">$1.45B</td></tr>
+          <tr><td><span class="dot" style="background:var(--sky2)"></span>Public safety &amp; defense</td><td class="num">$1.23B</td></tr>
+          <tr><td><span class="dot" style="background:var(--wheat)"></span>Higher-education payments</td><td class="num">$1.00B</td></tr>
+          <tr><td><span class="dot" style="background:#6b6a76"></span>Resources, justice, business-type &amp; other</td><td class="num">$3.50B</td></tr>
+          <tr class="total"><td>Total expenses</td><td class="num">$31.45B</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="note"><b>Bottom line:</b> a $1.89&nbsp;billion increase in net position (+5.9%). Tax revenue actually <em>fell</em> overall — gross-production (oil &amp; gas) tax dropped $500M as prices cooled — but income and sales taxes and federal grants more than covered it. Oklahoma's surplus rides on Washington and on the wellhead.</div>
+    <p class="fignote">Figures rounded from the audited Statement of Activities, ACFR FY2024 (in $ thousands). "Other" includes natural resources, legal &amp; judiciary, regulatory services, interest on debt, museums, and the four business-type activities (unemployment insurance, group insurance, lottery, local-government loans).</p>
+  </div>
+</section>
+
+<!-- ============ 03 — BALANCE SHEET ============ -->
+<section class="page" data-page="books" id="balance">
+  <div class="wrap reveal">    <h2>What Oklahoma owns &amp; owes</h2>
+    <p class="dek">Government-wide statement of net position, June 30, 2024. Against <span class="accent">$46.3B</span> of assets sit just <span class="accent">$12.9B</span> of liabilities — leaving a <span class="accent">$34.1B</span> net position. By state standards, this is a fortress balance sheet.</p>
+
+    <div class="grid2 rev" style="margin-top:2.125rem;align-items:center">
+      <div id="bsbars"></div>
+      <div>
+        <table class="fin">
+          <tr><th>Assets</th><th style="text-align:right">$ billions</th></tr>
+          <tr><td>Current assets (cash, receivables, investments)</td><td class="num">$22.85</td></tr>
+          <tr><td>Capital assets (roads, buildings, land)</td><td class="num">$15.20</td></tr>
+          <tr><td>Other long-term assets</td><td class="num">$8.24</td></tr>
+          <tr class="total"><td>Total assets</td><td class="num">$46.29</td></tr>
+          <tr><th>Liabilities</th><th style="text-align:right"></th></tr>
+          <tr><td>Other (current) liabilities</td><td class="num">$8.08</td></tr>
+          <tr><td>Noncurrent liabilities (debt, pensions)</td><td class="num">$4.85</td></tr>
+          <tr class="total"><td>Total liabilities</td><td class="num">$12.93</td></tr>
+          <tr class="total" style="color:var(--wheat2)"><td>Net position</td><td class="num">$34.08</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="grid2" style="margin-top:1.875rem">
+      <p class="body">The net worth splits three ways: <span class="accent">$13.4B</span> tied up in capital assets the State can't sell (the roads it drives on), <span class="accent">$9.2B</span> legally restricted to specific uses, and <span class="accent">$11.4B</span> genuinely unrestricted — real flexibility. Add a <span class="accent">$1.4B</span> Constitutional "Rainy Day" reserve and a <span class="accent">$18.4B</span> combined governmental fund balance, and the picture is a state that has been saving aggressively on a tide of federal pandemic money.</p>
+      <div class="panel">
+        <span class="tag">Composition of net position</span>
+        <div class="bar-row" style="margin-top:0.875rem"><div class="bar-lab">Capital assets</div><div class="bar-track"><div class="bar-fill" data-w="39.4" style="background:linear-gradient(90deg,var(--land),var(--land2))"></div></div><div class="bar-val">$13.4B</div></div>
+        <div class="bar-row"><div class="bar-lab">Restricted</div><div class="bar-track"><div class="bar-fill" data-w="27.1" style="background:linear-gradient(90deg,var(--sky),var(--sky2))"></div></div><div class="bar-val">$9.2B</div></div>
+        <div class="bar-row"><div class="bar-lab">Unrestricted</div><div class="bar-track"><div class="bar-fill" data-w="33.5" style="background:linear-gradient(90deg,var(--wheat),var(--wheat2))"></div></div><div class="bar-val">$11.4B</div></div>
+        <p class="fignote">Share of $34.1B total net position. Source: ACFR FY2024, Statement of Net Position.</p>
+      </div>
+    </div>
+    <div class="note"><b>The catch:</b> Oklahoma's low debt is real, but its surplus has been propped up for four years by federal funds. With income-tax cuts now on a path toward <em>zero</em> and grocery sales tax already gone (~$418M/yr), the revenue side of this balance sheet is being deliberately shrunk just as federal support fades.</div>
+  </div>
+</section>
+
+<!-- sankey flow diagrams -->
+<section class="page" data-page="books" id="flow-diagrams">
+  <div class="wrap reveal">
+    <div class="eyebrow">Follow the money</div>
+    <h2>The fiscal flow, visualized</h2>
+    <p class="dek">Two ledgers side by side &mdash; the state&rsquo;s revenue and spending, and a typical Oklahoma household&rsquo;s income and expenses. The same dollar that enters one flows through the other.</p>
+    <div class="sankey-grid">
+      <div>
+        <p class="flow-title">The State Ledger &mdash; FY2024</p>
+        <p class="flow-sub">Revenue in &nbsp;&middot;&nbsp; Expenses out &nbsp;&middot;&nbsp; Net surplus retained</p>
+        <div class="flow-wrap"><div id="sankey-govt"></div></div>
+        <p class="fignote">Source: Oklahoma ACFR FY2024. Revenue $33.29B; Expenses $31.45B; Net surplus +$1.84B. Small bars (&lt;10px) suppress labels.</p>
+      </div>
+      <div>
+        <p class="flow-title">The Household Ledger</p>
+        <p class="flow-sub">Where income comes from &nbsp;&middot;&nbsp; Where spending goes</p>
+        <div class="flow-wrap"><div id="sankey-hh"></div></div>
+        <p class="fignote">Source: BLS Consumer Expenditure Survey 2023; Census ACS 2023. Shares of ~$61,364 median annual household income. Values in $thousands.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 — THE BUDGET ============ -->
+<section class="page" data-page="books" id="budget">
+  <div class="wrap reveal">    <h2>The $12.08&nbsp;billion that lawmakers actually steer</h2>
+    <p class="dek">The audited P&amp;L counts every federal dollar and fee. The <em>appropriated</em> budget is the slice legislators control — and for FY2026 it is smaller, in real per-capita terms, than it was a quarter-century ago.</p>
+
+    <div class="grid2" style="margin-top:2.125rem;align-items:center">
+      <div class="panel">
+        <span class="tag">FY2026 appropriations by area</span>
+        <div class="cap" style="margin-top:0.375rem">Education and health swallow two-thirds before anything else is funded.</div>
+        <div class="bar-row" style="margin-top:1.125rem"><div class="bar-lab">Education</div><div class="bar-track"><div class="bar-fill" data-w="100" style="background:linear-gradient(90deg,var(--wheat),var(--wheat2))"></div></div><div class="bar-val">$5.76B</div></div>
+        <div class="bar-row"><div class="bar-lab">Health &amp; social</div><div class="bar-track"><div class="bar-fill" data-w="40" style="background:linear-gradient(90deg,var(--redbud),var(--redbud2))"></div></div><div class="bar-val">$2.32B</div></div>
+        <div class="bar-row"><div class="bar-lab">Public safety</div><div class="bar-track"><div class="bar-fill" data-w="24" style="background:linear-gradient(90deg,var(--sky),var(--sky2))"></div></div><div class="bar-val">~$1.4B</div></div>
+        <div class="bar-row"><div class="bar-lab">Transportation</div><div class="bar-track"><div class="bar-fill" data-w="13" style="background:linear-gradient(90deg,var(--land),var(--land2))"></div></div><div class="bar-val">~$0.8B</div></div>
+        <div class="bar-row"><div class="bar-lab">Everything else</div><div class="bar-track"><div class="bar-fill" data-w="31" style="background:linear-gradient(90deg,#5a5965,#8a8794)"></div></div><div class="bar-val">~$1.8B</div></div>
+        <p class="fignote">Education = 48% of appropriations; Health &amp; Social Services = 19%. Bars scaled to the $5.76B education line. Source: Oklahoma Policy Institute, FY2026 Budget Highlights; HB 2766.</p>
+      </div>
+      <div>
+        <div class="lede-num accent">11.8%</div>
+        <p class="body" style="margin-top:0.5rem">smaller than the FY2000 budget once you adjust for inflation and population growth. Oklahoma has roughly <b>one-fifth less</b> real revenue per person to run shared services than it did 25 years ago — even as the state added people.</p>
+        <div style="margin-top:1.125rem">
+          <span class="pill">Rainy Day Fund · $1.33B</span>
+          <span class="pill">Revenue Stabilization · $425M</span>
+          <span class="pill">Rate Preservation · $561M</span>
+          <span class="pill" style="border-color:var(--wheat);color:var(--wheat2)">Total savings · $2.31B</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="note"><b>The tax-cut machine.</b> In 2025 lawmakers cut the income tax 0.25 points, eliminated the bottom three brackets, and wrote in automatic triggers to drive the rate toward <em>zero</em> — eventually erasing what is today the State's single largest revenue source. A full year of these cuts is scored at roughly $340M; the grocery sales-tax repeal already costs ~$418M a year. Savings, not new revenue, is funding the gap.</div>
+    <p class="fignote">Sources: Oklahoma Policy Institute FY2026 Budget Highlights; HB 2764; HB 2766; Oklahoma Tax Commission.</p>
+  </div>
+</section>
+
+<!-- ============ 05 — OKLAHOMA INC ECONOMY ============ -->
+<section class="page" data-page="economy" id="economy">
+  <div class="banner" style="background-image:url(img/economy.jpg)"></div>
+  <div class="wrap reveal">    <h2>Oklahoma Inc.: a $213.5&nbsp;billion machine</h2>
+    <p class="dek">Step outside the capitol and the bigger income statement is the whole economy. State GDP hit <span class="accent">$213.5&nbsp;billion</span> in 2025, up 1.5% — and its engine room has quietly diversified far beyond the derrick.</p>
+
+    <div class="panel" style="margin-top:2.125rem">
+      <h3>The engines of the economy</h3>
+      <div class="cap">Headline output and footprint by sector. Oil &amp; gas still leads, but aerospace and tribal enterprise now rival it.</div>
+      <div class="bar-row" style="margin-top:1.125rem"><div class="bar-lab">Oil &amp; gas (total footprint)</div><div class="bar-track"><div class="bar-fill" data-w="100" style="background:linear-gradient(90deg,var(--oil),var(--oil2))"></div></div><div class="bar-val">$60.3B</div></div>
+      <div class="bar-row"><div class="bar-lab">Aerospace &amp; defense</div><div class="bar-track"><div class="bar-fill" data-w="73" style="background:linear-gradient(90deg,var(--sky),var(--sky2))"></div></div><div class="bar-val">$44.0B</div></div>
+      <div class="bar-row"><div class="bar-lab">Government</div><div class="bar-track"><div class="bar-fill" data-w="54" style="background:linear-gradient(90deg,#5a5965,#8a8794)"></div></div><div class="bar-val">$32.8B</div></div>
+      <div class="bar-row"><div class="bar-lab">Tribal nations</div><div class="bar-track"><div class="bar-fill" data-w="39" style="background:linear-gradient(90deg,var(--redbud),var(--redbud2))"></div></div><div class="bar-val">$23.4B</div></div>
+      <div class="bar-row"><div class="bar-lab">Real estate</div><div class="bar-track"><div class="bar-fill" data-w="39" style="background:linear-gradient(90deg,var(--land),var(--land2))"></div></div><div class="bar-val">$23.5B</div></div>
+      <div class="bar-row"><div class="bar-lab">Professional &amp; business svcs</div><div class="bar-track"><div class="bar-fill" data-w="38" style="background:linear-gradient(90deg,var(--wheat),var(--wheat2))"></div></div><div class="bar-val">$22.8B</div></div>
+      <div class="bar-row"><div class="bar-lab">Agriculture</div><div class="bar-track"><div class="bar-fill" data-w="10" style="background:linear-gradient(90deg,#7a6a3a,var(--wheat))"></div></div><div class="bar-val">$6.1B</div></div>
+      <p class="fignote">Bars scaled to the oil &amp; gas footprint. Note: figures mix BEA value-added (government, real estate, professional services) with total-activity / impact estimates (oil &amp; gas, aerospace, tribal), so they overlap and are <em>not</em> additive — they show relative heft, not a clean GDP decomposition. Sources: BEA; OERB (oil &amp; gas, FY24); Oklahoma Dept. of Commerce / advancedmanufacturing.org (aerospace); United for Oklahoma (tribal); USDA (agriculture).</p>
+    </div>
+
+    <div class="kpis" style="margin-top:2.125rem">
+      <div class="kpi c-redbud"><div class="v">#6</div><div class="k">US crude-oil producer</div><div class="d">Major natural-gas state</div></div>
+      <div class="kpi c-sky"><div class="v">#3</div><div class="k">US wind-power producer</div><div class="d up">~10× its 2010 output</div></div>
+      <div class="kpi c-wheat"><div class="v">206k</div><div class="k">Aerospace &amp; defense jobs</div><div class="d">Anchored by Tinker AFB</div></div>
+      <div class="kpi c-land"><div class="v">Top&nbsp;5</div><div class="k">US wheat &amp; cattle</div><div class="d">$6.1B farm economy</div></div>
+      <div class="kpi c-sky"><div class="v">$7.8B</div><div class="k">Goods exports (2024)</div><div class="d up">▲ 24.9% year over year</div></div>
+      <div class="kpi c-redbud"><div class="v">$62,661</div><div class="k">Per-capita income</div><div class="d down">40th in the US</div></div>
+    </div>
+
+    <div class="grid2" style="margin-top:2.25rem">
+      <p class="body">Oklahoma's quiet story is <span class="accent">energy convergence</span>: the same windy plains that made it the nation's #6 oil state now make it #3 in wind. Almost all of its electricity-generation <em>growth</em> since 2010 has been wind. Meanwhile <span class="accent">Tinker Air Force Base</span> — the country's largest air-logistics depot — seeded an aerospace cluster now worth $44B and 206,000 jobs, the state's fastest-growing industry and its hedge against the next oil bust.</p>
+      <p class="body">But concentration cuts both ways. Oil &amp; gas is still ~<span class="accent">23%</span> of all economic activity and the swing factor in state tax receipts. When crude rolls over, gross-production tax can fall half a billion dollars in a single year — exactly what happened in FY2024. Oklahoma's prosperity is real, but it is <span class="accent">levered to a commodity price</span> it does not control.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 — VALUE PER ACRE (URBAN3 SIGNATURE) ============ -->
+<section class="page" data-page="economy" id="vpa" style="background:linear-gradient(180deg,#0a0c10,#101620,#0a0c10)">
+  <div class="wrap reveal">    <h2>Value per acre</h2>
+    <p class="dek">The signature move of urban economist Joe Minicozzi (Urban3) is to stop measuring land by what it looks like and measure it by the <em>value packed onto each acre</em>. Shade Oklahoma's 77 counties that way and a different state appears: nearly all the value lives in two counties.</p>
+
+    <div class="panel" style="margin-top:2.125rem;background:linear-gradient(180deg,#0d1118,#0a0d13)">
+      <h3>Property value per acre, by county</h3>
+      <div class="cap">The true Urban3 measure, mapped flat: every one of the 77 counties shaded by its assessed property value per acre — its tax base divided by its land. One color, dark to bright. The two metros blaze; rural counties barely register.</div>
+      <div class="dwmap"><iframe title="Dollars Per Acre" aria-label="Choropleth map" id="datawrapper-chart-IKYax" src="https://datawrapper.dwcdn.net/IKYax/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="409" data-external="1"></iframe><script type="text/javascript">(function(){function e(){window.addEventListener(`message`,function(e){if(e.data[`datawrapper-height`]!==void 0){var t=document.querySelectorAll(`iframe`);for(var n in e.data[`datawrapper-height`])for(var r=0,i;i=t[r];r++)if(i.contentWindow===e.source){var a=e.data[`datawrapper-height`][n]+`px`;i.style.height=a}}})}e()})();</script></div>
+      <p class="fignote">All 77 counties with accurate boundaries; major lakes shown approximately. Value = 2024 gross assessed valuation (Oklahoma Tax Commission, Ad Valorem Division) &divide; county land area. Range: <b>$57/acre</b> (Cimarron, far panhandle) to <b>$24,831/acre</b> (Oklahoma County) — a 436&times; spread. Oklahoma and Tulsa counties alone hold ~38% of the entire state property tax base on ~3% of its land.</p><details style="margin-top:1.2rem"><summary style="cursor:pointer;color:var(--sky2);font-weight:600;font-size:.95rem">See all 77 counties (value per acre)</summary><div class="panel" style="margin-top:.8rem;max-height:32rem;overflow:auto"><table class="fin"><tr><th>County</th><th style="text-align:right">Assessed value</th><th style="text-align:right">Value / acre</th></tr><tr><td>Oklahoma</td><td class="num">$10.92B</td><td class="num">$24,831</td></tr><tr><td>Tulsa</td><td class="num">$8.70B</td><td class="num">$23,175</td></tr><tr><td>Cleveland</td><td class="num">$3.33B</td><td class="num">$9,508</td></tr><tr><td>Canadian</td><td class="num">$2.38B</td><td class="num">$4,170</td></tr><tr><td>Mayes</td><td class="num">$1.26B</td><td class="num">$2,967</td></tr><tr><td>Rogers</td><td class="num">$1.30B</td><td class="num">$2,848</td></tr><tr><td>Payne</td><td class="num">$1.15B</td><td class="num">$2,579</td></tr><tr><td>Wagoner</td><td class="num">$0.94B</td><td class="num">$2,511</td></tr><tr><td>Washington</td><td class="num">$0.51B</td><td class="num">$1,916</td></tr><tr><td>McClain</td><td class="num">$0.56B</td><td class="num">$1,583</td></tr><tr><td>Garfield</td><td class="num">$1.00B</td><td class="num">$1,518</td></tr><tr><td>Comanche</td><td class="num">$1.02B</td><td class="num">$1,517</td></tr><tr><td>Carter</td><td class="num">$0.77B</td><td class="num">$1,486</td></tr><tr><td>Grady</td><td class="num">$0.94B</td><td class="num">$1,370</td></tr><tr><td>Creek</td><td class="num">$0.81B</td><td class="num">$1,326</td></tr><tr><td>Muskogee</td><td class="num">$0.67B</td><td class="num">$1,298</td></tr><tr><td>Logan</td><td class="num">$0.61B</td><td class="num">$1,280</td></tr><tr><td>Delaware</td><td class="num">$0.62B</td><td class="num">$1,215</td></tr><tr><td>Pottawatomie</td><td class="num">$0.58B</td><td class="num">$1,155</td></tr><tr><td>Kay</td><td class="num">$0.66B</td><td class="num">$1,103</td></tr><tr><td>Lincoln</td><td class="num">$0.59B</td><td class="num">$975</td></tr><tr><td>Bryan</td><td class="num">$0.56B</td><td class="num">$969</td></tr><tr><td>Kingfisher</td><td class="num">$0.53B</td><td class="num">$932</td></tr><tr><td>Stephens</td><td class="num">$0.52B</td><td class="num">$926</td></tr><tr><td>Pontotoc</td><td class="num">$0.40B</td><td class="num">$888</td></tr><tr><td>Marshall</td><td class="num">$0.22B</td><td class="num">$809</td></tr><tr><td>Garvin</td><td class="num">$0.41B</td><td class="num">$800</td></tr><tr><td>Ottawa</td><td class="num">$0.23B</td><td class="num">$756</td></tr><tr><td>Okmulgee</td><td class="num">$0.29B</td><td class="num">$663</td></tr><tr><td>Custer</td><td class="num">$0.41B</td><td class="num">$660</td></tr><tr><td>Murray</td><td class="num">$0.17B</td><td class="num">$656</td></tr><tr><td>Pittsburg</td><td class="num">$0.53B</td><td class="num">$619</td></tr><tr><td>Cherokee</td><td class="num">$0.30B</td><td class="num">$616</td></tr><tr><td>Noble</td><td class="num">$0.28B</td><td class="num">$609</td></tr><tr><td>Sequoyah</td><td class="num">$0.27B</td><td class="num">$606</td></tr><tr><td>Seminole</td><td class="num">$0.24B</td><td class="num">$602</td></tr><tr><td>Coal</td><td class="num">$0.17B</td><td class="num">$537</td></tr><tr><td>Beckham</td><td class="num">$0.29B</td><td class="num">$515</td></tr><tr><td>Blaine</td><td class="num">$0.27B</td><td class="num">$459</td></tr><tr><td>Love</td><td class="num">$0.14B</td><td class="num">$436</td></tr><tr><td>Woodward</td><td class="num">$0.34B</td><td class="num">$433</td></tr><tr><td>McIntosh</td><td class="num">$0.19B</td><td class="num">$431</td></tr><tr><td>Johnston</td><td class="num">$0.17B</td><td class="num">$421</td></tr><tr><td>Jackson</td><td class="num">$0.21B</td><td class="num">$414</td></tr><tr><td>Hughes</td><td class="num">$0.21B</td><td class="num">$408</td></tr><tr><td>Adair</td><td class="num">$0.14B</td><td class="num">$381</td></tr><tr><td>Osage</td><td class="num">$0.55B</td><td class="num">$379</td></tr><tr><td>McCurtain</td><td class="num">$0.45B</td><td class="num">$378</td></tr><tr><td>Le Flore</td><td class="num">$0.36B</td><td class="num">$353</td></tr><tr><td>Caddo</td><td class="num">$0.28B</td><td class="num">$353</td></tr><tr><td>Grant</td><td class="num">$0.22B</td><td class="num">$346</td></tr><tr><td>Pawnee</td><td class="num">$0.12B</td><td class="num">$334</td></tr><tr><td>Dewey</td><td class="num">$0.20B</td><td class="num">$318</td></tr><tr><td>Major</td><td class="num">$0.19B</td><td class="num">$314</td></tr><tr><td>Woods</td><td class="num">$0.25B</td><td class="num">$310</td></tr><tr><td>Washita</td><td class="num">$0.19B</td><td class="num">$300</td></tr><tr><td>Texas</td><td class="num">$0.34B</td><td class="num">$261</td></tr><tr><td>Craig</td><td class="num">$0.12B</td><td class="num">$256</td></tr><tr><td>Nowata</td><td class="num">$0.09B</td><td class="num">$238</td></tr><tr><td>Okfuskee</td><td class="num">$0.09B</td><td class="num">$235</td></tr><tr><td>Atoka</td><td class="num">$0.14B</td><td class="num">$226</td></tr><tr><td>Alfalfa</td><td class="num">$0.13B</td><td class="num">$225</td></tr><tr><td>Haskell</td><td class="num">$0.08B</td><td class="num">$211</td></tr><tr><td>Ellis</td><td class="num">$0.16B</td><td class="num">$203</td></tr><tr><td>Choctaw</td><td class="num">$0.10B</td><td class="num">$197</td></tr><tr><td>Latimer</td><td class="num">$0.09B</td><td class="num">$189</td></tr><tr><td>Roger Mills</td><td class="num">$0.12B</td><td class="num">$171</td></tr><tr><td>Kiowa</td><td class="num">$0.10B</td><td class="num">$160</td></tr><tr><td>Beaver</td><td class="num">$0.18B</td><td class="num">$152</td></tr><tr><td>Jefferson</td><td class="num">$0.06B</td><td class="num">$120</td></tr><tr><td>Cotton</td><td class="num">$0.05B</td><td class="num">$113</td></tr><tr><td>Pushmataha</td><td class="num">$0.10B</td><td class="num">$113</td></tr><tr><td>Tillman</td><td class="num">$0.06B</td><td class="num">$110</td></tr><tr><td>Harper</td><td class="num">$0.07B</td><td class="num">$108</td></tr><tr><td>Greer</td><td class="num">$0.03B</td><td class="num">$83</td></tr><tr><td>Harmon</td><td class="num">$0.02B</td><td class="num">$73</td></tr><tr><td>Cimarron</td><td class="num">$0.07B</td><td class="num">$57</td></tr></table></div></details>
+    </div>
+
+    <div class="panel" style="margin-top:2.125rem;background:linear-gradient(180deg,#0e1420,#0a0e16)">
+      <h3>An acre is an acre — until you measure what it earns</h3>
+      <div class="cap">Same footprint, wildly different output. Each tower is one acre of Oklahoma land, extruded by the economic value it generates per year. (Illustrative model of the Urban3 principle.)</div>
+      <div id="vpaterrain"></div>
+      <div class="legend">
+        <span><i style="background:var(--land)"></i>Farmland / rangeland</span>
+        <span><i style="background:var(--wheat)"></i>Suburban &amp; big-box</span>
+        <span><i style="background:var(--oil)"></i>Active oil &amp; gas pad</span>
+        <span><i style="background:var(--redbud)"></i>Downtown core (OKC / Tulsa)</span>
+      </div>
+      <p class="fignote">The pattern is the point: a single downtown block can out-earn hundreds of acres of farmland or sprawl, and a productive well can out-earn both — but only while it flows. Magnitudes are illustrative of Urban3's nationally-documented value-per-acre findings applied to Oklahoma land types, not parcel-level tax data.</p>
+    </div>
+
+    <div class="grid2" style="margin-top:2.25rem">
+      <p class="body">Oklahoma is <span class="accent">68,595 square miles</span> of mostly rural land — yet its <em>value</em> is collapsing into a few points. Population growth since 2020 has concentrated in the urban centers: Oklahoma County (806,199), Tulsa County (680,794) and fast-growing Cleveland and Canadian counties on the OKC fringe. The downtown cores the State barely taxes generate more economic value per acre than the vast working landscapes that define its image.</p>
+      <p class="body">The Urban3 warning for Oklahoma is fiscal: <span class="accent">sprawl is expensive</span>. Every mile of new suburban road, pipe and wire is a liability the whole tax base must maintain, while the high-value downtown blocks that could pay for it are a tiny share of the map. A state cutting its income tax toward zero will lean ever harder on the productivity of those few bright towers.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 — CAPITAL BALANCE SHEET ============ -->
+<section class="page" data-page="economy" id="capital">
+  <div class="wrap reveal">    <h2>The assets that never hit the ledger</h2>
+    <p class="dek">The audited balance sheet counts cash and concrete. The real Oklahoma balance sheet is its <em>capital stock</em> — what's under the ground, on the land, and in its people. Some of it is appreciating; some is being run down.</p>
+
+    <div class="kpis" style="margin-top:2.125rem;grid-template-columns:repeat(3,1fr)">
+      <div class="kpi c-land"><div class="v">NATURAL</div><div class="k" style="margin-top:0.875rem;color:var(--land2)">Appreciating &amp; depleting</div>
+        <div class="d" style="color:#cfccc2;line-height:1.7;margin-top:0.625rem">#6 US oil · top-tier gas · #3 US wind · top-5 wheat &amp; cattle · vast wind corridor &amp; rangeland</div></div>
+      <div class="kpi c-redbud"><div class="v">TRIBAL</div><div class="k" style="margin-top:0.875rem;color:var(--redbud2)">Fast-appreciating</div>
+        <div class="d" style="color:#cfccc2;line-height:1.7;margin-top:0.625rem">39 nations · $23.4B output (~8% of GDP) · 139,860 jobs supported · +$4.9B in four years</div></div>
+      <div class="kpi c-sky"><div class="v">HUMAN</div><div class="k" style="margin-top:0.875rem;color:var(--sky2)">Under-maintained</div>
+        <div class="d" style="color:#cfccc2;line-height:1.7;margin-top:0.625rem">4.05M people · +80,064 since 2020 · but 50th in education &amp; 47th in health outcomes</div></div>
+    </div>
+
+    <div class="grid2" style="margin-top:2.5rem">
+      <div class="panel">
+        <span class="tag">Tribal nations — the under-counted asset</span>
+        <h3 style="margin:0.375rem 0 0.125rem">$23.4 billion</h3>
+        <div class="cap">Oklahoma's 39 tribal nations are an economic pillar in their own right — and a uniquely Oklahoma line item.</div>
+        <table class="fin">
+          <tr><td>Total economic output (2023)</td><td class="num">$23.4B</td></tr>
+          <tr><td>Share of state GDP</td><td class="num">~8%</td></tr>
+          <tr><td>Jobs supported statewide</td><td class="num">139,860</td></tr>
+          <tr><td>Wages &amp; benefits</td><td class="num">$7.8B</td></tr>
+          <tr><td>Health services to Oklahomans</td><td class="num">$582M</td></tr>
+          <tr><td>Education funding</td><td class="num">$351M</td></tr>
+          <tr class="total"><td>Growth, FY2019→FY2023</td><td class="num">+$4.9B</td></tr>
+        </table>
+      </div>
+      <p class="body">Since <em>McGirt v. Oklahoma</em> reaffirmed reservation boundaries across much of eastern Oklahoma, the tribal economy has become impossible to treat as a footnote. Casinos, health systems, manufacturing and compacts now move <span class="accent">$23.4 billion</span> a year and support nearly <span class="accent">140,000 jobs</span> — many in rural counties where they are the largest employer and the de-facto safety net, spending more than half a billion dollars a year on health care alone. On the State's hidden balance sheet, this is the asset class growing fastest.</p>
+    </div>
+  </div>
+</section>
+
+<!-- local multiplier + opportunity -->
+<section class="page" data-page="economy" id="local-density">
+  <div class="wrap reveal">
+    <div class="eyebrow">The local density principle</div>
+    <h2>Not all spending is equal</h2>
+    <p class="dek">When a dollar is spent at a locally-owned business, a measurably larger share recirculates within the community before leaving. This is documented economic fact, not advocacy.</p>
+    <div class="mult-grid">
+      <div class="panel">
+        <span class="tag">Locally-owned business</span>
+        <p style="font-size:.85rem;color:var(--muted);margin:.4rem 0 .6rem">Estimated share of revenue that recirculates locally before leaving the state</p>
+        <div style="background:var(--grid);border-radius:.3rem;height:1.2rem;overflow:hidden;margin:.6rem 0 .3rem">
+          <div class="bar-fill" data-w="48" style="background:linear-gradient(90deg,var(--land),var(--land2));height:100%"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:.75rem;color:var(--muted)">
+          <span>0%</span><span style="color:var(--land2);font-weight:600">~48% local recirculation</span><span>100%</span>
+        </div>
+        <p style="font-size:.78rem;color:var(--faint);margin-top:.5rem">Local owners spend profits locally. Local employees spend wages locally. Local suppliers are paid locally.</p>
+      </div>
+      <div class="panel">
+        <span class="tag">National chain</span>
+        <p style="font-size:.85rem;color:var(--muted);margin:.4rem 0 .6rem">Estimated share of revenue that recirculates locally before leaving the state</p>
+        <div style="background:var(--grid);border-radius:.3rem;height:1.2rem;overflow:hidden;margin:.6rem 0 .3rem">
+          <div class="bar-fill" data-w="14" style="background:linear-gradient(90deg,var(--sky),var(--sky2));height:100%"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:.75rem;color:var(--muted)">
+          <span>0%</span><span style="color:var(--sky2);font-weight:600">~14% local recirculation</span><span>100%</span>
+        </div>
+        <p style="font-size:.78rem;color:var(--faint);margin-top:.5rem">Profits flow to corporate HQ. Supply chains are centralized. Wages stay; most else leaves.</p>
+      </div>
+    </div>
+    <div class="panel" style="margin-top:2rem">
+      <span class="tag">What Oklahoma buys but does not make &mdash; documented import gaps</span>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,18rem),1fr));gap:.75rem;margin-top:1rem">
+        <div class="gap-item"><div class="gap-dot" style="background:var(--wheat2)"></div><div><strong>Technology &amp; enterprise software</strong><br><span style="font-size:.82rem;color:var(--muted)">IT infrastructure and digital services for government and business largely sourced out of state.</span></div></div>
+        <div class="gap-item"><div class="gap-dot" style="background:var(--wheat2)"></div><div><strong>Medical devices &amp; pharma distribution</strong><br><span style="font-size:.82rem;color:var(--muted)">Hospital supply chains and pharmaceutical distribution dominated by out-of-state distributors.</span></div></div>
+        <div class="gap-item"><div class="gap-dot" style="background:var(--wheat2)"></div><div><strong>Aerospace component manufacturing</strong><br><span style="font-size:.82rem;color:var(--muted)">Oklahoma runs the world&rsquo;s largest MRO operation; most components are imported.</span></div></div>
+        <div class="gap-item"><div class="gap-dot" style="background:var(--wheat2)"></div><div><strong>Value-added food processing</strong><br><span style="font-size:.82rem;color:var(--muted)">Agricultural output exits raw. Milling, packaging, specialty foods remain an open gap.</span></div></div>
+        <div class="gap-item"><div class="gap-dot" style="background:var(--wheat2)"></div><div><strong>Renewable energy components</strong><br><span style="font-size:.82rem;color:var(--muted)">#3 wind producer nationally; most turbine and solar components are imported.</span></div></div>
+        <div class="gap-item"><div class="gap-dot" style="background:var(--wheat2)"></div><div><strong>Professional &amp; consulting services</strong><br><span style="font-size:.82rem;color:var(--muted)">Government and enterprise contracts flow significantly to out-of-state professional firms.</span></div></div>
+      </div>
+    </div>
+    <p class="fignote" style="margin-top:1.25rem">Sources: Census trade data; OMES procurement records; ILSR "The Economics of Local" meta-analysis (2012 update); American Independent Business Alliance. Multiplier figures are ranges, not point estimates. Methodology notes in Sources section.</p>
+  </div>
+</section>
+
+<!-- ============ 08 — PEOPLE & POLITICS ============ -->
+<section class="page" data-page="people" id="people">
+  <div class="banner" style="background-image:url(img/people.jpg)"></div>
+  <div class="wrap reveal">    <h2>4.05 million Oklahomans, two islands of blue</h2>
+    <p class="dek">The population is growing, urbanizing, and — at the ballot box — almost uniformly red. In 2024 Donald Trump carried <span class="accent">all 77 counties</span> by a 34-point margin. The only contested ground is the two big-city cores.</p>
+
+    <div class="grid2" style="margin-top:2.125rem;align-items:center">
+      <div class="panel" style="background:linear-gradient(180deg,#1a1320,#140e18)">
+        <span class="tag">2024 presidential vote — all 77 counties red</span>
+        <div id="okmap" style="margin-top:0.875rem"></div>
+        <div class="legend">
+          <span><i style="background:#7a1f33"></i>Trump +40 or more</span>
+          <span><i style="background:#b83a52"></i>Trump +20–40</span>
+          <span><i style="background:var(--sky)"></i>Urban core (closest margins)</span>
+        </div>
+        <p class="fignote">Boundary is accurately projected (panhandle, 100th-meridian west edge, Red River south); the red mosaic is a texture, not literal county lines. Trump carried all 77 counties. Oklahoma County decided by &lt;2 pts; Tulsa County by ~15 (Harris 41.3% — the Democrats' best there since 1964). Markers at true OKC &amp; Tulsa coordinates. Source: AP / state results, 2024.</p>
+      </div>
+      <div>
+        <p class="body">Oklahoma is one of the reddest states in America, yet 2024 also showed the <span class="accent">urban–rural split widening</span>: as rural counties shifted further right, the OKC and Tulsa cores moved the other way. The same two dots that dominate the value-per-acre map are the only places the state's politics are genuinely competitive.</p>
+        <div class="bar-row" style="margin-top:1.125rem"><div class="bar-lab">White</div><div class="bar-track"><div class="bar-fill" data-w="100" style="background:linear-gradient(90deg,#5a5965,#8a8794)"></div></div><div class="bar-val">72.9%</div></div>
+        <div class="bar-row"><div class="bar-lab">Hispanic / Latino</div><div class="bar-track"><div class="bar-fill" data-w="18" style="background:linear-gradient(90deg,var(--wheat),var(--wheat2))"></div></div><div class="bar-val">12.9%</div></div>
+        <div class="bar-row"><div class="bar-lab">American Indian</div><div class="bar-track"><div class="bar-fill" data-w="13" style="background:linear-gradient(90deg,var(--redbud),var(--redbud2))"></div></div><div class="bar-val">9.5%</div></div>
+        <p class="fignote">Race/ethnicity shares overlap (Census categories). American Indian share is among the highest of any state.</p>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:2.25rem">
+      <span class="tag">Where Oklahomans live — the five biggest counties</span>
+      <div class="bar-row" style="margin-top:1rem"><div class="bar-lab">Oklahoma Co.</div><div class="bar-track"><div class="bar-fill" data-w="100" style="background:linear-gradient(90deg,var(--sky),var(--sky2))"></div></div><div class="bar-val">806,199</div></div>
+      <div class="bar-row"><div class="bar-lab">Tulsa Co.</div><div class="bar-track"><div class="bar-fill" data-w="84" style="background:linear-gradient(90deg,var(--sky),var(--sky2))"></div></div><div class="bar-val">680,794</div></div>
+      <div class="bar-row"><div class="bar-lab">Cleveland Co.</div><div class="bar-track"><div class="bar-fill" data-w="37" style="background:linear-gradient(90deg,var(--land),var(--land2))"></div></div><div class="bar-val">300,047</div></div>
+      <div class="bar-row"><div class="bar-lab">Canadian Co.</div><div class="bar-track"><div class="bar-fill" data-w="21" style="background:linear-gradient(90deg,var(--land),var(--land2))"></div></div><div class="bar-val">168,985</div></div>
+      <div class="bar-row"><div class="bar-lab">Comanche Co.</div><div class="bar-track"><div class="bar-fill" data-w="15" style="background:linear-gradient(90deg,var(--wheat),var(--wheat2))"></div></div><div class="bar-val">121,825</div></div>
+      <p class="fignote">Three of the top five ring Oklahoma City. The remaining 72 counties share the rest. Median household income statewide: $61,364 — about 18% below the U.S. Source: Census / world population review.</p>
+    </div>
+
+    <div class="grid2" style="margin-top:2.25rem;align-items:center">
+      <div>
+        <span class="tag">Migration — the brain gain</span>
+        <h3 style="font-family:var(--serif);font-size:1.625rem;margin:0.5rem 0 0.25rem">88 people move to Oklahoma every day</h3>
+        <p class="body" style="margin-top:0.375rem">In 2023, <span class="accent">107,679</span> people moved in and <span class="accent">84,309</span> moved out — a net gain of <span class="accent">+23,370</span>, and roughly 88 new arrivals a day. After decades of "brain drain," Oklahoma is now a net importer of people, especially young ones: millennial in-migration ran <span class="accent">53% above</span> out-migration, and OKC ranked 8th nationally for millennial moves.</p>
+      </div>
+      <div class="panel">
+        <span class="tag">Net migrants gained, by origin (2022 to 2023)</span>
+        <div class="bar-row" style="margin-top:1rem"><div class="bar-lab">From California</div><div class="bar-track"><div class="bar-fill" data-w="100" style="background:linear-gradient(90deg,var(--sky),var(--sky2))"></div></div><div class="bar-val">+3,960</div></div>
+        <div class="bar-row"><div class="bar-lab">From Texas</div><div class="bar-track"><div class="bar-fill" data-w="66" style="background:linear-gradient(90deg,var(--wheat),var(--wheat2))"></div></div><div class="bar-val">+2,600</div></div>
+        <div class="bar-row"><div class="bar-lab">From Arizona</div><div class="bar-track"><div class="bar-fill" data-w="28" style="background:linear-gradient(90deg,var(--land),var(--land2))"></div></div><div class="bar-val">+1,120</div></div>
+        <p class="fignote">Net domestic in-migration by origin state. Oklahoma also ranks 12th for growth in families with children. Sources: IRS/Census migration; OCPA; KC Fed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- momentum panels -->
+<section class="page" data-page="people" id="momentum">
+  <div class="wrap">
+    <div class="eyebrow reveal">The people running this</div>
+    <h2 class="reveal">Oklahoma is not a dormant state</h2>
+    <p class="dek reveal">The momentum already exists. The question is whether you are part of it.</p>
+    <div class="momentum-list">
+      <div class="mom-panel reveal">
+        <div class="mom-num">88</div>
+        <div class="mom-ctx">people chose Oklahoma as home every day in 2023. Net in-migration: +23,370. Millennial in-migration ran 53% above out-migration. Oklahoma City ranked 8th nationally for millennial moves.</div>
+        <p class="fignote" style="margin-top:.6rem">Sources: IRS/Census migration flows; Oklahoma Council of Public Affairs; Federal Reserve Bank of Kansas City.</p>
+      </div>
+      <div class="mom-panel reveal" style="--md:.12s">
+        <div class="mom-num" style="color:var(--sky2)">1&thinsp;in&thinsp;5</div>
+        <div class="mom-ctx">working Oklahoma adults started a business in the last two years &mdash; approximately 19% of the working adult population. The highest new-business ownership rate in over two decades.</div>
+        <p class="fignote" style="margin-top:.6rem">Source: Global Entrepreneurship Monitor; U.S. Chamber of Commerce; BLS Southwest Region, 2025.</p>
+      </div>
+      <div class="mom-panel reveal" style="--md:.24s">
+        <div class="mom-num" style="color:var(--wheat2)">$23.4B</div>
+        <div class="mom-ctx">contributed to Oklahoma&rsquo;s economy by the state&rsquo;s 39 tribal nations &mdash; approximately 8% of state GDP &mdash; supporting an estimated 139,860 jobs. Growth of $4.9B since FY2019. The fastest-growing economic force in the state.</div>
+        <p class="fignote" style="margin-top:.6rem">Source: United for Oklahoma economic-impact report, 2023 data.</p>
+      </div>
+      <div class="mom-panel reveal" style="--md:.36s">
+        <div class="mom-num" style="color:var(--land2)">206,000</div>
+        <div class="mom-ctx">people employed in Oklahoma&rsquo;s aerospace and defense sector, generating an estimated $44 billion in economic activity. The world&rsquo;s largest MRO operation, anchored by Tinker Air Force Base, and the state&rsquo;s fastest-growing industry sector.</div>
+        <p class="fignote" style="margin-top:.6rem">Source: Oklahoma Aerospace &amp; Defense Initiative; Oklahoma Dept. of Commerce; Tinker AFB economic impact data.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09 — JOBS & ENTERPRISE ============ -->
+<section class="page" data-page="work" id="jobs">
+  <div class="banner" style="background-image:url(img/work.jpg)"></div>
+  <div class="wrap reveal">    <h2>Low joblessness, high hustle</h2>
+    <p class="dek">By the headline numbers, Oklahomans are working and starting businesses at a brisk clip. The state added <span class="accent">140,000 jobs</span> in five years and now has the highest rate of new business ownership in at least two decades.</p>
+
+    <div class="kpis" style="margin-top:2.125rem">
+      <div class="kpi c-land"><div class="v">3.8%</div><div class="k">Unemployment (U-3, 2025)</div><div class="d up">Below US 4.3%</div></div>
+      <div class="kpi c-wheat"><div class="v">7.2%</div><div class="k">Underemployment (U-6)</div><div class="d flat">vs US 8.0%</div></div>
+      <div class="kpi c-sky"><div class="v">140k</div><div class="k">Jobs added 2019-24</div><div class="d up">Top-10 state</div></div>
+      <div class="kpi c-redbud"><div class="v">~1 in 5</div><div class="k">Adults are new biz owners</div><div class="d up">Highest in 20+ yrs</div></div>
+    </div>
+
+    <div class="grid2" style="margin-top:2.25rem;align-items:start">
+      <p class="body">The entrepreneurial surge is real: the share of working adults who are new business owners climbed from <span class="accent">12.8%</span> a decade ago to nearly <span class="accent">19%</span> — and Oklahoma County alone logged <span class="accent">14,955</span> new business applications in 2023, the most of any county in the state. In 2024, 75 company expansions or relocations were announced, carrying a potential <span class="accent">$5.19 billion</span> in investment and 5,564 jobs.</p>
+      <div class="panel">
+        <span class="tag">The jobless picture, 2025</span>
+        <table class="fin" style="margin-top:0.5rem">
+          <tr><td>Unemployed residents (U-3)</td><td class="num">76,800</td></tr>
+          <tr><td>Marginally attached to labor force</td><td class="num">18,600</td></tr>
+          <tr><td>U-3 unemployment rate</td><td class="num">3.8%</td></tr>
+          <tr><td>U-6 underemployment rate</td><td class="num">7.2%</td></tr>
+          <tr class="total"><td>New-business-owner rate</td><td class="num" style="color:var(--land2)">~19%</td></tr>
+        </table>
+        <p class="fignote">"Marginally attached" want work and looked in the past year but not the last 4 weeks. Source: BLS Southwest, 2025; GEM; U.S. Chamber.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10 — THE HOUSEHOLD LEDGER ============ -->
+<section class="page" data-page="work" id="household">
+  <div class="wrap reveal">    <h2>The kitchen-table balance sheet</h2>
+    <p class="dek">The state runs a surplus; many of its households do not. Behind a low jobless rate sits thin savings, rising rents, real hunger, and a homelessness count moving the wrong way.</p>
+
+    <div class="grid2" style="margin-top:2.125rem;align-items:center">
+      <div>
+        <div class="lede-num" style="color:var(--redbud2)">−43.7%</div>
+        <p class="body" style="margin-top:0.5rem">The drop in the average Oklahoma household's savings balance from 2019 to 2023 — the <b>second-steepest decline in the nation</b>. Incomes are below average too: per-capita income of <span class="accent">$62,661</span> ranks 40th, and median household income sits ~18% under the U.S.</p>
+      </div>
+      <div class="panel">
+        <span class="tag">Pressure gauges</span>
+        <div class="bar-row" style="margin-top:0.875rem"><div class="bar-lab">Poverty rate</div><div class="bar-track"><div class="bar-fill" data-w="76" style="background:linear-gradient(90deg,var(--oil),var(--oil2))"></div></div><div class="bar-val">15.3%</div></div>
+        <div class="bar-row"><div class="bar-lab">Child poverty</div><div class="bar-track"><div class="bar-fill" data-w="100" style="background:linear-gradient(90deg,var(--redbud),var(--redbud2))"></div></div><div class="bar-val">20.5%</div></div>
+        <div class="bar-row"><div class="bar-lab">Food insecurity</div><div class="bar-track"><div class="bar-fill" data-w="78" style="background:linear-gradient(90deg,var(--wheat),var(--wheat2))"></div></div><div class="bar-val">15.4%</div></div>
+        <div class="bar-row"><div class="bar-lab">Uninsured</div><div class="bar-track"><div class="bar-fill" data-w="57" style="background:linear-gradient(90deg,var(--sky),var(--sky2))"></div></div><div class="bar-val">11.5%</div></div>
+        <p class="fignote">Food insecurity is the 5th–6th highest rate in the U.S. (2021–23 avg). Child poverty exceeds the U.S. average. Sources: Census; America's Health Rankings; USDA; Feeding America.</p>
+      </div>
+    </div>
+
+    <div class="grid2" style="margin-top:1.875rem;align-items:start">
+      <div class="panel">
+        <span class="tag">Housing squeeze</span>
+        <table class="fin" style="margin-top:0.5rem">
+          <tr><td>Rental homes short for lowest-income renters</td><td class="num">~85,000</td></tr>
+          <tr><td>Extremely-low-income renters severely cost-burdened</td><td class="num">70%+</td></tr>
+          <tr><td>OKC median rent, 2000 → 2018</td><td class="num">$483→$851</td></tr>
+        </table>
+        <p class="fignote">"Severely cost-burdened" = paying &gt;50% of income on rent. Source: National Low Income Housing Coalition; OK Housing Needs Assessment 2024.</p>
+      </div>
+      <div class="panel">
+        <span class="tag">Homelessness — moving the wrong way</span>
+        <table class="fin" style="margin-top:0.5rem">
+          <tr><td>Oklahoma City point-in-time count, 2024</td><td class="num">1,838</td></tr>
+          <tr><td>Change vs 2023</td><td class="num" style="color:var(--redbud2)">+402 (~28%)</td></tr>
+          <tr><td>Chronically homeless (OKC)</td><td class="num">474 (+17%)</td></tr>
+          <tr class="total"><td>Statewide (HUD AHAR, 2024)</td><td class="num" style="color:var(--redbud2)">~5,400 (+17%)</td></tr>
+        </table>
+        <p class="fignote">Point-in-time counts undercount; treat as a floor. Source: OKC PIT 2024; HUD Annual Homelessness Assessment Report.</p>
+      </div>
+    </div>
+    <div class="note"><b>The split screen:</b> a state booking a surplus and a top-10 jobs record, where the median family's savings just fell harder than almost anywhere in America and 1 in 5 children lives in poverty. Growth at the top of the ledger is not reaching the kitchen table.</div>
+  </div>
+</section>
+
+<!-- ============ 11 — THE INCENTIVE LEDGER ============ -->
+<section class="page" data-page="work" id="incentives">
+  <div class="wrap reveal">    <h2>What Oklahoma pays to keep the engine running</h2>
+    <p class="dek">Behind the economy sits a web of public subsidy — cash to employers, credits to drillers and wind farms, and tax cuts that shrink the base. The flagship, the <span class="accent">Quality Jobs Program</span>, pays companies up to 5% of new payroll in cash.</p>
+
+    <div class="grid2" style="margin-top:2.125rem;align-items:center">
+      <div class="panel">
+        <span class="tag">Quality Jobs Program payouts ($M/yr)</span>
+        <div class="bar-row" style="margin-top:1rem"><div class="bar-lab">2010</div><div class="bar-track"><div class="bar-fill" data-w="59" style="background:linear-gradient(90deg,var(--sky),var(--sky2))"></div></div><div class="bar-val">$50.0M</div></div>
+        <div class="bar-row"><div class="bar-lab">2016 (peak)</div><div class="bar-track"><div class="bar-fill" data-w="100" style="background:linear-gradient(90deg,var(--wheat),var(--wheat2))"></div></div><div class="bar-val">$84.5M</div></div>
+        <div class="bar-row"><div class="bar-lab">2018</div><div class="bar-track"><div class="bar-fill" data-w="56" style="background:linear-gradient(90deg,var(--land),var(--land2))"></div></div><div class="bar-val">$47.0M</div></div>
+        <p class="fignote">A 2021 analysis found 2011–18 payouts of $524.8M generated ~$4,025M in added state tax revenue — net positive on those terms. Manufacturing (36.8%) and oil &amp; gas (27.1%) took over half the rebates. Source: OK Policy; Incentive Evaluation Commission.</p>
+      </div>
+      <div>
+        <p class="body">The incentive stack runs deeper than Quality Jobs: a <span class="accent">21st Century</span> version pays knowledge-economy firms up to 10% of payroll for a decade; oil &amp; gas has drawn gross-production tax breaks; wind built out on production tax credits before they were curtailed. An Incentive Evaluation Commission now scores these against their cost.</p>
+        <p class="body">Set against the <span class="accent">revenue side</span>, the picture sharpens: the grocery-tax repeal (~$418M/yr) and the income-tax cut path toward zero are themselves a giant, permanent subsidy — to taxpayers broadly — that shrinks the base funding schools and health. Oklahoma subsidizes both its industries and its tax-cutters, and is spending savings to do it.</p>
+      </div>
+    </div>
+    <div class="panel" style="margin-top:1.875rem">
+      <span class="tag">The subsidy &amp; foregone-revenue ledger (annual, approximate)</span>
+      <table class="fin" style="margin-top:0.5rem">
+        <tr><td>Quality Jobs family of programs (cash to employers)</td><td class="num">~$47–85M</td></tr>
+        <tr><td>Grocery sales-tax repeal (foregone revenue)</td><td class="num">~$418M</td></tr>
+        <tr><td>Income-tax cut, HB2764 (foregone, full-year FY27)</td><td class="num">~$340M</td></tr>
+        <tr class="total"><td>Direction of travel</td><td class="num" style="color:var(--warn)">Base shrinking</td></tr>
+      </table>
+      <p class="fignote">Items are different in kind (direct cash vs foregone tax) and not strictly additive; shown together to size the public cost of "keeping the engine running." Sources: OK Policy; Oklahoma Tax Commission; HB2764.</p>
+    </div>
+  </div>
+</section>
+
+<!-- sbdc / cdfi / resources -->
+<section class="page" data-page="work" id="resources">
+  <div class="wrap reveal">
+    <div class="eyebrow">Available infrastructure</div>
+    <h2>The support structure already exists</h2>
+    <p class="dek">Before you raise capital or hire your first employee, there are people whose job it is to help you get there. Most of it is free.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,20rem),1fr));gap:1.25rem;margin-top:1.5rem">
+      <div class="panel">
+        <span class="tag">Small Business Development Centers</span>
+        <h3 style="margin:.4rem 0 .4rem">Free, one-on-one business advising</h3>
+        <p class="body" style="font-size:.9rem;margin:.4rem 0">Every Oklahoma county is served by an SBDC that offers free business advising &mdash; business plans, financial projections, licensing, market analysis. No cost. No obligation. Search &ldquo;[your county] SBDC Oklahoma&rdquo; or ask at your local chamber of commerce.</p>
+      </div>
+      <div class="panel">
+        <span class="tag">Quality Jobs Program</span>
+        <h3 style="margin:.4rem 0 .4rem">Up to 5% of new payroll, returned as cash</h3>
+        <p class="body" style="font-size:.9rem;margin:.4rem 0">Oklahoma&rsquo;s flagship incentive returns a percentage of new payroll to qualifying employers. Designed for businesses creating new jobs in-state. A 2021 analysis of 2011&ndash;18 payouts found $524.8M in rebates generated ~$4B in added state tax revenue. Your local chamber can tell you whether your business qualifies and how to apply.</p>
+      </div>
+      <div class="panel">
+        <span class="tag">Community Development Financial Institutions</span>
+        <h3 style="margin:.4rem 0 .4rem">Lending for businesses that don&rsquo;t fit traditional banks</h3>
+        <p class="body" style="font-size:.9rem;margin:.4rem 0">CDFIs are mission-driven lenders that specifically serve entrepreneurs who don&rsquo;t qualify for conventional financing. They operate throughout Oklahoma. Ask your local bank or chamber which CDFIs serve your area, or visit your county&rsquo;s economic development office.</p>
+      </div>
+    </div>
+    <p class="fignote" style="margin-top:1.25rem">Source: Oklahoma Dept. of Commerce; Oklahoma Policy Institute; Incentive Evaluation Commission.</p>
+  </div>
+</section>
+
+<!-- ============ 12 — HUMAN CAPITAL LEDGER ============ -->
+<section class="page" data-page="wellbeing" id="humancapital">
+  <div class="banner" style="background-image:url(img/wellbeing.jpg)"></div>
+  <div class="wrap reveal">    <h2>The ledger Oklahoma is under-funding</h2>
+    <p class="dek">A balance sheet isn't only what you own — it's what you owe your future. On the two line items that compound hardest over a generation, <span class="accent">schools</span> and <span class="accent">health</span>, Oklahoma sits near the bottom of the nation.</p>
+
+    <div class="grid2" style="margin-top:2.125rem;align-items:start">
+      <div class="panel">
+        <span class="tag">Education — national rank (50 = worst)</span>
+        <div id="edugauge" style="margin-top:0.5rem"></div>
+        <table class="fin" style="margin-top:0.5rem">
+          <tr><td>Overall public-education rank</td><td class="num" style="color:var(--redbud2)">50th</td></tr>
+          <tr><td>Per-pupil spending</td><td class="num" style="color:var(--redbud2)">49th</td></tr>
+          <tr><td>Per-pupil spend (amount)</td><td class="num">$11,311</td></tr>
+          <tr><td>Avg. teacher pay rank</td><td class="num" style="color:var(--warn)">41st</td></tr>
+          <tr><td>Avg. teacher pay (amount)</td><td class="num">$62,055</td></tr>
+          <tr class="total"><td>Real per-pupil funding since 2008</td><td class="num" style="color:var(--redbud2)">−16%</td></tr>
+        </table>
+        <p class="fignote">Each student now receives ~$717 less, in real terms, than in 2008. Sources: WalletHub; NAEP; Oklahoma Policy Institute.</p>
+      </div>
+      <div class="panel">
+        <span class="tag">Health — national rank (50 = worst)</span>
+        <div id="healthgauge" style="margin-top:0.5rem"></div>
+        <table class="fin" style="margin-top:0.5rem">
+          <tr><td>Overall health &amp; well-being</td><td class="num" style="color:var(--redbud2)">47th</td></tr>
+          <tr><td>Health-care system rank</td><td class="num" style="color:var(--redbud2)">49th</td></tr>
+          <tr><td>Uninsured rank</td><td class="num" style="color:var(--warn)">48th</td></tr>
+          <tr><td>Uninsured rate</td><td class="num">11.5%</td></tr>
+          <tr><td>Life expectancy (yrs)</td><td class="num" style="color:var(--redbud2)">72.8</td></tr>
+          <tr><td>Poverty rate</td><td class="num">15.3%</td></tr>
+          <tr class="total"><td>Child poverty rate</td><td class="num" style="color:var(--redbud2)">20.5%</td></tr>
+        </table>
+        <p class="fignote">Bottom-five in nearly every America's Health Rankings measure. Life expectancy fell from 74.1 yrs in 2020. Sources: America's Health Rankings; Commonwealth Fund; Census; CDC.</p>
+      </div>
+    </div>
+
+    <div class="note"><b>The paradox in one breath:</b> a state with a $34B net worth, $2.3B in savings and a balanced budget ranks 49th–50th in what it spends per child and per patient. The money exists; the allocation is a choice. Oklahoma's deepest liability isn't on the audited balance sheet — it's the human capital it is quietly letting depreciate while it cuts the taxes that would fund it.</div>
+  </div>
+</section>
+
+<!-- ============ 13 — JUSTICE & THE OVERLOOKED ============ -->
+<section class="page" data-page="wellbeing" id="justice">
+  <div class="wrap reveal">    <h2>The cost nobody books: incarceration</h2>
+    <p class="dek">Oklahoma locks up its people at a rate matched by almost nowhere on earth. It is a moral question and a fiscal one — every cell is a recurring expense and a person taken out of the workforce and the value-per-acre map.</p>
+
+    <div class="kpis" style="margin-top:2.125rem">
+      <div class="kpi c-redbud"><div class="v">#4</div><div class="k">State-prison rate (US)</div><div class="d down">550 per 100,000</div></div>
+      <div class="kpi c-redbud"><div class="v">905</div><div class="k">All-forms rate /100k</div><div class="d down">Higher than any democracy</div></div>
+      <div class="kpi c-warn"><div class="v">Top 3</div><div class="k">Women's incarceration</div><div class="d down">222 per 100,000</div></div>
+      <div class="kpi c-sky"><div class="v">72.8</div><div class="k">Life expectancy (yrs)</div><div class="d down">Down from 74.1 in 2020</div></div>
+    </div>
+
+    <div class="grid2" style="margin-top:2.25rem">
+      <p class="body">For years Oklahoma held the title of the world's <span class="accent">highest female incarceration rate</span>; reforms have eased it off that peak, but the state still ranks in the U.S. top three. Counting prisons, jails, and detention together, Oklahoma incarcerates <span class="accent">905 of every 100,000</span> residents — more than any independent democracy on the planet.</p>
+      <p class="body">This belongs on the balance sheet. Corrections is a billion-dollar-scale recurring cost (public safety &amp; defense ran <span class="accent">$1.23B</span> in FY2024), and the human capital removed — disproportionately rural, poor, and from the same overlooked communities the schools and clinics underserve — never shows up as the foregone output it is. It is the negative space in the Urban3 map.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 14 — VERDICT ============ -->
+<section class="page" data-page="verdict" id="verdict" style="background:radial-gradient(56.25rem 31.25rem at 80% 0%,rgba(230,177,61,.08),transparent 60%)">
+  <div class="banner" style="background-image:url(img/verdict.jpg)"></div>
+  <div class="wrap reveal">    <h2>The verdict on Oklahoma Inc.</h2>
+    <div class="twocol" style="margin-top:1.5rem;font-size:1.03125rem;color:#d9d6cd">
+      <p style="margin-bottom:0.875rem"><b style="color:var(--land2)">Strong where it counts on paper.</b> Oklahoma runs a genuine surplus, carries little debt, holds $2.3B in reserves and sits on a $34B net position that grew almost 6% in a single year. As a credit, it is conservative and resilient. Few states could survive an oil bust as well.</p>
+      <p style="margin-bottom:0.875rem"><b style="color:var(--sky2)">Quietly diversifying.</b> The caricature is a one-commodity state. The reality is energy <em>convergence</em> — #6 in oil and #3 in wind — plus a $44B aerospace cluster, a $23B tribal economy, $7.8B in exports, and net in-migration of 80,000 since 2020. The economic engine is broader and more modern than its politics suggest.</p>
+      <p style="margin-bottom:0.875rem"><b style="color:var(--oil2)">But structurally levered.</b> Oil &amp; gas is still ~23% of activity and the swing factor in the budget. A single year of soft prices erased half a billion dollars of production tax. The State's revenues rise and fall with a number set in global markets.</p>
+      <p style="margin-bottom:0.875rem"><b style="color:var(--wheat2)">And deliberately shrinking its own revenue.</b> Four years of federal money funded the savings; now lawmakers are cutting the income tax toward zero and have already repealed the grocery tax. The cushion is being spent down to subsidize structural revenue loss, just as federal support recedes.</p>
+      <p style="margin-bottom:0.875rem"><b style="color:var(--redbud2)">Under-investing in its people.</b> 50th in education, 47th in health, 49th in per-pupil spending — in a state that can afford better. The audited books look healthy precisely because the human-capital account is being underpaid.</p>
+      <p style="margin-bottom:0.875rem"><b style="color:var(--oil2)">Growth that skips the kitchen table.</b> Low joblessness and a top-10 jobs record sit alongside the nation's 2nd-steepest fall in household savings, 1-in-5 child poverty, 5th-worst food insecurity, and a homelessness count climbing. The top of the ledger is rising faster than the bottom.</p>
+      <p style="margin-bottom:0.875rem"><b style="color:var(--redbud2)">A justice cost off the books.</b> Incarcerating more people per capita than any democracy is a recurring expense and a permanent withdrawal of human capital — concentrated in the very communities the state already underserves.</p>
+      <p><b style="color:var(--ink)">The one-line rating:</b> a cash-rich, asset-heavy enterprise with a fortress balance sheet, a diversifying top line, and a board that is cutting prices into a commodity downturn while deferring maintenance on its most important long-term asset — its people.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 1% plan + elections + sources on verdict page -->
+<section class="page" data-page="verdict" id="take-action">
+  <div class="wrap reveal">
+    <div class="eyebrow">The 1% plan</div>
+    <h2>You don&rsquo;t have to change everything</h2>
+    <p style="font-size:clamp(1rem,1.6vw,1.08rem);color:var(--muted);max-width:44rem;margin-bottom:2rem;line-height:1.78">If every Oklahoman picks one thing they actually care about &mdash; one corner of this enterprise &mdash; and gives it 1% more attention, dollars, time, or talent, the compound effect is transformational. That is not optimism. That is math.</p>
+    <div class="pillar-grid">
+      <div class="panel">
+        <div style="font-family:var(--serif);font-size:2rem;font-weight:600;color:var(--land2);line-height:1;margin-bottom:.4rem">1</div>
+        <h3>Spend with intention</h3>
+        <p class="body" style="font-size:.9rem;margin:.5rem 0">Money has a geography. When you spend at a locally-owned business, a measurably larger share of that dollar stays in your community before it leaves. A modest shift &mdash; made consistently &mdash; compounds over time.</p>
+        <div class="pillar-action">1% action: This week, find one locally-owned alternative for a purchase you make regularly.</div>
+      </div>
+      <div class="panel">
+        <div style="font-family:var(--serif);font-size:2rem;font-weight:600;color:var(--land2);line-height:1;margin-bottom:.4rem">2</div>
+        <h3>Build something</h3>
+        <p class="body" style="font-size:.9rem;margin:.5rem 0">Oklahoma has one of the highest new business formation rates in the country. If you have seen a gap in your community &mdash; a need going unmet &mdash; that gap is an invitation. The infrastructure to help you start exists locally and most of it is free.</p>
+        <div class="pillar-action">1% action: Write down one problem in your community you wish someone would solve. Ask yourself why it couldn&rsquo;t be you.</div>
+      </div>
+      <div class="panel">
+        <div style="font-family:var(--serif);font-size:2rem;font-weight:600;color:var(--land2);line-height:1;margin-bottom:.4rem">3</div>
+        <h3>Show up</h3>
+        <p class="body" style="font-size:.9rem;margin:.5rem 0">The decisions that shape your street, school, and local business environment are mostly made at city council, county commissioner, and school board meetings most people never attend. One person who shows up consistently changes the room.</p>
+        <div class="pillar-action">1% action: Find out when your next city council or county commissioner meeting is. Put it on your calendar. Just go once.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page" data-page="verdict" id="election-layer">
+  <div class="wrap reveal">
+    <div class="eyebrow">The election layer</div>
+    <h2>These numbers reflect choices</h2>
+    <p class="dek">Choices are made by people in office. Those people are chosen by you. Knowing the numbers before you vote is the floor, not the ceiling.</p>
+    <div class="elect-grid">
+      <div>
+        <p class="fignote" style="margin-bottom:.75rem">Key budget line items and session changes &mdash; no party labels, no individual names. Numbers before and after.</p>
+        <table class="fin">
+          <tr><th>Budget line</th><th style="text-align:right">Before</th><th style="text-align:right">After</th><th style="text-align:right">Change</th><th>Session</th></tr>
+          <tr><td>K-12 Education</td><td class="num">$5.49B</td><td class="num">$5.76B</td><td class="num" style="color:var(--good)">+$270M</td><td>2024&ndash;25</td></tr>
+          <tr><td>Health &amp; Human Services</td><td class="num">$5.85B</td><td class="num">$6.31B</td><td class="num" style="color:var(--good)">+$460M</td><td>2024&ndash;25</td></tr>
+          <tr><td>Transportation</td><td class="num">$1.32B</td><td class="num">$1.45B</td><td class="num" style="color:var(--good)">+$130M</td><td>2024&ndash;25</td></tr>
+          <tr><td>Top income-tax rate</td><td class="num">4.75%</td><td class="num">4.50%</td><td class="num" style="color:var(--warn)">&minus;0.25 pts</td><td>2025</td></tr>
+          <tr><td>3 lowest income-tax brackets</td><td class="num">Active</td><td class="num">Eliminated</td><td class="num" style="color:var(--warn)">Removed</td><td>2025</td></tr>
+          <tr><td>Gross production tax*</td><td class="num">$1.57B</td><td class="num">$1.07B</td><td class="num" style="color:var(--warn)">&minus;$500M</td><td>Market</td></tr>
+          <tr style="opacity:.65"><td colspan="6" style="font-size:.72rem;font-style:italic">*Statutory rate unchanged; decline reflects commodity price movement FY2023&rarr;FY2024.</td></tr>
+        </table>
+        <p class="fignote" style="margin-top:.75rem">Sources: Oklahoma Policy Institute FY2026; HB 2764; HB 2766; ACFR FY2024; Oklahoma Tax Commission.</p>
+      </div>
+      <div>
+        <div class="panel" style="margin-bottom:1rem;background:rgba(72,166,216,.07);border-color:rgba(72,166,216,.2)">
+          <span class="tag">Find your state representative</span>
+          <p class="body" style="font-size:.88rem;margin:.4rem 0">Visit oklegislature.gov and search &ldquo;Find Your Legislator&rdquo; by your home address. You will see your representative&rsquo;s name, contact information, and committee assignments.</p>
+        </div>
+        <div class="panel" style="margin-bottom:1rem;background:rgba(94,161,115,.07);border-color:rgba(94,161,115,.2)">
+          <span class="tag">Find your ballot</span>
+          <p class="body" style="font-size:.88rem;margin:.4rem 0">Visit ok.gov/elections. Search by your name and date of birth to see your registration, upcoming sample ballot, and polling location.</p>
+        </div>
+        <div class="panel">
+          <span class="tag">2026 Oklahoma elections</span>
+          <table class="fin" style="margin-top:.5rem">
+            <tr><td>Primary</td><td class="num">June 2026</td></tr>
+            <tr><td>Primary runoff (if needed)</td><td class="num">August 2026</td></tr>
+            <tr><td>General election</td><td class="num">Nov 3, 2026</td></tr>
+            <tr><td>Races include</td><td class="num" style="text-align:left">Governor, AG, all 101 House seats</td></tr>
+          </table>
+          <p class="fignote" style="margin-top:.6rem">Local elections &mdash; city council, county commissioner, school board &mdash; are typically decided by fewer than 500 votes. Turnout is the variable.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<footer class="page" data-page="verdict" style="padding:3.375rem 0 5rem;border-bottom:none">
+  <div class="wrap">
+    <div class="eyebrow">Sources &amp; notes</div>
+    <p class="fignote" style="font-size:0.78125rem;line-height:1.9;max-width:56.25rem">
+      Government financial figures: <b>State of Oklahoma Annual Comprehensive Financial Report, FY2024</b> (Office of Management &amp; Enterprise Services) — Statement of Net Position and Statement of Activities, fiscal year ended June 30, 2024.
+      Budget: <b>Oklahoma Policy Institute, FY2026 Budget Highlights</b>; HB 2766 &amp; HB 2764.
+      Economy: <b>U.S. Bureau of Economic Analysis</b> (state GDP &amp; by-industry); <b>Oklahoma Energy Resources Board</b> (oil &amp; gas footprint); <b>U.S. EIA</b> (wind &amp; energy rank); Oklahoma Dept. of Commerce &amp; advancedmanufacturing.org (aerospace); USDA (agriculture); worldstopexports / U.S. Census (exports $7.8B, 2024).
+      Tribal economy: <b>United for Oklahoma</b> economic-impact report (2023 data).
+      People &amp; outcomes: <b>U.S. Census Bureau</b>; America's Health Rankings; Commonwealth Fund; WalletHub; NAEP; 2024 election results (AP / state).
+      Jobs &amp; enterprise: <b>U.S. Bureau of Labor Statistics</b> (Southwest region, 2025); U.S. Chamber of Commerce; Global Entrepreneurship Monitor; Oklahoma Dept. of Commerce.
+      Migration: IRS/Census flows; Oklahoma Council of Public Affairs; Federal Reserve Bank of Kansas City.
+      Households: Census ACS &amp; SAIPE; USDA / Feeding America (food insecurity); National Low Income Housing Coalition &amp; OK Housing Needs Assessment 2024 (housing); HUD AHAR &amp; OKC point-in-time count (homelessness); Federal Reserve / DepositAccounts (savings).
+      Incentives: Oklahoma Policy Institute; Oklahoma Incentive Evaluation Commission.
+      Justice: Bureau of Justice Statistics; Prison Policy Initiative; Vera Institute; Oklahoma Watch.
+      Map geometry: Oklahoma state boundary (USGS coordinates), equirectangular projection; city populations (Census / 2024 estimates).
+      <br><br>
+      <b>Method notes.</b> "Oklahoma Inc." reframes public data as corporate-style statements for clarity; the State is not a company and these are interpretive constructs, not GAAP filings. The economy "engines" chart mixes BEA value-added with total-activity/impact estimates, which overlap and are not additive. The value-per-acre terrain illustrates the Urban3 <em>principle</em> using representative land-type magnitudes; the geographic 3D map uses real boundaries and scales city spikes by population as a concrete proxy for economic concentration. Some figures span FY2023–FY2026 depending on the latest available source and are labeled accordingly.
+      <br><br>
+      Built June 2026 · An integrated financial &amp; economic atlas of the State of Oklahoma.
+    </p>
+  </div>
+</footer>
+
+<script>
+/* ---------- color helpers ---------- */
+function shade(hex,p){
+  hex=hex.replace('#',''); if(hex.length===3)hex=hex.split('').map(c=>c+c).join('');
+  let r=parseInt(hex.substr(0,2),16),g=parseInt(hex.substr(2,2),16),b=parseInt(hex.substr(4,2),16);
+  const t=p<0?0:255, a=Math.abs(p);
+  r=Math.round((t-r)*a+r); g=Math.round((t-g)*a+g); b=Math.round((t-b)*a+b);
+  return 'rgb('+r+','+g+','+b+')';
+}
+const C={crude:'#0a0a0a',wheat:'#e6b13d',redbud:'#e0436f',redbud2:'#f06d92',sky:'#48a6d8',sky2:'#74c6ee',
+  land:'#5ea173',oil:'#c0563a',grey:'#7a7986'};
+function isoBar(x,yBase,w,h,dx,dy,color){
+  const top=shade(color,.22), side=shade(color,-.34), front=color;
+  const xr=x+w, yt=yBase-h;
+  let s=`<polygon points="${x},${yBase} ${xr},${yBase} ${xr},${yt} ${x},${yt}" fill="${front}"/>`;
+  s+=`<polygon points="${xr},${yBase} ${xr+dx},${yBase+dy} ${xr+dx},${yt+dy} ${xr},${yt}" fill="${side}"/>`;
+  s+=`<polygon points="${x},${yt} ${xr},${yt} ${xr+dx},${yt+dy} ${x+dx},${yt+dy}" fill="${top}"/>`;
+  return s;
+}
+/* ---------- 1. FISCAL SKYLINE ---------- */
+(function(){
+  const data=[
+    {l:'Health',v:11.10,c:C.redbud},{l:'Education',v:5.75,c:C.wheat},
+    {l:'Social svcs',v:3.89,c:C.redbud2},{l:'Govt admin',v:3.53,c:C.sky},
+    {l:'Group ins.',v:1.11,c:C.grey},{l:'Transport',v:1.45,c:C.land},
+    {l:'Pub. safety',v:1.23,c:C.sky2},{l:'Higher ed',v:1.00,c:C.wheat},
+    {l:'Nat. res.',v:0.99,c:C.land},{l:'Justice &amp; reg.',v:0.64,c:C.grey}
+  ];
+  const W=1140,H=380,base=300,bw=64,dx=20,dy=-11,scale=232/11.10,gap=(W-60)/data.length;
+  let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Government expenses by function, FY2024">`;
+  svg+=`<line x1="20" y1="${base+0.5}" x2="${W-20}" y2="${base+0.5}" stroke="#2a2f3e" stroke-width="1"/>`;
+  data.forEach((d,i)=>{
+    const x=40+i*gap, h=Math.max(d.v*scale,3);
+    svg+=`<g class="tower" style="--d:${i*.08}s">`;
+    svg+=isoBar(x,base,bw,h,dx,dy,d.c);
+    svg+=`<text x="${x+bw/2+dx/2}" y="${base-h+dy-9}" text-anchor="middle" fill="#f2efe6" font-size="14" font-weight="700" font-family="Georgia,serif">$${d.v.toFixed(d.v<1?2:1)}B</text>`;
+    svg+=`<text x="${x+bw/2}" y="${base+20}" text-anchor="middle" fill="#9b9aa6" font-size="11.5" font-family="-apple-system,sans-serif">${d.l}</text>`;
+    svg+=`</g>`;
+  });
+  svg+=`</svg>`;
+  document.getElementById('skyline').innerHTML=svg;
+})();
+/* ---------- 2. BALANCE-SHEET BARS ---------- */
+(function(){
+  const W=440,H=300;
+  let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Assets versus liabilities">`;
+  const scale=240/46.29, base=270, dx=16,dy=-9, bw=92;
+  const assets=[{l:'Current',v:22.85,c:C.sky},{l:'Capital',v:15.20,c:C.land},{l:'Other',v:8.24,c:C.sky2}];
+  let y=base;
+  assets.forEach(a=>{const h=a.v*scale; svg+=isoBar(70,y,bw,h,dx,dy,a.c); y-=h;});
+  const liab=[{l:'Current',v:8.08,c:C.redbud},{l:'Noncurrent',v:4.85,c:C.redbud2}];
+  let y2=base;
+  liab.forEach(a=>{const h=a.v*scale; svg+=isoBar(250,y2,bw,h,dx,dy,a.c); y2-=h;});
+  svg+=`<line x1="40" y1="${base+0.5}" x2="${W-10}" y2="${base+0.5}" stroke="#2a2f3e"/>`;
+  svg+=`<text x="${70+bw/2}" y="${base+22}" text-anchor="middle" fill="#74c6ee" font-size="12" font-weight="700">ASSETS $46.3B</text>`;
+  svg+=`<text x="${250+bw/2}" y="${base+22}" text-anchor="middle" fill="#f06d92" font-size="12" font-weight="700">LIAB. $12.9B</text>`;
+  svg+=`<text x="${250+bw/2+dx}" y="${y2+dy-10}" text-anchor="middle" fill="#e6b13d" font-size="13" font-weight="700" font-family="Georgia,serif">net $34.1B</text>`;
+  svg+=`</svg>`;
+  document.getElementById('bsbars').innerHTML=svg;
+})();
+/* ---------- 3. VALUE-PER-ACRE CONCEPT TERRAIN ---------- */
+(function(){
+  const W=1140,H=360,base=300,dx=26,dy=-14;
+  let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Illustrative economic value per acre by land type">`;
+  const parcels=[
+    {l:'Farmland',sub:'baseline · 1×',h:7,c:C.land,x:90,w:120},
+    {l:'Suburban &amp; big-box',sub:'~40× / acre',h:46,c:C.wheat,x:380,w:84},
+    {l:'Active oil &amp; gas pad',sub:'~600× / acre*',h:150,c:C.oil,x:650,w:56},
+    {l:'Downtown core',sub:'~2,500× / acre',h:250,c:C.redbud,x:900,w:92}
+  ];
+  parcels.forEach(p=>{
+    svg+=isoBar(p.x,base,p.w,p.h,dx,dy,p.c);
+    svg+=`<text x="${p.x+p.w/2+dx/2}" y="${base-p.h+dy-22}" text-anchor="middle" fill="#f2efe6" font-size="14.5" font-weight="700" font-family="Georgia,serif">${p.l}</text>`;
+    svg+=`<text x="${p.x+p.w/2+dx/2}" y="${base-p.h+dy-6}" text-anchor="middle" fill="#9b9aa6" font-size="12">${p.sub}</text>`;
+  });
+  svg+=`<line x1="20" y1="${base+0.5}" x2="${W-20}" y2="${base+0.5}" stroke="#2a2f3e"/>`;
+  svg+=`<text x="20" y="${base+24}" fill="#6b6a76" font-size="11">*while it flows — the oil tower is a depleting asset</text>`;
+  svg+=`</svg>`;
+  document.getElementById('vpaterrain').innerHTML=svg;
+})();
+/* ---------- OKLAHOMA GEOMETRY (accurate, equirectangular-projected) ---------- */
+const OK_PTS=[[30.0,30.0],[987.4,30.0],[987.4,100.0],[991.9,254.0],[1004.5,359.0],[1009.1,422.0],[1006.8,458.4],[1003.4,500.4],[932.5,461.2],[875.4,466.8],[784.0,489.2],[726.9,480.8],[692.6,466.8],[646.9,461.2],[589.8,433.2],[532.7,427.6],[487.0,420.6],[441.3,396.8],[395.6,385.6],[372.7,371.6],[372.7,100.0],[30.0,100.0],[30.0,30.0]];
+const OK_VB=[1039,533];
+const OK_PATH='M'+OK_PTS.map(p=>p[0]+','+p[1]).join(' L')+' Z';
+const OK_CITIES=[
+ {n:'Oklahoma City',x:656.1,y:244.2,p:694800},{n:'Tulsa',x:830.9,y:149.0,p:411400},
+ {n:'Norman',x:665.2,y:279.2,p:128000},{n:'Broken Arrow',x:853.7,y:161.6,p:115000},
+ {n:'Edmond',x:660.6,y:219.0,p:96000},{n:'Lawton',x:553.2,y:364.6,p:90000},
+ {n:'Moore',x:659.5,y:262.4,p:63000},{n:'Midwest City',x:670.9,y:247.0,p:58000},
+ {n:'Enid',x:614.9,y:114.0,p:51000},{n:'Stillwater',x:708.6,y:153.2,p:50000},
+ {n:'Muskogee',x:901.7,y:205.0,p:36000},{n:'Bartlesville',x:832.0,y:65.0,p:38000},
+ {n:'Shawnee',x:723.5,y:263.8,p:31000},{n:'Ponca City',x:706.3,y:70.6,p:24000},
+ {n:'Ardmore',x:699.5,y:426.2,p:25000},{n:'Duncan',x:605.8,y:380.0,p:22000},
+ {n:'Durant',x:787.4,y:451.4,p:18000},{n:'McAlester',x:856.0,y:319.8,p:18000},
+ {n:'Woodward',x:442.4,y:109.8,p:12000},{n:'Guymon',x:203.7,y:74.8,p:12000},
+ {n:'Elk City',x:441.3,y:252.6,p:12000},{n:'Altus',x:449.3,y:360.4,p:18000},
+ {n:'Weatherford',x:520.1,y:235.8,p:12000},{n:'Tahlequah',x:947.4,y:181.2,p:16000}
+];
+function mix(a,b,t){a=a.match(/\w\w/g).map(h=>parseInt(h,16));b=b.match(/\w\w/g).map(h=>parseInt(h,16));
+  return 'rgb('+a.map((v,i)=>Math.round(v+(b[i]-v)*t)).join(',')+')';}
+/* ---------- POLITICAL MAP ---------- */
+(function(){
+  const [W,H]=OK_VB;
+  let cells='';
+  for(let r=0;r<23;r++)for(let c=0;c<42;c++){
+    const x=18+c*25,y=18+r*23,sh=-(.05+Math.random()*.4);
+    cells+=`<rect x="${x}" y="${y}" width="23" height="21" rx="2" fill="${shade('#b8324a',sh)}"/>`;
+  }
+  let svg=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Oklahoma 2024 presidential vote, all 77 counties Republican">`;
+  svg+=`<defs><clipPath id="okclip"><path d="${OK_PATH}"/></clipPath></defs>`;
+  svg+=`<path d="${OK_PATH}" fill="#7a1f33"/>`;
+  svg+=`<g clip-path="url(#okclip)">${cells}</g>`;
+  svg+=`<path d="${OK_PATH}" fill="none" stroke="#05070b" stroke-width="3"/>`;
+  [['OKC',656.1,244.2,16],['Tulsa',830.9,149.0,13]].forEach(([n,x,y,r])=>{
+    svg+=`<circle cx="${x}" cy="${y}" r="${r}" fill="#48a6d8" stroke="#05070b" stroke-width="2.5"/>`;
+    svg+=`<text x="${x}" y="${y-r-6}" text-anchor="middle" fill="#9bd3f0" font-size="17" font-weight="700">${n}</text>`;
+  });
+  svg+=`</svg>`;
+  document.getElementById('okmap').innerHTML=svg;
+})();
+
+/* ---------- RANK GAUGES ---------- */
+function gauge(id,metrics){
+  const W=420,H=40+metrics.length*30;
+  let svg=`<svg viewBox="0 0 ${W} ${H}" role="img">`;
+  svg+=`<defs><linearGradient id="g_${id}" x1="0" x2="1"><stop offset="0" stop-color="#5ea173"/><stop offset=".5" stop-color="#e6b13d"/><stop offset="1" stop-color="#e0436f"/></linearGradient></defs>`;
+  metrics.forEach((m,i)=>{
+    const y=24+i*30, x0=120,x1=W-20, px=x0+((m.rank-1)/49)*(x1-x0);
+    svg+=`<text x="0" y="${y+4}" fill="#9b9aa6" font-size="12">${m.l}</text>`;
+    svg+=`<rect x="${x0}" y="${y-4}" width="${x1-x0}" height="8" rx="4" fill="url(#g_${id})" opacity=".55"/>`;
+    svg+=`<circle cx="${px}" cy="${y}" r="7" fill="#0c0e13" stroke="#f2efe6" stroke-width="2"/>`;
+    svg+=`<text x="${px}" y="${y-12}" text-anchor="middle" fill="#f2efe6" font-size="11" font-weight="700">${m.rank}</text>`;
+  });
+  svg+=`<text x="120" y="${H-2}" fill="#6b6a76" font-size="10">1st (best)</text>`;
+  svg+=`<text x="${W-20}" y="${H-2}" text-anchor="end" fill="#6b6a76" font-size="10">50th (worst)</text>`;
+  svg+=`</svg>`;
+  document.getElementById(id).innerHTML=svg;
+}
+gauge('edugauge',[{l:'Overall',rank:50},{l:'Per-pupil $',rank:49},{l:'Teacher pay',rank:41}]);
+gauge('healthgauge',[{l:'Health rank',rank:47},{l:'Care system',rank:49},{l:'Uninsured',rank:48}]);
+/* ---------- reveal + bar animation ---------- */
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('in');
+    e.target.querySelectorAll('.bar-fill').forEach(b=>{b.style.width=(b.dataset.w||100)+'%';});
+    io.unobserve(e.target);}
+})},{threshold:.12});
+document.querySelectorAll('.reveal,.panel').forEach(el=>io.observe(el));
+const io2=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){
+  e.target.style.width=(e.target.dataset.w||100)+'%';io2.unobserve(e.target);}})},{threshold:.2});
+document.querySelectorAll('.bar-fill').forEach(b=>io2.observe(b));
+</script>
+
+<style>
+  .tower{opacity:0;transform:translateY(1.25rem);animation:rise .8s ease forwards;animation-delay:var(--d,0s)}
+  @keyframes rise{to{opacity:1;transform:none}}
+  #skyline svg,#vpaterrain svg{min-height:17.5rem}
+</style>
+<script>
+(function(){
+  var pages=[['overview','Overview'],['books','The Books'],['economy','Economy'],
+    ['people','People'],['work','Work & Money'],['wellbeing','Wellbeing'],['verdict','Verdict & Action']];
+  var box=document.getElementById('navlinks');
+  var ham=document.getElementById('hamBtn');
+  var links=document.getElementById('navlinks');
+  function show(p){
+    document.querySelectorAll('.page').forEach(function(s){s.classList.toggle('active',s.dataset.page===p);});
+    document.querySelectorAll('#navlinks button').forEach(function(b){b.classList.toggle('on',b.dataset.p===p);});
+    document.querySelectorAll('.page.active .bar-fill').forEach(function(b){b.style.width=(b.dataset.w||100)+'%';});
+    document.querySelectorAll('.page.active .reveal,.page.active .mom-panel').forEach(function(e){e.classList.add('in');});
+    window.scrollTo(0,0);
+    if(links.classList.contains('open')){links.classList.remove('open');ham.classList.remove('open');}
+  }
+  pages.forEach(function(pp){
+    var b=document.createElement('button');b.textContent=pp[1];b.dataset.p=pp[0];
+    b.onclick=function(){show(pp[0]);};box.appendChild(b);
+  });
+  ham.addEventListener('click',function(){
+    ham.classList.toggle('open');links.classList.toggle('open');
+  });
+  window.__show=show; show('overview');
+  /* spending counter — tabular, fixed-width, 200ms updates */
+  var cEl=document.getElementById('spend-counter');
+  if(cEl){var t0=Date.now();setInterval(function(){
+    var n=Math.floor(((Date.now()-t0)/1000%60)*4122);
+    cEl.textContent='$'+n.toLocaleString('en-US');
+  },200);}
+  /* sankey builder */
+  function buildSankey(id,left,right,totL,totR,surplus,unit){
+    unit=unit||'B';
+    var W=580,H=420,PY=12,LX=108,LW=13,RX=459,RW=13,MX=W/2;
+    var DH=H-PY*2,scale=DH/totL;
+    var lY=PY,lPos=left.map(function(d){var h=Math.max(d.v*scale,2),p={y:lY,h:h};lY+=h;return p;});
+    var rY=PY,rPos=right.map(function(d){var h=Math.max(d.v*scale,2),p={y:rY,h:h};rY+=h;return p;});
+    var s='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg">';
+    lPos.forEach(function(lp,i){
+      var rT=PY+(lp.y-PY)*(totR/totL),rB=PY+(lp.y+lp.h-PY)*(totR/totL);
+      s+='<path d="M '+(LX+LW)+','+lp.y+' C '+MX+','+lp.y+' '+MX+','+rT+' '+RX+','+rT+' L '+RX+','+rB+' C '+MX+','+rB+' '+MX+','+(lp.y+lp.h)+' '+(LX+LW)+','+(lp.y+lp.h)+' Z" fill="'+left[i].c+'" opacity="0.13"/>';
+    });
+    lPos.forEach(function(lp,i){
+      var d=left[i],cy=lp.y+lp.h/2;
+      s+='<rect x="'+LX+'" y="'+(lp.y+1)+'" width="'+LW+'" height="'+Math.max(lp.h-2,1)+'" rx="2" fill="'+d.c+'"/>';
+      if(lp.h>=10)s+='<text x="'+(LX-4)+'" y="'+(cy+3.5)+'" text-anchor="end" font-size="9" font-family="system-ui,sans-serif" fill="var(--muted)">'+d.l+' <tspan font-weight="700" fill="'+d.c+'">$'+d.v+unit+'</tspan></text>';
+    });
+    rPos.forEach(function(rp,i){
+      var d=right[i],cy=rp.y+rp.h/2;
+      s+='<rect x="'+RX+'" y="'+(rp.y+1)+'" width="'+RW+'" height="'+Math.max(rp.h-2,1)+'" rx="2" fill="'+d.c+'"/>';
+      if(rp.h>=10)s+='<text x="'+(RX+RW+4)+'" y="'+(cy+3.5)+'" font-size="9" font-family="system-ui,sans-serif" fill="var(--muted)">'+d.l+' <tspan font-weight="700" fill="'+d.c+'">$'+d.v+unit+'</tspan></text>';
+    });
+    var sh=(totL-totR)*scale;
+    if(surplus&&sh>2){
+      s+='<rect x="'+RX+'" y="'+(rY+1)+'" width="'+RW+'" height="'+Math.max(sh-2,1)+'" rx="2" fill="#5ea173" opacity=".7"/>';
+      s+='<text x="'+(RX+RW+4)+'" y="'+(rY+sh/2+3.5)+'" font-size="9" font-family="Georgia,serif" font-weight="700" fill="var(--good)">'+surplus+'</text>';
+    }
+    s+='<text x="'+(LX+LW/2)+'" y="9" text-anchor="middle" font-size="8" letter-spacing="1.2" fill="var(--faint)" font-family="system-ui">REVENUE IN</text>';
+    s+='<text x="'+(RX+RW/2)+'" y="9" text-anchor="middle" font-size="8" letter-spacing="1.2" fill="var(--faint)" font-family="system-ui">EXPENSES OUT</text>';
+    s+='</svg>';
+    var el=document.getElementById(id); if(el) el.innerHTML=s;
+  }
+  buildSankey('sankey-govt',
+    [{l:'Federal grants',v:14.49,c:'#2c6e8a'},{l:'Charges',v:5.35,c:'#4ea8c8'},
+     {l:'Income tax',v:4.52,c:'#b07d12'},{l:'Sales tax',v:3.78,c:'#d4a020'},
+     {l:'Oil & gas',v:1.07,c:'#2d6a4f'},{l:'Motor vehicle',v:1.02,c:'#52b788'},
+     {l:'Corporate tax',v:0.65,c:'#7a9e88'},{l:'Other',v:2.41,c:'#8aaa90'}],
+    [{l:'Health svcs',v:11.10,c:'#b07d12'},{l:'Education',v:5.75,c:'#2c6e8a'},
+     {l:'Social svcs',v:3.89,c:'#4ea8c8'},{l:'Govt admin',v:3.53,c:'#7a9e88'},
+     {l:'Transport',v:1.45,c:'#2d6a4f'},{l:'Public safety',v:1.23,c:'#52b788'},
+     {l:'Higher ed',v:1.00,c:'#6aab88'},{l:'Other',v:3.50,c:'#8aaa90'}],
+    33.29,31.45,'Net +$1.84B','B');
+  buildSankey('sankey-hh',
+    [{l:'Wages & salary',v:43.6,c:'#2c6e8a'},{l:'Business income',v:5.5,c:'#2d6a4f'},{l:'Gov. transfers',v:12.3,c:'#4ea8c8'}],
+    [{l:'Housing',v:20.2,c:'#b07d12'},{l:'Transport',v:11.0,c:'#7a9e88'},
+     {l:'Food',v:8.0,c:'#2d6a4f'},{l:'Healthcare',v:6.1,c:'#4ea8c8'},{l:'Other',v:16.0,c:'#8aaa90'}],
+    61.4,61.3,'','k');
+  /* momentum IntersectionObserver */
+  var momObs=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(e.isIntersecting){e.target.classList.add('in');momObs.unobserve(e.target);}
+  },{threshold:.1});});
+  document.querySelectorAll('.mom-panel').forEach(function(el){momObs.observe(el);});
+})();
+</script>
+</body>
+</html>
