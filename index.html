@@ -1207,7 +1207,6 @@ function gauge(id,metrics){
   svg+=`<text x="${W-20}" y="${H-2}" text-anchor="end" fill="#6b6a76" font-size="10">50th (worst)</text>`;
   svg+=`</svg>`;
   document.getElementById(id).innerHTML=svg;
-}
 gauge('edugauge',[{l:'Overall',rank:50},{l:'Per-pupil $',rank:49},{l:'Teacher pay',rank:41}]);
 if(pp[0]==='verdict'){b.classList.add('cta-nav');}if(pp[0]==='verdict'){b.classList.add('cta-nav');}b.onclick=function(){show(pp[0]);};box.appendChild(b);/* ---------- reveal + bar animation ---------- */
 const io=new IntersectionObserver((es)=>{es.forEach(e=>{
@@ -1228,7 +1227,7 @@ document.querySelectorAll('.bar-fill').forEach(b=>io2.observe(b));
 </style>
 <script>
 (function(){
-  var pages=[['overview','Overview'],['books','The Books'],['economy','Economy'],
+  var _savedPath=location.pathname;var pages=[['overview','Overview'],['books','The Books'],['economy','Economy'],
     ['people','People & Politics'],['work','Work & Money'],['wellbeing','Wellbeing & Justice'],['verdict','Your Move']];
   var box=document.getElementById('navlinks');
   var ham=document.getElementById('hamBtn');
@@ -1249,7 +1248,7 @@ document.querySelectorAll('.bar-fill').forEach(b=>io2.observe(b));
     ham.classList.toggle('open');links.classList.toggle('open');
   });
   window.__show=show; show('overview');
-  var _ip=location.pathname.replace(/^\//,'')||'overview';if(pages.some(function(x){return x[0]===_ip;})&&_ip!=='overview'){show(_ip);}window.addEventListener('popstate',function(e){if(e.state&&e.state.page){show(e.state.page);}});/* spending counter — tabular, fixed-width, 200ms updates */
+  var _ip=_savedPath.replace(/^\//,'')||'overview';if(pages.some(function(x){return x[0]===_ip;})&&_ip!=='overview'){show(_ip);}window.addEventListener('popstate',function(e){if(e.state&&e.state.page){show(e.state.page);}});/* spending counter — tabular, fixed-width, 200ms updates */
   var cEl=document.getElementById('spend-counter');
   if(cEl){var t0=Date.now();setInterval(function(){
     var n=Math.floor(((Date.now()-t0)/1000%60)*4122);
