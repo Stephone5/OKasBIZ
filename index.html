@@ -9,7 +9,7 @@
   gtag('js', new Date());
   gtag('config', 'G-P3K0NTCX8W');
 </script>
-<meta charset="UTF-8">
+<meta charset="UTF-8">h
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Oklahoma is a $213.5 billion enterprise. An objective, data-driven atlas of Oklahoma's economy, state finances, households, and civic opportunity — every number translated to human scale for every Oklahoman.">
 <meta name="keywords" content="Oklahoma economy, Oklahoma state budget, Oklahoma GDP, Oklahoma finances, Oklahoma Inc, Oklahoma civic data, Oklahoma ACFR, Oklahoma tribal economy, Oklahoma business formation">
@@ -173,6 +173,9 @@ a{color:#2f6f97}
   font-size:clamp(.68rem,1.4vw,.82rem);white-space:nowrap;transition:color .15s,background .15s}
 #topnav button:hover{color:var(--ink)}
 #topnav button.on{color:var(--ink);background:var(--grid);border-color:var(--line)}
+#topnav button.cta-nav{background:var(--good);color:#0a0c10;border-color:var(--good);font-weight:700}
+#topnav button.cta-nav:hover{background:#5fcf7a;border-color:#5fcf7a;color:#0a0c10}
+#topnav button.cta-nav.on{background:var(--good);color:#0a0c10;border-color:transparent;box-shadow:0 0 0 2px var(--good)}
 /* ── Hamburger ── */
 .ham{display:none;flex-direction:column;justify-content:center;gap:.27rem;
   background:none;border:none;cursor:pointer;padding:.35rem;margin-left:.4rem}
@@ -557,18 +560,18 @@ body{padding-top:var(--nav-h)}
 </section>
 
 <!-- ============ 06 — VALUE PER ACRE (URBAN3 SIGNATURE) ============ -->
-<section class="page" data-page="economy" id="vpa" style="background:linear-gradient(180deg,#0a0c10,#101620,#0a0c10)">
+<section class="page" data-page="economy" id="vpa">
   <div class="wrap reveal">    <h2>Value per acre</h2>
     <p class="dek">One way to analyze land productivity is to measure not how much land a county has, but how much assessed value is packed onto each acre of it. Mapping Oklahoma's 77 counties this way reveals a concentrated pattern: the value density is highest in two counties and disperses sharply from there.</p>
 
-    <div class="panel" style="margin-top:2.125rem;background:linear-gradient(180deg,#0d1118,#0a0d13)">
+    <div class="panel" style="margin-top:2.125rem">
       <h3>Property value per acre, by county</h3>
       <div class="cap">Every one of Oklahoma's 77 counties shaded by its assessed property value per acre — the county's total tax base divided by its land area. One color scale, dark to bright. The two metro counties register the highest value density; rural counties register much lower.</div>
       <div class="dwmap"><iframe title="Dollars Per Acre" aria-label="Choropleth map" id="datawrapper-chart-IKYax" src="https://datawrapper.dwcdn.net/IKYax/2/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="409" data-external="1"></iframe><script type="text/javascript">(function(){function e(){window.addEventListener(`message`,function(e){if(e.data[`datawrapper-height`]!==void 0){var t=document.querySelectorAll(`iframe`);for(var n in e.data[`datawrapper-height`])for(var r=0,i;i=t[r];r++)if(i.contentWindow===e.source){var a=e.data[`datawrapper-height`][n]+`px`;i.style.height=a}}})}e()})();</script></div>
       <p class="fignote">All 77 counties with accurate boundaries; major lakes shown approximately. Value = 2024 gross assessed valuation (Oklahoma Tax Commission, Ad Valorem Division) &divide; county land area. Range: <b>$57/acre</b> (Cimarron, far panhandle) to <b>$24,831/acre</b> (Oklahoma County) — a 436&times; spread. Oklahoma and Tulsa counties alone hold ~38% of the entire state property tax base on ~3% of its land.</p><details style="margin-top:1.2rem"><summary style="cursor:pointer;color:var(--sky2);font-weight:600;font-size:.95rem">See all 77 counties (value per acre)</summary><div class="panel" style="margin-top:.8rem;max-height:32rem;overflow:auto"><table class="fin"><tr><th>County</th><th style="text-align:right">Assessed value</th><th style="text-align:right">Value / acre</th></tr><tr><td>Oklahoma</td><td class="num">$10.92B</td><td class="num">$24,831</td></tr><tr><td>Tulsa</td><td class="num">$8.70B</td><td class="num">$23,175</td></tr><tr><td>Cleveland</td><td class="num">$3.33B</td><td class="num">$9,508</td></tr><tr><td>Canadian</td><td class="num">$2.38B</td><td class="num">$4,170</td></tr><tr><td>Mayes</td><td class="num">$1.26B</td><td class="num">$2,967</td></tr><tr><td>Rogers</td><td class="num">$1.30B</td><td class="num">$2,848</td></tr><tr><td>Payne</td><td class="num">$1.15B</td><td class="num">$2,579</td></tr><tr><td>Wagoner</td><td class="num">$0.94B</td><td class="num">$2,511</td></tr><tr><td>Washington</td><td class="num">$0.51B</td><td class="num">$1,916</td></tr><tr><td>McClain</td><td class="num">$0.56B</td><td class="num">$1,583</td></tr><tr><td>Garfield</td><td class="num">$1.00B</td><td class="num">$1,518</td></tr><tr><td>Comanche</td><td class="num">$1.02B</td><td class="num">$1,517</td></tr><tr><td>Carter</td><td class="num">$0.77B</td><td class="num">$1,486</td></tr><tr><td>Grady</td><td class="num">$0.94B</td><td class="num">$1,370</td></tr><tr><td>Creek</td><td class="num">$0.81B</td><td class="num">$1,326</td></tr><tr><td>Muskogee</td><td class="num">$0.67B</td><td class="num">$1,298</td></tr><tr><td>Logan</td><td class="num">$0.61B</td><td class="num">$1,280</td></tr><tr><td>Delaware</td><td class="num">$0.62B</td><td class="num">$1,215</td></tr><tr><td>Pottawatomie</td><td class="num">$0.58B</td><td class="num">$1,155</td></tr><tr><td>Kay</td><td class="num">$0.66B</td><td class="num">$1,103</td></tr><tr><td>Lincoln</td><td class="num">$0.59B</td><td class="num">$975</td></tr><tr><td>Bryan</td><td class="num">$0.56B</td><td class="num">$969</td></tr><tr><td>Kingfisher</td><td class="num">$0.53B</td><td class="num">$932</td></tr><tr><td>Stephens</td><td class="num">$0.52B</td><td class="num">$926</td></tr><tr><td>Pontotoc</td><td class="num">$0.40B</td><td class="num">$888</td></tr><tr><td>Marshall</td><td class="num">$0.22B</td><td class="num">$809</td></tr><tr><td>Garvin</td><td class="num">$0.41B</td><td class="num">$800</td></tr><tr><td>Ottawa</td><td class="num">$0.23B</td><td class="num">$756</td></tr><tr><td>Okmulgee</td><td class="num">$0.29B</td><td class="num">$663</td></tr><tr><td>Custer</td><td class="num">$0.41B</td><td class="num">$660</td></tr><tr><td>Murray</td><td class="num">$0.17B</td><td class="num">$656</td></tr><tr><td>Pittsburg</td><td class="num">$0.53B</td><td class="num">$619</td></tr><tr><td>Cherokee</td><td class="num">$0.30B</td><td class="num">$616</td></tr><tr><td>Noble</td><td class="num">$0.28B</td><td class="num">$609</td></tr><tr><td>Sequoyah</td><td class="num">$0.27B</td><td class="num">$606</td></tr><tr><td>Seminole</td><td class="num">$0.24B</td><td class="num">$602</td></tr><tr><td>Coal</td><td class="num">$0.17B</td><td class="num">$537</td></tr><tr><td>Beckham</td><td class="num">$0.29B</td><td class="num">$515</td></tr><tr><td>Blaine</td><td class="num">$0.27B</td><td class="num">$459</td></tr><tr><td>Love</td><td class="num">$0.14B</td><td class="num">$436</td></tr><tr><td>Woodward</td><td class="num">$0.34B</td><td class="num">$433</td></tr><tr><td>McIntosh</td><td class="num">$0.19B</td><td class="num">$431</td></tr><tr><td>Johnston</td><td class="num">$0.17B</td><td class="num">$421</td></tr><tr><td>Jackson</td><td class="num">$0.21B</td><td class="num">$414</td></tr><tr><td>Hughes</td><td class="num">$0.21B</td><td class="num">$408</td></tr><tr><td>Adair</td><td class="num">$0.14B</td><td class="num">$381</td></tr><tr><td>Osage</td><td class="num">$0.55B</td><td class="num">$379</td></tr><tr><td>McCurtain</td><td class="num">$0.45B</td><td class="num">$378</td></tr><tr><td>Le Flore</td><td class="num">$0.36B</td><td class="num">$353</td></tr><tr><td>Caddo</td><td class="num">$0.28B</td><td class="num">$353</td></tr><tr><td>Grant</td><td class="num">$0.22B</td><td class="num">$346</td></tr><tr><td>Pawnee</td><td class="num">$0.12B</td><td class="num">$334</td></tr><tr><td>Dewey</td><td class="num">$0.20B</td><td class="num">$318</td></tr><tr><td>Major</td><td class="num">$0.19B</td><td class="num">$314</td></tr><tr><td>Woods</td><td class="num">$0.25B</td><td class="num">$310</td></tr><tr><td>Washita</td><td class="num">$0.19B</td><td class="num">$300</td></tr><tr><td>Texas</td><td class="num">$0.34B</td><td class="num">$261</td></tr><tr><td>Craig</td><td class="num">$0.12B</td><td class="num">$256</td></tr><tr><td>Nowata</td><td class="num">$0.09B</td><td class="num">$238</td></tr><tr><td>Okfuskee</td><td class="num">$0.09B</td><td class="num">$235</td></tr><tr><td>Atoka</td><td class="num">$0.14B</td><td class="num">$226</td></tr><tr><td>Alfalfa</td><td class="num">$0.13B</td><td class="num">$225</td></tr><tr><td>Haskell</td><td class="num">$0.08B</td><td class="num">$211</td></tr><tr><td>Ellis</td><td class="num">$0.16B</td><td class="num">$203</td></tr><tr><td>Choctaw</td><td class="num">$0.10B</td><td class="num">$197</td></tr><tr><td>Latimer</td><td class="num">$0.09B</td><td class="num">$189</td></tr><tr><td>Roger Mills</td><td class="num">$0.12B</td><td class="num">$171</td></tr><tr><td>Kiowa</td><td class="num">$0.10B</td><td class="num">$160</td></tr><tr><td>Beaver</td><td class="num">$0.18B</td><td class="num">$152</td></tr><tr><td>Jefferson</td><td class="num">$0.06B</td><td class="num">$120</td></tr><tr><td>Cotton</td><td class="num">$0.05B</td><td class="num">$113</td></tr><tr><td>Pushmataha</td><td class="num">$0.10B</td><td class="num">$113</td></tr><tr><td>Tillman</td><td class="num">$0.06B</td><td class="num">$110</td></tr><tr><td>Harper</td><td class="num">$0.07B</td><td class="num">$108</td></tr><tr><td>Greer</td><td class="num">$0.03B</td><td class="num">$83</td></tr><tr><td>Harmon</td><td class="num">$0.02B</td><td class="num">$73</td></tr><tr><td>Cimarron</td><td class="num">$0.07B</td><td class="num">$57</td></tr></table></div></details>
     </div>
 
-    <div class="panel" style="margin-top:2.125rem;background:linear-gradient(180deg,#0e1420,#0a0e16)">
+    <div class="panel" style="margin-top:2.125rem">
       <h3>An acre is an acre — until you measure what it earns</h3>
       <div class="cap">Same footprint, different output. Each tower represents one acre of Oklahoma land, extruded by the relative economic value it generates per year. Illustrative of the documented difference in value density across Oklahoma land types.</div>
       <div id="vpaterrain"></div>
@@ -1206,8 +1209,7 @@ function gauge(id,metrics){
   document.getElementById(id).innerHTML=svg;
 }
 gauge('edugauge',[{l:'Overall',rank:50},{l:'Per-pupil $',rank:49},{l:'Teacher pay',rank:41}]);
-gauge('healthgauge',[{l:'Health rank',rank:47},{l:'Care system',rank:49},{l:'Uninsured',rank:48}]);
-/* ---------- reveal + bar animation ---------- */
+if(pp[0]==='verdict'){b.classList.add('cta-nav');}b.onclick=function(){show(pp[0]);};box.appendChild(b);/* ---------- reveal + bar animation ---------- */
 const io=new IntersectionObserver((es)=>{es.forEach(e=>{
   if(e.isIntersecting){e.target.classList.add('in');
     e.target.querySelectorAll('.bar-fill').forEach(b=>{b.style.width=(b.dataset.w||100)+'%';});
@@ -1227,7 +1229,7 @@ document.querySelectorAll('.bar-fill').forEach(b=>io2.observe(b));
 <script>
 (function(){
   var pages=[['overview','Overview'],['books','The Books'],['economy','Economy'],
-    ['people','People & Politics'],['work','Work & Money'],['wellbeing','Wellbeing & Justice'],['verdict','Verdict']];
+    ['people','People & Politics'],['work','Work & Money'],['wellbeing','Wellbeing & Justice'],['verdict','Your Move']];
   var box=document.getElementById('navlinks');
   var ham=document.getElementById('hamBtn');
   var links=document.getElementById('navlinks');
