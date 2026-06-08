@@ -9,7 +9,7 @@
   gtag('js', new Date());
   gtag('config', 'G-P3K0NTCX8W');
 </script>
-<meta charset="UTF-8">h
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Oklahoma is a $213.5 billion enterprise. An objective, data-driven atlas of Oklahoma's economy, state finances, households, and civic opportunity — every number translated to human scale for every Oklahoman.">
 <meta name="keywords" content="Oklahoma economy, Oklahoma state budget, Oklahoma GDP, Oklahoma finances, Oklahoma Inc, Oklahoma civic data, Oklahoma ACFR, Oklahoma tribal economy, Oklahoma business formation">
@@ -1209,7 +1209,7 @@ function gauge(id,metrics){
   document.getElementById(id).innerHTML=svg;
 }
 gauge('edugauge',[{l:'Overall',rank:50},{l:'Per-pupil $',rank:49},{l:'Teacher pay',rank:41}]);
-if(pp[0]==='verdict'){b.classList.add('cta-nav');}b.onclick=function(){show(pp[0]);};box.appendChild(b);/* ---------- reveal + bar animation ---------- */
+if(pp[0]==='verdict'){b.classList.add('cta-nav');}if(pp[0]==='verdict'){b.classList.add('cta-nav');}b.onclick=function(){show(pp[0]);};box.appendChild(b);/* ---------- reveal + bar animation ---------- */
 const io=new IntersectionObserver((es)=>{es.forEach(e=>{
   if(e.isIntersecting){e.target.classList.add('in');
     e.target.querySelectorAll('.bar-fill').forEach(b=>{b.style.width=(b.dataset.w||100)+'%';});
@@ -1243,7 +1243,7 @@ document.querySelectorAll('.bar-fill').forEach(b=>io2.observe(b));
   }
   pages.forEach(function(pp){
     var b=document.createElement('button');b.textContent=pp[1];b.dataset.p=pp[0];
-    b.onclick=function(){show(pp[0]);};box.appendChild(b);
+    if(pp[0]==='verdict'){b.classList.add('cta-nav');}b.onclick=function(){show(pp[0]);};box.appendChild(b);
   });
   ham.addEventListener('click',function(){
     ham.classList.toggle('open');links.classList.toggle('open');
