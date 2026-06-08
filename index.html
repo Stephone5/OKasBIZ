@@ -218,7 +218,7 @@ body{padding-top:var(--nav-h)}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js" defer></script>
 </head>
 <body>
-<nav id="topnav"><a class="brand" href="#">Oklahoma as a Business</a><div id="navlinks"></div><button class="ham" id="hamBtn" aria-label="Toggle menu"><span></span><span></span><span></span></button></nav>
+<nav id="topnav"><a class="brand" href="#">Oklahoma Inc.</a><div id="navlinks"></div><button class="ham" id="hamBtn" aria-label="Toggle menu"><span></span><span></span><span></span></button></nav>
 
 <!-- ============ HERO ============ -->
 <header class="hero page" data-page="overview" style="background:linear-gradient(rgba(12,14,19,.55),rgba(10,12,16,.93)),url(hero.jpg) center/cover no-repeat">
@@ -306,7 +306,7 @@ body{padding-top:var(--nav-h)}
     <div style="text-align:center;padding:2.5rem 1rem">
       <div style="font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-bottom:.8rem">Estimated dollars spent by Oklahomans since page load</div>
       <div style="display:flex;justify-content:center">
-        <span id="spend-counter" style="font-family:var(--serif);font-size:clamp(2.5rem,8vw,4.8rem);font-weight:600;color:var(--wheat2);font-variant-numeric:tabular-nums;letter-spacing:-.02em;min-width:14ch;text-align:right;display:inline-block">$0</span>
+        <span id="spend-counter" style="font-family:var(--serif);font-size:clamp(2.5rem,8vw,4.8rem);font-weight:600;color:var(--wheat2);font-variant-numeric:tabular-nums;letter-spacing:-.02em;min-width:14ch;text-align:left;display:inline-block">$0</span>
       </div>
       <div style="font-size:.7rem;color:var(--faint);margin-top:.75rem;font-style:italic">~$4,122 per second &nbsp;&middot;&nbsp; ~$130B per year &nbsp;&middot;&nbsp; Source: BEA Regional Economic Accounts &nbsp;&middot;&nbsp; Resets each 60-second cycle &nbsp;&middot;&nbsp; Labeled as an estimate</div>
     </div>
@@ -1165,7 +1165,7 @@ document.querySelectorAll('.bar-fill').forEach(b=>io2.observe(b));
 <script>
 (function(){
   var pages=[['overview','Overview'],['books','The Books'],['economy','Economy'],
-    ['people','People'],['work','Work & Money'],['wellbeing','Wellbeing'],['verdict','Verdict & Action']];
+    ['people','People & Politics'],['work','Work & Money'],['wellbeing','Wellbeing & Justice'],['verdict','Verdict']];
   var box=document.getElementById('navlinks');
   var ham=document.getElementById('hamBtn');
   var links=document.getElementById('navlinks');
