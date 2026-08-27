@@ -57,7 +57,10 @@
 
   /* ---------- Type -------------------------------------------------- */
 
-  --font-display: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  /* A grotesque, not a serif. The award-winning display setting is a
+     tight-tracked grotesque at 100px+ with leading at or below 1.0 —
+     a serif's tall metrics make that setting collide. */
+  --font-display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
   --font-text:    'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono:    ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, monospace;
 
