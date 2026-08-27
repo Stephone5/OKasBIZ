@@ -3,66 +3,261 @@ import { SOURCES, LAST_UPDATED } from '../data/sources.js';
 ---
 
 <footer class="foot">
-  <div class="wrap">
-    <p class="eyebrow">Sources &amp; notes</p>
+  <div class="wrap foot__bar">
+    <p class="foot__line">
+      Every figure on this site traces to a published source. Nothing is modelled,
+      estimated, or filled in.
+    </p>
+    <button class="foot__open" data-sources-open>
+      <span>Sources &amp; notes</span>
+      <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true">
+        <path d="M1 12L12 1M12 1H4M12 1v8" stroke="currentColor" stroke-width="1.5" />
+      </svg>
+    </button>
+  </div>
+  <p class="wrap foot__stamp">Last updated {LAST_UPDATED}</p>
+</footer>
 
-    <div class="foot__grid">
+<dialog class="sheet" id="sources-sheet" aria-labelledby="sources-title">
+  <div class="sheet__head">
+    <div>
+      <p class="eyebrow">Where every number comes from</p>
+      <h2 class="sheet__title" id="sources-title">Sources &amp; notes</h2>
+    </div>
+    <button class="sheet__x" data-sources-close aria-label="Close sources">✕</button>
+  </div>
+
+  <div class="sheet__body">
+    <div class="sheet__grid">
       {SOURCES.map((s) => (
-        <div class="foot__item">
-          <h3 class="foot__label">{s.label}</h3>
-          <p class="source">{s.text}</p>
+        <div>
+          <h3 class="sheet__label">{s.label}</h3>
+          <p class="sheet__text">{s.text}</p>
         </div>
       ))}
     </div>
 
-    <hr class="rule foot__rule" />
+    <hr class="rule sheet__rule" />
 
-    <div class="foot__notes stack">
-      <p class="source">
-        <strong>On correlation.</strong> This site does not draw causal conclusions between any
-        two metrics. Where a relationship between data points appears, it is presented as
-        correlation only. No figure here is offered as the cause of another.
+    <div class="sheet__notes">
+      <p class="sheet__text">
+        <strong>On correlation.</strong> This site does not draw causal conclusions
+        between any two metrics. Where a relationship between data points appears, it is
+        presented as correlation only. No figure here is offered as the cause of another.
       </p>
-      <p class="source">
-        <strong>Method.</strong> &ldquo;Oklahoma Inc.&rdquo; presents public data in the shape of
-        corporate financial statements for clarity. The State is not a company and these are
-        interpretive constructs rather than GAAP filings. Some figures span different fiscal
-        years depending on the most recent source available, and each is labelled accordingly.
+      <p class="sheet__text">
+        <strong>Method.</strong> &ldquo;Oklahoma Inc.&rdquo; presents public data in the
+        shape of corporate financial statements for clarity. The State is not a company
+        and these are interpretive constructs rather than GAAP filings. Some figures span
+        different fiscal years depending on the most recent source available, and each is
+        labelled accordingly.
       </p>
-      <p class="source">
-        <strong>Last updated {LAST_UPDATED}.</strong> Data is compiled and built into the page
-        when it is published; figures reflect the most recent source available on that date.
-        Corrections and data challenges are welcome.
+      <p class="sheet__text">
+        <strong>On missing figures.</strong> Where something was never published, this
+        site says so rather than guessing. A missing figure is never rendered as zero and
+        never averaged around.
+      </p>
+      <p class="sheet__text">
+        <strong>Last updated {LAST_UPDATED}.</strong> Data is compiled and built into the
+        page when it is published; figures reflect the most recent source available on
+        that date. Corrections and data challenges are welcome through the feedback
+        button on any page.
       </p>
     </div>
   </div>
-</footer>
+</dialog>
 
 <style>
   .foot {
     border-block-start: 1px solid var(--rule);
-    padding-block: var(--s-8) var(--s-9);
+    padding-block: var(--s-7) var(--s-8);
     margin-block-start: var(--s-9);
     background: var(--paper-2);
   }
 
-  .foot__grid {
-    display: grid;
+  .foot__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     gap: var(--s-5);
-    grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
+    flex-wrap: wrap;
+  }
+
+  .foot__line {
+    font-size: var(--t-small);
+    color: var(--ink-2);
+    max-width: 46ch;
+  }
+
+  .foot__open {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-3);
+    padding: var(--s-3) var(--s-5);
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--ink);
+    font-size: var(--t-small);
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+  }
+  .foot__open:hover { background: var(--ink); color: var(--paper); }
+
+  .foot__stamp {
+    font-size: var(--t-micro);
+    color: var(--ink-4);
     margin-block-start: var(--s-5);
   }
 
-  .foot__label {
+  /* ---------- the sheet ---------- */
+
+  .sheet {
+    width: 75vw;
+    height: 75vh;
+    max-width: none;
+    max-height: none;
+    margin: auto;
+    padding: 0;
+    border: 1px solid var(--rule-strong);
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    color: var(--ink);
+    overflow: hidden;
+    display: none;
+  }
+
+  .sheet[open] { display: flex; flex-direction: column; }
+
+  .sheet::backdrop {
+    background: rgba(20, 22, 26, 0.55);
+    backdrop-filter: blur(3px);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .sheet[open] { animation: sheet-in var(--dur) var(--ease-out); }
+    .sheet[open]::backdrop { animation: fade-in var(--dur) var(--ease-out); }
+  }
+
+  @keyframes sheet-in {
+    from { opacity: 0; transform: translateY(12px) scale(0.99); }
+  }
+  @keyframes fade-in { from { opacity: 0; } }
+
+  .sheet__head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--s-5);
+    padding: var(--s-6) var(--s-7);
+    border-block-end: 1px solid var(--rule);
+    flex: none;
+  }
+
+  .sheet__title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    letter-spacing: -0.035em;
+    line-height: 1.05;
+    margin-block-start: var(--s-2);
+  }
+
+  .sheet__x {
+    flex: none;
+    width: 2.25rem;
+    height: 2.25rem;
+    border: 1px solid var(--rule-strong);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--ink-2);
+    font-size: 0.875rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+  }
+  .sheet__x:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+  .sheet__body {
+    overflow-y: auto;
+    padding: var(--s-6) var(--s-7) var(--s-8);
+    flex: 1;
+    overscroll-behavior: contain;
+  }
+
+  .sheet__grid {
+    display: grid;
+    gap: var(--s-5) var(--s-7);
+    grid-template-columns: repeat(auto-fit, minmax(min(19rem, 100%), 1fr));
+  }
+
+  .sheet__label {
     font-size: var(--t-micro);
     font-weight: 600;
     letter-spacing: var(--track-wide);
     text-transform: uppercase;
-    color: var(--ink-2);
-    margin-block-end: var(--s-1);
+    color: var(--accent);
+    margin-block-end: var(--s-2);
   }
 
-  .foot__rule { margin-block: var(--s-7); }
+  .sheet__text {
+    font-size: var(--t-small);
+    color: var(--ink-2);
+    line-height: 1.6;
+  }
+  .sheet__text strong { color: var(--ink); font-weight: 600; }
 
-  .foot__notes { max-width: var(--measure); }
+  .sheet__rule { margin-block: var(--s-7); }
+
+  .sheet__notes {
+    display: grid;
+    gap: var(--s-4);
+    max-width: var(--measure);
+  }
+
+  @media (max-width: 48rem) {
+    /* Full-bleed on small screens. margin must be reset too — the dialog's
+       centring margin otherwise leaves it a few pixels short of the edges. */
+    .sheet {
+      width: 100vw;
+      height: 100dvh;
+      max-width: 100vw;
+      margin: 0;
+      border-radius: 0;
+      border: 0;
+    }
+    .sheet__head { padding: var(--s-5); }
+    .sheet__body { padding: var(--s-5) var(--s-5) var(--s-8); }
+  }
 </style>
+
+<script>
+  const wireSources = () => {
+    const sheet = document.getElementById('sources-sheet') as HTMLDialogElement | null;
+    if (!sheet || sheet.dataset.wired) return;
+    sheet.dataset.wired = '1';
+
+    document.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+
+      if (target.closest('[data-sources-open]')) {
+        sheet.showModal();
+        return;
+      }
+
+      if (target.closest('[data-sources-close]')) {
+        sheet.close();
+        return;
+      }
+
+      // Clicking the backdrop closes it. The dialog element itself fills
+      // only the sheet, so a click landing on it is a click outside.
+      if (target === sheet) sheet.close();
+    });
+  };
+
+  wireSources();
+  document.addEventListener('astro:page-load', wireSources);
+</script>
