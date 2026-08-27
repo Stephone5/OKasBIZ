@@ -64,6 +64,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
 
   <body>
     <a class="skip" href="#main">Skip to content</a>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="progress" aria-hidden="true"></div>
     <Nav />
     <main id="main">
       <slot />
@@ -80,6 +82,29 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
       // simply stays visible.
       const arm = () => {
         document.documentElement.classList.add('js-reveal');
+
+        // Word-by-word headline reveal. Same progressive rule as the fade:
+        // the masked start state only switches on here, so without script
+        // the headline just reads.
+        document.documentElement.classList.add('js-split');
+        const splits = document.querySelectorAll('[data-split]:not(.is-in)');
+        if (splits.length) {
+          if (document.visibilityState !== 'visible') {
+            splits.forEach((el) => el.classList.add('is-in'));
+          } else {
+            const so = new IntersectionObserver(
+              (entries) => {
+                entries.forEach((entry) => {
+                  if (!entry.isIntersecting) return;
+                  entry.target.classList.add('is-in');
+                  so.unobserve(entry.target);
+                });
+              },
+              { rootMargin: '0px 0px -12% 0px', threshold: 0.15 }
+            );
+            splits.forEach((el) => so.observe(el));
+          }
+        }
 
         const targets = document.querySelectorAll('.reveal:not(.is-in)');
         if (!targets.length) return;

@@ -1,0 +1,84 @@
+---
+// A continuously moving band. Award sites use these to carry a set of
+// short items across the full width without asking for a click.
+//
+// The track is duplicated so the loop is seamless; the copy is hidden from
+// screen readers so the items are only announced once.
+
+interface Props {
+  items: string[];
+  sep?: string;
+  speed?: number; // seconds for one full pass
+}
+
+const { items, sep = '·', speed = 42 } = Astro.props as Props;
+---
+
+<div class="ticker" style={`--speed:${speed}s`}>
+  <div class="ticker__track">
+    <ul class="ticker__set">
+      {items.map((it) => (
+        <li class="ticker__item">
+          <span>{it}</span>
+          <span class="ticker__sep" aria-hidden="true">{sep}</span>
+        </li>
+      ))}
+    </ul>
+    <ul class="ticker__set" aria-hidden="true">
+      {items.map((it) => (
+        <li class="ticker__item">
+          <span>{it}</span>
+          <span class="ticker__sep">{sep}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>
+
+<style>
+  .ticker {
+    overflow: hidden;
+    border-block: 1px solid var(--rule);
+    padding-block: var(--s-4);
+    /* fade the edges so items enter and leave rather than being cut */
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+
+  .ticker__track { display: flex; width: max-content; }
+
+  .ticker__set {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex: none;
+  }
+
+  .ticker__item {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-5);
+    padding-inline-end: var(--s-5);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(1.5rem, 3.4vw, 2.5rem);
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    white-space: nowrap;
+    color: var(--ink);
+  }
+
+  .ticker__sep { color: var(--accent); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .ticker__track { animation: ticker var(--speed) linear infinite; }
+    .ticker:hover .ticker__track { animation-play-state: paused; }
+  }
+
+  @keyframes ticker {
+    to { transform: translateX(-50%); }
+  }
+
+  :global(.panel--deep) .ticker { border-color: var(--rule-deep); }
+  :global(.panel--deep) .ticker__item { color: var(--on-deep); }
+</style>

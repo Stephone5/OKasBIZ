@@ -234,16 +234,19 @@ import { SOURCES, LAST_UPDATED } from '../data/sources.js';
 </style>
 
 <script>
-  const wireSources = () => {
-    const sheet = document.getElementById('sources-sheet') as HTMLDialogElement | null;
-    if (!sheet || sheet.dataset.wired) return;
-    sheet.dataset.wired = '1';
+  // One listener for the life of the document. The dialog is looked up at
+  // click time rather than captured once: navigation replaces the element,
+  // and calling showModal on the old detached one throws.
+  if (!(window as any).__sourcesWired) {
+    (window as any).__sourcesWired = true;
 
     document.addEventListener('click', (e) => {
       const target = e.target as HTMLElement;
+      const sheet = document.getElementById('sources-sheet') as HTMLDialogElement | null;
+      if (!sheet) return;
 
       if (target.closest('[data-sources-open]')) {
-        sheet.showModal();
+        if (!sheet.open) sheet.showModal();
         return;
       }
 
@@ -252,12 +255,9 @@ import { SOURCES, LAST_UPDATED } from '../data/sources.js';
         return;
       }
 
-      // Clicking the backdrop closes it. The dialog element itself fills
-      // only the sheet, so a click landing on it is a click outside.
+      // A click landing on the dialog element itself is a click on the
+      // backdrop, since the sheet's own content sits inside it.
       if (target === sheet) sheet.close();
     });
-  };
-
-  wireSources();
-  document.addEventListener('astro:page-load', wireSources);
+  }
 </script>

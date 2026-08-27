@@ -1,0 +1,67 @@
+---
+// Headline set word by word, each word inside a clipping mask so it rises
+// into place from below on a stagger. The technique award sites use on
+// their opening line.
+//
+// Rendered fully visible. The masked start state is only switched on by
+// script, so with no JavaScript the headline simply reads normally.
+
+interface Props {
+  text: string;          // use " / " to force a line break
+  as?: string;
+  class?: string;
+  delay?: number;        // ms before the first word
+}
+
+const { text, as: Tag = 'h2', class: cls = '', delay = 0 } = Astro.props as Props;
+const lines = text.split(' / ').map((l) => l.trim());
+
+let i = 0;
+---
+
+<Tag class={`split ${cls}`} data-split>
+  {lines.map((line, li) => (
+    <span class="split__line">
+      {line.split(' ').map((word) => {
+        const d = delay + i++ * 55;
+        return (
+          <span class="split__mask">
+            <span class="split__word" style={`--d:${d}ms`}>{word}</span>
+          </span>
+        );
+      })}
+      {li < lines.length - 1 && <br />}
+    </span>
+  ))}
+</Tag>
+
+<style>
+  .split__line { display: block; }
+
+  .split__mask {
+    display: inline-flex;
+    overflow: hidden;
+    vertical-align: bottom;
+    padding-block-end: 0.08em;
+    margin-block-end: -0.08em;
+  }
+
+  .split__mask + .split__mask { margin-inline-start: 0.24em; }
+
+  .split__word { display: inline-block; will-change: transform; }
+
+  /* Masked start state only once script has claimed the element. */
+  :global(.js-split) .split[data-split] .split__word {
+    transform: translateY(105%);
+  }
+
+  :global(.js-split) .split[data-split].is-in .split__word {
+    transform: none;
+    transition: transform 900ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--d);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(.js-split) .split[data-split] .split__word { transform: none; }
+  }
+</style>

@@ -23,6 +23,7 @@ export const LINE_ITEMS = [
 
 export const STAKE = [
   {
+    n: 51779, prefix: '$',
     value: '$51,779',
     label: 'of what Oklahoma makes in a year',
     working:
@@ -30,6 +31,7 @@ export const STAKE = [
     series: 2,
   },
   {
+    n: 31528, prefix: '$',
     value: '$31,528',
     label: 'moving through Oklahoma households each year',
     working:
@@ -37,6 +39,7 @@ export const STAKE = [
     series: 3,
   },
   {
+    n: 8270, prefix: '$',
     value: '$8,270',
     label: 'of what the state is worth once its debts are paid',
     working:

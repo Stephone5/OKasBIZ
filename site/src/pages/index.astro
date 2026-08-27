@@ -4,6 +4,9 @@ import StatGrid from '../components/StatGrid.astro';
 import BarSet from '../components/BarSet.astro';
 import Cta from '../components/Cta.astro';
 import SpendCounter from '../components/SpendCounter.svelte';
+import SplitText from '../components/SplitText.astro';
+import Ticker from '../components/Ticker.astro';
+import CountUp from '../components/CountUp.svelte';
 import BudgetGuess from '../components/BudgetGuess.svelte';
 import { GLANCE, SPEND } from '../data/overview.js';
 import { LINE_ITEMS, STAKE, POPULATION_LABEL } from '../data/stake.js';
@@ -18,16 +21,20 @@ import { BALANCE, YEAR } from '../data/books.js';
   <section class="panel panel--hero">
     <div class="wrap panel__inner">
       <p class="brand">For the Okies who build</p>
-      <h1 class="mega">You already<br />own a piece<br />of this state.</h1>
+      <SplitText as="h1" class="mega" text="You already / own a piece / of this state." />
       <p class="under">Most people who built it have never seen the books.</p>
       <div class="ctarow"><Cta href="#receipt" /></div>
+    </div>
+
+    <div class="hero__band">
+      <Ticker items={LINE_ITEMS} />
     </div>
   </section>
 
   <!-- ══════════ 2 · empathy ══════════ -->
   <section class="panel panel--tight">
     <div class="wrap">
-      <h2 class="mega mega--sm">Nobody hands<br />you the books.</h2>
+      <SplitText class="mega mega--sm" text="Nobody hands / you the books." />
       <p class="under">
         The numbers are public. They sit in audited reports that run to hundreds of
         pages, written for accountants, and almost nobody reads them. That is the
@@ -58,18 +65,22 @@ import { BALANCE, YEAR } from '../data/books.js';
   <!-- ══════════ 4 · your share ══════════ -->
   <section class="panel panel--deep">
     <div class="wrap">
-      <p class="kick kick--deep">What that makes you</p>
-      <h2 class="mega mega--sm">Put money in,<br />own a piece.</h2>
-      <p class="under under--deep">
-        Take what the state publishes and split it across everyone who lives here.
-        That is the size of the piece you already own.
-      </p>
+      <div class="pinwrap">
+        <div class="pinwrap__side">
+          <p class="kick kick--deep">What that makes you</p>
+          <SplitText class="mega mega--sm" text="Put money in, / own a piece." />
+          <p class="under under--deep">
+            Take what the state publishes and split it across everyone who lives here.
+            That is the size of the piece you already own.
+          </p>
+        </div>
 
-      <ul class="stake">
+        <div class="pinwrap__flow">
+      <ul class="stake stake--flow">
         {STAKE.map((s) => (
           <li class="stake__row reveal" style={`--mark:var(--series-${s.series})`}>
             <span class="stake__mark" aria-hidden="true"></span>
-            <p class="stake__value tabular">{s.value}</p>
+            <p class="stake__value tabular"><CountUp value={s.n} prefix={s.prefix} client:visible /></p>
             <p class="stake__label">{s.label}</p>
             <p class="stake__working">{s.working}</p>
           </li>
@@ -80,6 +91,8 @@ import { BALANCE, YEAR } from '../data/books.js';
         Each number is a published total divided by {POPULATION_LABEL} (U.S. Census
         Bureau, Vintage 2025). Plain division, nothing guessed or filled in.
       </p>
+        </div>
+      </div>
 
       <div class="ctarow"><Cta variant="deep" /></div>
     </div>
@@ -89,7 +102,7 @@ import { BALANCE, YEAR } from '../data/books.js';
   <section class="panel panel--open" id="books">
     <div class="wrap">
       <p class="kick">The books</p>
-      <h2 class="mega mega--sm">Here is what<br />you own.</h2>
+      <SplitText class="mega mega--sm" text="Here is what / you own." />
 
       <div class="ledgers">
         <BarSet caption={BALANCE.caption} rows={BALANCE.rows} source={BALANCE.source} />
@@ -113,7 +126,7 @@ import { BALANCE, YEAR } from '../data/books.js';
   <section class="panel panel--ask">
     <div class="wrap">
       <p class="kick">Before you scroll on</p>
-      <BudgetGuess client:visible />
+      <BudgetGuess client:load />
 
       <h2 class="mega mega--ask">
         So &mdash; do you like<br />how it&rsquo;s been<br /><em>invested?</em>
@@ -147,7 +160,7 @@ import { BALANCE, YEAR } from '../data/books.js';
   <section class="panel panel--tint">
     <div class="wrap">
       <p class="kick">The wider picture</p>
-      <h2 class="mega mega--sm">The rest of<br />the holdings.</h2>
+      <SplitText class="mega mega--sm" text="The rest of / the holdings." />
 
       <div class="pad"><StatGrid stats={GLANCE} /></div>
 
@@ -164,7 +177,7 @@ import { BALANCE, YEAR } from '../data/books.js';
   <section class="panel panel--deep">
     <div class="wrap">
       <p class="kick kick--deep">Right now</p>
-      <h2 class="mega mega--sm">The money is<br />already moving.</h2>
+      <SplitText class="mega mega--sm" text="The money is / already moving." />
       <div class="pad"><SpendCounter perSecond={SPEND.perSecond} client:visible /></div>
       <div class="ctarow"><Cta variant="deep" /></div>
     </div>
@@ -403,6 +416,32 @@ import { BALANCE, YEAR } from '../data/books.js';
     gap: var(--s-8);
     margin-block-start: var(--s-7);
   }
+
+
+  /* ─────────── hero band ─────────── */
+
+  .hero__band { margin-block-start: var(--s-8); }
+
+  /* ─────────── pinned column ───────────
+     On a wide screen the heading holds in place while the three figures
+     move past it, so the claim stays on screen with its evidence. Below
+     that it is simply stacked. */
+
+  .pinwrap {
+    display: grid;
+    gap: var(--s-7);
+    align-items: start;
+  }
+
+  @media (min-width: 62rem) {
+    .pinwrap { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: var(--s-9); }
+    .pinwrap__side {
+      position: sticky;
+      top: calc(3.5rem + var(--s-7));
+    }
+  }
+
+  .stake--flow { margin-block-start: 0; }
 
   .pad { margin-block-start: var(--s-7); }
   .pad-sm { margin-block-start: var(--s-6); }
