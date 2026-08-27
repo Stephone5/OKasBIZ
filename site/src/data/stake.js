@@ -24,20 +24,23 @@ export const LINE_ITEMS = [
 export const STAKE = [
   {
     value: '$51,779',
-    label: 'of what Oklahoma makes in a year — your share of it',
-    working: '$213.5 billion, the state economy in 2025, split across everyone who lives here',
+    label: 'of what Oklahoma makes in a year',
+    working:
+      'Oklahoma produced $213.5 billion in 2025. Divide that by everyone who lives here and this is your share of it.',
     series: 2,
   },
   {
     value: '$31,528',
-    label: 'runs through Oklahoma households every year, per person',
-    working: 'About $130 billion that households spend, split across everyone who lives here',
+    label: 'moving through Oklahoma households each year',
+    working:
+      'Households here spend about $130 billion a year. Divide that by everyone who lives here and this is what runs through the average person.',
     series: 3,
   },
   {
     value: '$8,270',
-    label: 'of what the state is worth — your share of it',
-    working: '$34.1 billion, what the state owns after debts, split across everyone who lives here',
+    label: 'of what the state is worth once its debts are paid',
+    working:
+      'The state owns $34.1 billion more than it owes. Divide that by everyone who lives here and this is your share of it.',
     series: 1,
   },
 ];

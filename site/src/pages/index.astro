@@ -1,10 +1,11 @@
 ---
 import Base from '../layouts/Base.astro';
 import StatGrid from '../components/StatGrid.astro';
-import Action from '../components/Action.astro';
+import BarSet from '../components/BarSet.astro';
 import SpendCounter from '../components/SpendCounter.svelte';
 import { GLANCE, SPEND } from '../data/overview.js';
 import { LINE_ITEMS, STAKE, POPULATION_LABEL } from '../data/stake.js';
+import { BALANCE, YEAR } from '../data/books.js';
 ---
 
 <Base
@@ -12,7 +13,7 @@ import { LINE_ITEMS, STAKE, POPULATION_LABEL } from '../data/stake.js';
   description="Oklahoma is a $213.5 billion enterprise. Every dollar you spend here is money you put into it. An open set of books for the Okies who build."
 >
   <!-- ══════════════ 1 · the claim ══════════════ -->
-  <section class="panel panel--hero textured">
+  <section class="panel panel--hero">
     <div class="wrap panel__inner">
       <p class="brand">For the Okies who build</p>
 
@@ -33,12 +34,16 @@ import { LINE_ITEMS, STAKE, POPULATION_LABEL } from '../data/stake.js';
 
   <!-- ══════════════ 2 · the receipt ══════════════ -->
   <section class="panel panel--tint" id="receipt">
-    <div class="wrap panel__inner">
+    <div class="wrap">
       <p class="kick">Where it starts</p>
 
-      <ul class="items" aria-label="Everyday spending">
+      <ul class="receipt" aria-label="Everyday spending">
         {LINE_ITEMS.map((w, i) => (
-          <li class="item reveal" style={`--d:${i * 45}ms`}>{w}</li>
+          <li class="receipt__row reveal" style={`--d:${i * 55}ms`}>
+            <span class="receipt__item">{w}</span>
+            <span class="receipt__leader" aria-hidden="true"></span>
+            <span class="receipt__tag">money in</span>
+          </li>
         ))}
       </ul>
 
@@ -50,7 +55,7 @@ import { LINE_ITEMS, STAKE, POPULATION_LABEL } from '../data/stake.js';
 
   <!-- ══════════════ 3 · what that makes you ══════════════ -->
   <section class="panel panel--deep">
-    <div class="wrap panel__inner">
+    <div class="wrap">
       <p class="kick kick--deep">What that makes you</p>
 
       <h2 class="mega mega--sm">Put money in,<br />own a piece.</h2>
@@ -84,23 +89,55 @@ import { LINE_ITEMS, STAKE, POPULATION_LABEL } from '../data/stake.js';
       <p class="kick">The books</p>
       <h2 class="mega mega--sm">Here is what<br />you own.</h2>
 
+      <div class="ledgers">
+        <BarSet
+          caption={BALANCE.caption}
+          rows={BALANCE.rows}
+          source={BALANCE.source}
+        />
+        <BarSet
+          caption={YEAR.caption}
+          rows={YEAR.rows}
+          source={YEAR.source}
+          scale={Math.max(...BALANCE.rows.map((r) => r.value))}
+        />
+      </div>
+
+      <p class="source pad-sm">
+        Both sets of bars share one scale, so their lengths can be compared
+        directly. Government figures are for the fiscal year ended June 30, 2024 —
+        the most recent audited report.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════════ 5 · the question ══════════════ -->
+  <section class="panel panel--ask">
+    <div class="wrap">
+      <h2 class="mega mega--ask">
+        So &mdash; do you like<br />how it&rsquo;s been<br /><em>invested?</em>
+      </h2>
+    </div>
+  </section>
+
+  <!-- ══════════════ 6 · the wider picture ══════════════ -->
+  <section class="panel panel--open">
+    <div class="wrap">
+      <p class="kick">The wider picture</p>
+      <h2 class="mega mega--sm">The rest of<br />the holdings.</h2>
+
       <div class="pad">
         <StatGrid stats={GLANCE} />
       </div>
 
       <p class="source pad-sm">
-        Government figures are for the fiscal year ended June 30, 2024 — the most
-        recent audited report. GDP is 2025. Migration is Census Vintage 2025. Full
+        GDP is 2025, released April 2026. Migration is Census Vintage 2025. Full
         source list at the foot of every page.
       </p>
-
-      <Action>
-        Look up one fact about your county&rsquo;s economy this week. Just one.
-      </Action>
     </div>
   </section>
 
-  <!-- ══════════════ 5 · it is moving now ══════════════ -->
+  <!-- ══════════════ 7 · it is moving now ══════════════ -->
   <section class="panel panel--deep">
     <div class="wrap">
       <p class="kick kick--deep">Right now</p>
@@ -109,31 +146,52 @@ import { LINE_ITEMS, STAKE, POPULATION_LABEL } from '../data/stake.js';
       <div class="pad">
         <SpendCounter perSecond={SPEND.perSecond} client:visible />
       </div>
-
-      <Action>
-        Track where your last ten purchases went. Locally owned, or not. Just notice.
-      </Action>
     </div>
   </section>
 </Base>
 
 <style>
-  /* ─────────── panels: one idea per screen ─────────── */
+  /* ─────────── panels ─────────── */
 
   .panel {
     padding-block: clamp(var(--s-8), 11vh, var(--s-10));
     position: relative;
   }
 
+  /* Land and sky, made of colour rather than a picture: pale light at the
+     top settling into warm red-dirt ground, with a horizon where they meet. */
   .panel--hero {
-    min-height: min(92svh, 54rem);
+    min-height: min(90svh, 52rem);
     display: grid;
     align-items: center;
-    border-block-end: 1px solid var(--rule);
+    background:
+      linear-gradient(
+        180deg,
+        #fdfcfa 0%,
+        #fbf8f2 42%,
+        #f6ece0 74%,
+        #efdfcd 100%
+      );
   }
 
-  .panel--tint  { background: var(--paper-2); }
-  .panel--open  { background: var(--paper); }
+  .panel--hero::after {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    inset-block-end: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--accent) 18%,
+      var(--accent) 82%,
+      transparent
+    );
+    opacity: 0.4;
+  }
+
+  .panel--tint { background: var(--paper-2); }
+  .panel--open { background: var(--paper); }
 
   .panel--deep {
     background: var(--deep);
@@ -141,9 +199,14 @@ import { LINE_ITEMS, STAKE, POPULATION_LABEL } from '../data/stake.js';
   }
   .panel--deep :is(h1, h2) { color: var(--on-deep); }
 
+  .panel--ask {
+    background: var(--accent-soft);
+    padding-block: clamp(var(--s-9), 16vh, var(--s-10));
+  }
+
   .panel__inner { display: grid; justify-items: start; }
 
-  /* ─────────── the scan layer: big type only ─────────── */
+  /* ─────────── the scan layer ─────────── */
 
   .brand {
     font-size: var(--t-micro);
@@ -164,17 +227,22 @@ import { LINE_ITEMS, STAKE, POPULATION_LABEL } from '../data/stake.js';
   }
   .kick--deep { color: var(--on-deep-2); }
 
-  /* The argument is carried entirely by this. If you read only the
-     .mega lines top to bottom, you get the whole point of the page. */
+  /* Instrument Serif needs air. Lines were colliding at 0.94/-0.035em. */
   .mega {
     font-family: var(--font-display);
-    font-size: clamp(2.9rem, 9.5vw, 8rem);
-    line-height: 0.94;
-    letter-spacing: -0.035em;
+    font-size: clamp(2.75rem, 8.2vw, 6.5rem);
+    line-height: 1.32;
+    letter-spacing: -0.008em;
     text-wrap: balance;
   }
 
-  .mega--sm { font-size: clamp(2.4rem, 7vw, 5.5rem); }
+  .mega--sm { font-size: clamp(2.25rem, 6.2vw, 4.75rem); }
+
+  .mega--ask {
+    font-size: clamp(2.4rem, 7vw, 5.5rem);
+    max-width: 15ch;
+  }
+  .mega--ask em { font-style: italic; color: var(--accent); }
 
   .under {
     font-size: var(--t-lede);
@@ -204,37 +272,63 @@ import { LINE_ITEMS, STAKE, POPULATION_LABEL } from '../data/stake.js';
 
   /* ─────────── the receipt ─────────── */
 
-  .items {
+  .receipt {
     list-style: none;
     padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--s-3) var(--s-6);
-    max-width: 20ch;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
+    column-gap: var(--s-8);
+    border-block-start: 1px solid var(--rule-strong);
   }
 
-  .item {
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 5.5vw, 4rem);
-    line-height: 1.04;
-    letter-spacing: -0.03em;
-    color: var(--ink-2);
+  .receipt__row {
+    display: flex;
+    align-items: baseline;
+    gap: var(--s-3);
+    padding-block: var(--s-4);
+    border-block-end: 1px solid var(--rule);
     transition-delay: var(--d);
+  }
+
+  .receipt__item {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3.6vw, 2.75rem);
+    line-height: 1.32;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+  }
+
+  .receipt__leader {
+    flex: 1;
+    height: 1px;
+    background-image: radial-gradient(circle, var(--rule-strong) 1px, transparent 1px);
+    background-size: 6px 1px;
+    background-repeat: repeat-x;
+    align-self: center;
+    min-width: var(--s-5);
+  }
+
+  .receipt__tag {
+    font-size: var(--t-micro);
+    letter-spacing: var(--track-wide);
+    text-transform: uppercase;
+    color: var(--ink-4);
+    white-space: nowrap;
   }
 
   .turn {
     font-family: var(--font-display);
-    font-size: clamp(2.2rem, 6.5vw, 5rem);
-    line-height: 1.02;
-    letter-spacing: -0.035em;
-    margin-block-start: var(--s-8);
-    padding-block-start: var(--s-6);
-    border-block-start: 2px solid var(--ink);
-    max-width: 16ch;
+    font-size: clamp(2rem, 5.2vw, 4rem);
+    line-height: 1.32;
+    letter-spacing: -0.008em;
+    margin-block-start: var(--s-7);
+    padding-block-start: var(--s-5);
+    border-block-start: 3px double var(--ink);
+    max-width: 18ch;
   }
   .turn em { font-style: italic; color: var(--accent); }
 
-  /* ─────────── the stake ─────────── */
+  /* ─────────── your share ─────────── */
 
   .stake {
     list-style: none;
@@ -263,9 +357,9 @@ import { LINE_ITEMS, STAKE, POPULATION_LABEL } from '../data/stake.js';
 
   .stake__value {
     font-family: var(--font-display);
-    font-size: clamp(2.6rem, 8vw, 5.5rem);
-    line-height: 0.95;
-    letter-spacing: -0.04em;
+    font-size: clamp(2.4rem, 7vw, 5rem);
+    line-height: 1.04;
+    letter-spacing: -0.025em;
     color: var(--on-deep);
   }
 
@@ -273,18 +367,28 @@ import { LINE_ITEMS, STAKE, POPULATION_LABEL } from '../data/stake.js';
     font-size: var(--t-lede);
     color: var(--on-deep-2);
     margin-block-start: var(--s-3);
-    max-width: 34ch;
+    max-width: 36ch;
   }
 
   .stake__working {
-    font-size: var(--t-micro);
+    font-size: var(--t-small);
     color: #6f7681;
     margin-block-start: var(--s-2);
-    font-variant-numeric: tabular-nums;
+    max-width: 54ch;
+    line-height: 1.55;
   }
 
   .source--deep { color: #6f7681; margin-block-start: var(--s-5); }
 
+  /* ─────────── ledgers ─────────── */
+
+  .ledgers {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(24rem, 100%), 1fr));
+    gap: var(--s-8);
+    margin-block-start: var(--s-7);
+  }
+
   .pad { margin-block-start: var(--s-7); }
-  .pad-sm { margin-block-start: var(--s-4); }
+  .pad-sm { margin-block-start: var(--s-6); }
 </style>

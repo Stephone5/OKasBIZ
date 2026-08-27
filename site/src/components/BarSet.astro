@@ -1,0 +1,137 @@
+---
+interface Row {
+  label: string;
+  sub?: string;
+  value: number;
+  display: string;
+  series: number;
+  emphasis?: boolean;
+}
+
+interface Props {
+  caption: string;
+  rows: Row[];
+  source: string;
+  scale?: number;
+  deep?: boolean;
+}
+
+const { caption, rows, source, scale, deep = false } = Astro.props as Props;
+
+// One shared scale across every bar so the lengths are comparable and the
+// arithmetic reads visually.
+const max = scale ?? Math.max(...rows.map((r) => r.value));
+const pct = (v: number) => Math.max((v / max) * 100, 0.6);
+---
+
+<figure class={`barset${deep ? ' barset--deep' : ''}`}>
+  <figcaption class="barset__cap">{caption}</figcaption>
+
+  <ul class="barset__rows">
+    {rows.map((r) => (
+      <li class={`barset__row reveal${r.emphasis ? ' is-emph' : ''}`}>
+        <div class="barset__head">
+          <p class="barset__label">{r.label}</p>
+          <p class="barset__value tabular">{r.display}</p>
+        </div>
+
+        <div class="barset__track">
+          <div
+            class="barset__bar"
+            style={`width:${pct(r.value)}%;background:var(--series-${r.series})`}
+          >
+            <span class="visually-hidden">{r.display}</span>
+          </div>
+        </div>
+
+        {r.sub && <p class="barset__sub">{r.sub}</p>}
+      </li>
+    ))}
+  </ul>
+
+  <p class="barset__source">Source: {source}</p>
+</figure>
+
+<style>
+  .barset { margin: 0; }
+
+  .barset__cap {
+    font-size: var(--t-micro);
+    font-weight: 600;
+    letter-spacing: var(--track-wide);
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-block-end: var(--s-5);
+  }
+
+  .barset__rows { list-style: none; padding: 0; display: grid; gap: var(--s-6); }
+
+  .barset__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--s-4);
+    margin-block-end: var(--s-3);
+  }
+
+  .barset__label {
+    font-size: var(--t-lede);
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .barset__value {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3.4vw, 2.5rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+
+  .is-emph .barset__value { font-size: clamp(2rem, 4.6vw, 3.25rem); }
+
+  /* Thin marks on a recessive track, rounded at the data end only so the
+     bar reads as anchored to its baseline. */
+  .barset__track {
+    height: 10px;
+    background: var(--paper-2);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .barset__bar {
+    height: 100%;
+    border-radius: 2px 4px 4px 2px;
+    transform-origin: left center;
+    transition: width var(--dur-slow) var(--ease-out);
+  }
+
+  .barset__sub {
+    font-size: var(--t-small);
+    color: var(--ink-3);
+    margin-block-start: var(--s-2);
+  }
+
+  .barset__source {
+    font-size: var(--t-micro);
+    color: var(--ink-4);
+    margin-block-start: var(--s-6);
+  }
+
+  /* Inverted band */
+  .barset--deep .barset__cap { color: var(--on-deep-2); }
+  .barset--deep .barset__label,
+  .barset--deep .barset__value { color: var(--on-deep); }
+  .barset--deep .barset__track { background: #262a31; }
+  .barset--deep .barset__sub { color: var(--on-deep-2); }
+  .barset--deep .barset__source { color: #6f7681; }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden; clip-path: inset(50%);
+    white-space: nowrap;
+  }
+</style>
