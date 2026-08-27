@@ -160,6 +160,13 @@ p.body{color:#2b2e24}.dek{color:var(--muted)}
 .eyebrow,.section-no,.accent{color:var(--wheat)}
 .note{color:#34372c;border-left-color:var(--wheat)}
 a{color:#2f6f97}
+
+/* OKC Section Atlas — shadow-DOM element, themed onto the site palette */
+okc-atlas{display:block;margin:2rem 0 0;
+  --ink:#16180f; --ink-soft:#4c5046;
+  --paper:#f3f5ec; --paper-2:#eef1e6; --card:#fff;
+  --rule:#a8ad9c; --rule-faint:#d9ddcd;
+  --signal:#b07d12; --brick:#c0395f; --field:#2f7d4f}
 .hero h1{color:#fff}.hero h1 .l2{color:#f4cf6b}.hero .eyebrow{color:#f4cf6b}
 .hero .sub{color:#ece9df}.hero .meta{color:#d6d3c8}.hero .meta b{color:#fff}.scrollcue{color:#d6d3c8}
 /* ── Nav ── */
@@ -953,6 +960,23 @@ body{padding-top:var(--nav-h)}
   </div>
 </section>
 
+<!-- ============ OKC SECTION ATLAS ============ -->
+<section class="page" data-page="atlas" id="okc-atlas-page">
+  <div class="wrap reveal">
+    <div class="eyebrow">The opportunity map, up close</div>
+    <h2>Oklahoma City, in nine pieces</h2>
+    <p class="dek">The figures elsewhere on this site describe four million people at once. This asks the same question at street level: what is actually in each part of Oklahoma City, and where is the gap?</p>
+    <p class="body">The city is divided here into nine quadrants, bounded by the highways that already split it. Pick what you want a lot of, or a little of &mdash; large employers, median income, schools, parks, transit, shelters &mdash; and all nine line up against it. Or start with a quadrant and read everything named inside it.</p>
+  </div>
+
+  <okc-atlas></okc-atlas>
+
+  <div class="wrap">
+    <p class="fignote">Quantities count named items found in the research, so each is a floor rather than a full census. Figures are averaged across the ZIP codes that fall inside a quadrant, and every one shows how many ZIPs it rests on; ZIP boundaries do not follow the highway lines. A figure that was never published renders as &ldquo;no data&rdquo; &mdash; never as zero, and never averaged around. Safety grades come from commercial aggregators rather than the Oklahoma City Police Department, and the index those services publish alongside a grade is not comparable between grades.</p>
+    <div class="cta-1pct"><div class="cta-label">1% action</div><div class="cta-action">Find the quadrant you live or work in. Look at one category where it sits near the bottom. That gap is something nobody has built yet.</div></div>
+  </div>
+</section>
+
 <!-- ============ 14 — OKLAHOMA IN FIVE YEARS ============ -->
 <section class="page vision-section" data-page="verdict" id="verdict">
   <div class="wrap reveal">
@@ -1236,11 +1260,12 @@ document.querySelectorAll('.bar-fill').forEach(b=>io2.observe(b));
 <script>
 (function(){
   var _savedPath=location.pathname;var pages=[['overview','Overview'],['books','The Books'],['economy','Economy'],
-    ['people','People & Politics'],['work','Work & Money'],['wellbeing','Wellbeing & Justice'],['verdict','Your Move']];
+    ['people','People & Politics'],['work','Work & Money'],['wellbeing','Wellbeing & Justice'],['atlas','OKC Atlas'],['verdict','Your Move']];
   var box=document.getElementById('navlinks');
   var ham=document.getElementById('hamBtn');
   var links=document.getElementById('navlinks');
   function show(p){
+    if(p==='atlas'&&!window.__atlasLoaded){window.__atlasLoaded=1;var _a=document.createElement('script');_a.type='module';_a.src='/okc-atlas.element.js';document.head.appendChild(_a);}
     document.querySelectorAll('.page').forEach(function(s){s.classList.toggle('active',s.dataset.page===p);});
     document.querySelectorAll('#navlinks button').forEach(function(b){b.classList.toggle('on',b.dataset.p===p);});
     document.querySelectorAll('.page.active .bar-fill').forEach(function(b){b.style.width=(b.dataset.w||100)+'%';});
