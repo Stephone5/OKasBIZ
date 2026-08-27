@@ -1,0 +1,110 @@
+---
+import Base from '../layouts/Base.astro';
+import BarSet from '../components/BarSet.astro';
+import Facts from '../components/Facts.astro';
+import Cta from '../components/Cta.astro';
+import { BALANCE, YEAR } from '../data/books.js';
+import { NET_POSITION_SPLIT, APPROPRIATIONS, RESERVES } from '../data/pages.js';
+---
+
+<Base
+  title="The Books — Oklahoma Inc."
+  description="What Oklahoma owns, what it owes, what came in and what went out. Taken from the state's audited annual report for the year ended June 30, 2024."
+>
+  <section class="panel panel--tight">
+    <div class="wrap">
+      <p class="kick">The books</p>
+      <h1 class="mega">What the state<br />owns and owes.</h1>
+      <p class="under">
+        Government-wide statement of net position, June 30, 2024. Against $46.29 billion
+        of assets sit $12.93 billion of liabilities, leaving $34.08 billion. By state
+        standards that is a strong balance sheet.
+      </p>
+    </div>
+  </section>
+
+  <section class="panel panel--open">
+    <div class="wrap">
+      <div class="ledgers">
+        <BarSet caption={BALANCE.caption} rows={BALANCE.rows} source={BALANCE.source} />
+        <BarSet
+          caption={YEAR.caption}
+          rows={YEAR.rows}
+          source={YEAR.source}
+          scale={Math.max(...BALANCE.rows.map((r) => r.value))}
+        />
+      </div>
+
+      <div class="prose pad">
+        <p>
+          Revenues of <strong>$33.29 billion</strong> exceeded expenses of
+          <strong>$31.45 billion</strong>, producing a <strong>$1.84 billion</strong>
+          surplus and a 5.9% increase in the net position. A $500 million fall in
+          gross-production tax, reflecting commodity price movement, was offset by growth
+          in income tax, sales tax and federal grants. Federal grants totalled
+          $14.49 billion, or 43.5% of all revenue.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel panel--deep">
+    <div class="wrap">
+      <p class="kick kick--deep">What is left, split three ways</p>
+      <h2 class="mega mega--sm">Not all of it<br />can be spent.</h2>
+
+      <div class="pad">
+        <BarSet
+          caption="Composition of the $34.08 billion net position"
+          rows={NET_POSITION_SPLIT}
+          source="ACFR FY2024, Statement of Net Position."
+          scale={34.08}
+          deep={true}
+        />
+      </div>
+
+      <div class="prose pad">
+        <p>
+          Only the third of these is genuinely free. <strong>$13.4 billion</strong> is tied
+          up in capital assets the state cannot sell — the roads it drives on.
+          <strong>$9.2 billion</strong> is legally restricted to specific uses. That leaves
+          <strong>$11.4 billion</strong> of real flexibility.
+        </p>
+      </div>
+
+      <div class="pad"><Facts caption="Reserves and fund balances" rows={RESERVES} /></div>
+      <div class="ctarow"><Cta href="/economy" variant="deep" /></div>
+    </div>
+  </section>
+
+  <section class="panel panel--tint">
+    <div class="wrap">
+      <p class="kick">What the legislature controls</p>
+      <h2 class="mega mega--sm">$12.08 billion<br />of it is a choice.</h2>
+      <p class="under">
+        The audited statements count every federal dollar and every fee. The appropriated
+        budget is the part the legislature directly decides. In real terms per person it is
+        about 11.8% below the FY2000 level.
+      </p>
+
+      <div class="pad">
+        <BarSet
+          caption="FY2026 appropriations by area"
+          rows={APPROPRIATIONS}
+          source="Oklahoma Policy Institute, FY2026 Budget Highlights; HB 2766."
+          scale={5.76}
+        />
+      </div>
+
+      <div class="ctarow"><Cta href="/economy" /></div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .ledgers {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(24rem, 100%), 1fr));
+    gap: var(--s-8);
+  }
+</style>

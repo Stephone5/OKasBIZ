@@ -1,0 +1,129 @@
+---
+import Base from '../layouts/Base.astro';
+import Facts from '../components/Facts.astro';
+import Cta from '../components/Cta.astro';
+import { RANKS, JUSTICE } from '../data/pages.js';
+---
+
+<Base
+  title="Wellbeing & Justice — Oklahoma Inc."
+  description="Where Oklahoma ranks on education and health, and the incarceration figures, presented without conclusions."
+>
+  <section class="panel panel--tight">
+    <div class="wrap">
+      <p class="kick">Wellbeing</p>
+      <h1 class="mega">Where the state<br />ranks.</h1>
+      <p class="under">
+        Each row places Oklahoma against the other 49 states on the same measure. First is
+        best, fiftieth is last. The figures are presented as they are published.
+      </p>
+    </div>
+  </section>
+
+  <section class="panel panel--open">
+    <div class="wrap">
+      <ul class="ranks">
+        {RANKS.map((r) => (
+          <li class="rank reveal">
+            <div class="rank__head">
+              <span class="rank__label">{r.label}</span>
+              <span class="rank__num tabular">{r.rank}<span class="rank__of">/50</span></span>
+            </div>
+            <div class="rank__track">
+              <span class="rank__dot" style={`left:${((r.rank - 1) / 49) * 100}%`}></span>
+            </div>
+            <div class="rank__ends">
+              <span>1st, best</span>
+              <span>50th, last</span>
+            </div>
+          </li>
+        ))}
+      </ul>
+
+      <p class="source pad-sm">
+        Sources: NAEP and state education reporting; America's Health Rankings;
+        Commonwealth Fund; U.S. Census. Positions are shown on a single scale so they can
+        be read against one another.
+      </p>
+    </div>
+  </section>
+
+  <section class="panel panel--deep">
+    <div class="wrap">
+      <p class="kick kick--deep">Incarceration</p>
+      <h2 class="mega mega--sm">The data,<br />without a verdict.</h2>
+
+      <div class="pad" style="max-width:46rem">
+        <Facts rows={JUSTICE} />
+      </div>
+
+      <div class="prose pad">
+        <p>
+          Oklahoma's female incarceration rate has been among the highest in the country
+          for an extended period. Reforms over recent years have brought it down from its
+          peak, and the state now ranks in the top three. Counting prisons, jails and
+          detention together, the all-forms rate of <strong>905 per 100,000</strong> is
+          among the highest of any country with available data.
+        </p>
+      </div>
+
+      <p class="source pad-sm">
+        Sources: Prison Policy Initiative, 2024; Vera Institute; Bureau of Justice
+        Statistics; ACFR FY2024; Oklahoma Watch.
+      </p>
+
+      <div class="ctarow"><Cta href="/verdict" variant="deep" /></div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .ranks { list-style: none; padding: 0; display: grid; gap: var(--s-7); max-width: 52rem; }
+
+  .rank__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--s-4);
+    margin-block-end: var(--s-3);
+  }
+
+  .rank__label { font-size: var(--t-lede); font-weight: 500; }
+
+  .rank__num {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.75rem, 3.4vw, 2.5rem);
+    line-height: 1;
+    letter-spacing: -0.035em;
+  }
+  .rank__of { font-size: 0.45em; color: var(--ink-3); letter-spacing: 0; }
+
+  /* One hue, light to dark, so position reads as position and never as
+     good or bad by colour. */
+  .rank__track {
+    position: relative;
+    height: 8px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--ramp-2), var(--ramp-5));
+  }
+
+  .rank__dot {
+    position: absolute;
+    top: 50%;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--ink);
+    border: 3px solid var(--paper);
+    transform: translate(-50%, -50%);
+  }
+
+  .rank__ends {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--t-micro);
+    color: var(--ink-4);
+    margin-block-start: var(--s-2);
+  }
+</style>

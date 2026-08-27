@@ -1,0 +1,32 @@
+---
+interface Props {
+  rows: string[][];
+  caption?: string;
+}
+const { rows, caption } = Astro.props as Props;
+---
+
+<table class="facts reveal">
+  {caption && <caption class="facts__cap">{caption}</caption>}
+  <tbody>
+    {rows.map((r) => (
+      <tr>
+        <th scope="row">{r[0]}</th>
+        <td>{r[1]}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>
+
+<style>
+  .facts__cap {
+    text-align: left;
+    font-size: var(--t-micro);
+    font-weight: 600;
+    letter-spacing: var(--track-wide);
+    text-transform: uppercase;
+    color: var(--ink-3);
+    padding-block-end: var(--s-3);
+  }
+  :global(.panel--deep) .facts__cap { color: var(--on-deep-2); }
+</style>

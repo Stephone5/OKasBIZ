@@ -1,0 +1,73 @@
+---
+import Base from '../layouts/Base.astro';
+import Cta from '../components/Cta.astro';
+---
+
+<Base
+  title="OKC Atlas — Oklahoma Inc."
+  description="Oklahoma City in nine highway-bounded quadrants, filterable across 29 research categories. What is in each part of the city, and where the gaps are."
+>
+  <section class="panel panel--tight">
+    <div class="wrap">
+      <p class="kick">The opportunity map, up close</p>
+      <h1 class="mega">Oklahoma City,<br />in nine pieces.</h1>
+      <p class="under">
+        The figures elsewhere on this site describe four million people at once. This asks
+        the same question at street level: what is actually in each part of the city, and
+        where is the gap?
+      </p>
+      <p class="under">
+        Pick what you want a lot of, or a little of — large employers, median income,
+        schools, parks, transit, shelters — and all nine quadrants line up against it. Or
+        start with a quadrant and read everything named inside it.
+      </p>
+    </div>
+  </section>
+
+  <okc-atlas></okc-atlas>
+
+  <section class="panel panel--tight">
+    <div class="wrap">
+      <p class="source">
+        Quantities count named items found in the research, so each is a floor rather than
+        a full census. Figures are averaged across the ZIP codes that fall inside a
+        quadrant, and every one shows how many ZIPs it rests on; ZIP boundaries do not
+        follow the highway lines. A figure that was never published renders as “no data” —
+        never as zero, and never averaged around. Safety grades come from commercial
+        aggregators rather than the Oklahoma City Police Department, and the index those
+        services publish alongside a grade is not comparable between grades.
+      </p>
+
+      <div class="ctarow"><Cta href="/economy" /></div>
+    </div>
+  </section>
+</Base>
+
+<!-- The atlas is the point of this page, so it loads with it rather than
+     on scroll. It is a self-contained custom element with its own shadow
+     root; the tokens below are the only thing this site passes into it. -->
+<script type="module" src="/okc-atlas.element.js"></script>
+
+<style is:global>
+  okc-atlas {
+    display: block;
+    margin-block: var(--s-6) var(--s-8);
+
+    /* Retuned to the new design system. Structural tones follow the page;
+       the two accent slots take validated series colours, so the safety
+       grades no longer resolve to an alarm red. */
+    --ink: #16181c;
+    --ink-soft: #3d434c;
+    --paper: #fbfaf7;
+    --paper-2: #f4f2ed;
+    --card: #ffffff;
+    --rule: #b9b3a6;
+    --rule-faint: #e2ded6;
+    --signal: #a8621b;
+    --brick: #ab461a;
+    --field: #00805a;
+    --r-lg: 8px;
+    --r-md: 8px;
+    --r-sm: 4px;
+  }
+</style>

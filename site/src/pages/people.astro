@@ -1,0 +1,108 @@
+---
+import Base from '../layouts/Base.astro';
+import Facts from '../components/Facts.astro';
+import Cta from '../components/Cta.astro';
+import { MIGRATION, MOMENTUM } from '../data/pages.js';
+---
+
+<Base
+  title="People — Oklahoma Inc."
+  description="4.12 million people, 63 arriving a day, and the four forces already moving in the state."
+>
+  <section class="panel panel--tight">
+    <div class="wrap">
+      <p class="kick">The people</p>
+      <h1 class="mega">4.12 million,<br />and climbing.</h1>
+      <p class="under">
+        After decades of talk about a brain drain, Oklahoma is now a net importer of
+        people — and especially of young ones.
+      </p>
+    </div>
+  </section>
+
+  <section class="panel panel--open">
+    <div class="wrap">
+      <p class="kick">Where the growth comes from</p>
+      <h2 class="mega mega--sm">63 people a day.</h2>
+
+      <div class="pad" style="max-width:44rem">
+        <Facts caption="Components of change, July 2024 to July 2025" rows={MIGRATION} />
+      </div>
+
+      <p class="source pad-sm">
+        U.S. Census Bureau, Vintage 2025 population estimates. Migration and natural
+        change are shown separately because they are different things and are often
+        conflated.
+      </p>
+    </div>
+  </section>
+
+  <section class="panel panel--deep">
+    <div class="wrap">
+      <p class="kick kick--deep">The people running this</p>
+      <h2 class="mega mega--sm">Oklahoma is not<br />a dormant state.</h2>
+      <p class="under">
+        The momentum already exists. The only question is whether you are part of it.
+      </p>
+
+      <ul class="mom pad">
+        {MOMENTUM.map((m) => (
+          <li class="mom__item reveal" style={`--mark:var(--series-${m.series})`}>
+            <span class="mom__bar" aria-hidden="true"></span>
+            <p class="mom__value tabular">{m.value}</p>
+            <p class="mom__label">{m.label}</p>
+            <p class="mom__body">{m.body}</p>
+            <p class="source">{m.source}</p>
+          </li>
+        ))}
+      </ul>
+
+      <div class="ctarow"><Cta href="/work" variant="deep" /></div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .mom { list-style: none; padding: 0; display: grid; gap: var(--s-7); }
+
+  .mom__item {
+    position: relative;
+    padding-inline-start: var(--s-5);
+    border-block-end: 1px solid var(--rule-deep);
+    padding-block-end: var(--s-7);
+    max-width: 54rem;
+  }
+  .mom__item:last-child { border-block-end: 0; padding-block-end: 0; }
+
+  .mom__bar {
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block: 0 var(--s-7);
+    width: 3px;
+    background: var(--mark);
+  }
+
+  .mom__value {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2.75rem, 7vw, 5rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--on-deep);
+  }
+
+  .mom__label {
+    font-size: var(--t-lede);
+    color: var(--on-deep);
+    margin-block-start: var(--s-3);
+    max-width: 34ch;
+  }
+
+  .mom__body {
+    color: var(--on-deep-2);
+    margin-block-start: var(--s-4);
+    max-width: var(--measure);
+  }
+
+  .mom__item .source { margin-block-start: var(--s-3); }
+</style>

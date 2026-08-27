@@ -1,0 +1,217 @@
+---
+import Base from '../layouts/Base.astro';
+import Facts from '../components/Facts.astro';
+import Cta from '../components/Cta.astro';
+import { PILLARS, SESSION_CHANGES, ELECTION } from '../data/pages.js';
+---
+
+<Base
+  title="Your Move — Oklahoma Inc."
+  description="Three ways to act on what you own, the budget changes each session made, and the next election."
+>
+  <section class="panel panel--hero-deep">
+    <div class="wrap">
+      <p class="kick kick--deep">Oklahoma in five years</p>
+      <h1 class="mega">Oklahoma has<br />always been<br />underestimated.</h1>
+
+      <div class="prose pad">
+        <p>
+          It was built by people who did not wait for permission. Settlers, wildcatters,
+          tribal nations that turned sovereignty into economic engines, soldiers who came
+          home and started businesses, families who stayed when leaving was easier.
+        </p>
+        <p>
+          That instinct did not disappear. It is sitting in four million people who have
+          not yet been shown a clear picture of what they are sitting on.
+        </p>
+        <p>
+          Five years from now Oklahoma could be the state people start writing about
+          differently. Not the cheap place to live. The place where something is
+          happening. <strong>That starts with one person deciding they are a participant
+          rather than a spectator.</strong>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel panel--open">
+    <div class="wrap">
+      <p class="kick">The 1% plan</p>
+      <h2 class="mega mega--sm">You cannot change<br />everything.<br />Nobody can.</h2>
+      <p class="under">
+        But if every Oklahoman picks one thing they actually care about and gives it 1%
+        more of their attention, their money, their time or their talent, the compound
+        effect is large. That is not optimism. That is arithmetic.
+      </p>
+
+      <ul class="pillars pad">
+        {PILLARS.map((p) => (
+          <li class="pillar reveal" style={`--mark:var(--series-${p.series})`}>
+            <span class="pillar__bar" aria-hidden="true"></span>
+            <h3 class="pillar__title">{p.title}</h3>
+            <p class="pillar__body">{p.body}</p>
+            <p class="pillar__action"><span>1% action</span>{p.action}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="panel panel--tint">
+    <div class="wrap">
+      <p class="kick">The election layer</p>
+      <h2 class="mega mega--sm">These numbers<br />reflect choices.</h2>
+      <p class="under">
+        Choices are made by people in office, and those people are chosen by you. Knowing
+        the numbers before you vote is the floor, not the ceiling.
+      </p>
+
+      <div class="tablewrap pad">
+        <table class="sess">
+          <caption class="visually-hidden">
+            Budget line items and the sessions in which they changed. No party labels, no names.
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Budget line</th>
+              <th scope="col" class="num">Before</th>
+              <th scope="col" class="num">After</th>
+              <th scope="col" class="num">Change</th>
+              <th scope="col">Session</th>
+            </tr>
+          </thead>
+          <tbody>
+            {SESSION_CHANGES.map((r) => (
+              <tr>
+                <th scope="row">{r[0]}</th>
+                <td class="num">{r[1]}</td>
+                <td class="num">{r[2]}</td>
+                <td class="num">{r[3]}</td>
+                <td class="sess__when">{r[4]}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <p class="source pad-sm">
+        The gross production tax line reflects commodity price movement; the statutory rate
+        was unchanged. No party labels, no individual names, no vote tallies. Sources:
+        Oklahoma Policy Institute FY2026; HB 2764; HB 2766; ACFR FY2024.
+      </p>
+
+      <div class="grid-2 pad">
+        <div>
+          <Facts caption="The next election" rows={ELECTION} />
+          <p class="source pad-sm">
+            The June 16 primary and the August 25 runoff have been held. Early voting is
+            available and no excuse is required. Source: Oklahoma State Election Board.
+          </p>
+        </div>
+        <div class="prose">
+          <p>
+            <strong>To find your legislator</strong>, visit oklegislature.gov and search
+            “Find Your Legislator” by your home address.
+          </p>
+          <p>
+            <strong>To see your ballot</strong>, visit ok.gov/elections and search by your
+            name and date of birth for your registration, sample ballot and polling place.
+          </p>
+          <p>
+            Local elections — city council, county commissioner, school board — are
+            typically decided by fewer than 500 votes. Turnout is the variable.
+          </p>
+        </div>
+      </div>
+
+      <div class="ctarow"><Cta href="/" /></div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .panel--hero-deep {
+    background: var(--deep);
+    color: var(--on-deep);
+    padding-block: clamp(var(--s-9), 15vh, var(--s-10));
+  }
+  .panel--hero-deep h1 { color: var(--on-deep); }
+  .panel--hero-deep .prose p { color: var(--on-deep-2); }
+  .panel--hero-deep .prose strong { color: var(--on-deep); }
+  .panel--hero-deep .kick--deep { color: var(--accent); }
+
+  .pillars {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(19rem, 100%), 1fr));
+    gap: var(--s-6);
+  }
+
+  .pillar { position: relative; padding-inline-start: var(--s-5); }
+
+  .pillar__bar {
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block: 0;
+    width: 3px;
+    background: var(--mark);
+  }
+
+  .pillar__title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  .pillar__body { color: var(--ink-2); margin-block-start: var(--s-3); }
+
+  .pillar__action {
+    margin-block-start: var(--s-4);
+    padding-block-start: var(--s-3);
+    border-block-start: 1px solid var(--rule);
+    font-size: var(--t-small);
+    color: var(--ink);
+  }
+  .pillar__action span {
+    display: block;
+    font-size: var(--t-micro);
+    letter-spacing: var(--track-wide);
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-block-end: var(--s-2);
+  }
+
+  .tablewrap { overflow-x: auto; }
+
+  .sess { width: 100%; min-width: 42rem; border-collapse: collapse; font-size: var(--t-small); }
+  .sess :is(th, td) {
+    text-align: left;
+    padding: var(--s-3) var(--s-4) var(--s-3) 0;
+    border-block-end: 1px solid var(--rule);
+  }
+  .sess thead th {
+    font-size: var(--t-micro);
+    letter-spacing: var(--track-wide);
+    text-transform: uppercase;
+    color: var(--ink-3);
+    font-weight: 600;
+  }
+  .sess tbody th { font-weight: 500; }
+  .sess .num {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    font-family: var(--font-display);
+    font-weight: 600;
+  }
+  .sess__when { color: var(--ink-3); white-space: nowrap; }
+
+  .visually-hidden {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip-path: inset(50%); white-space: nowrap;
+  }
+</style>

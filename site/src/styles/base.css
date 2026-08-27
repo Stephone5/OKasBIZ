@@ -171,3 +171,96 @@ td.num,
   transform: translateY(-200%);
 }
 .skip:focus { transform: none; }
+
+/* ---------- Page shell ----------------------------------------------
+   Shared by every page. Panels alternate ground; the scan layer carries
+   the argument in the largest type.                                    */
+
+.panel { padding-block: clamp(var(--s-8), 11vh, var(--s-10)); position: relative; }
+.panel--tight { padding-block: clamp(var(--s-7), 8vh, var(--s-9)); background: var(--paper); }
+.panel--tint  { background: var(--paper-2); }
+.panel--open  { background: var(--paper); }
+.panel--ask   { background: var(--accent-soft); }
+
+.panel--deep { background: var(--deep); color: var(--on-deep); }
+.panel--deep :is(h1, h2) { color: var(--on-deep); }
+.panel--deep .under { color: var(--on-deep-2); }
+.panel--deep .source { color: #6f7681; }
+
+.brand {
+  font-size: var(--t-micro);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-block-end: var(--s-6);
+}
+
+.kick {
+  font-size: var(--t-micro);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-block-end: var(--s-5);
+}
+.kick--deep { color: var(--on-deep-2); }
+
+/* Grotesque, tracked tight, led under 1.0 — verified clear of glyph
+   collision by measuring ink extents rather than font boxes. */
+.mega {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.75rem, 8.8vw, 7.5rem);
+  line-height: 0.97;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+.mega--sm { font-size: clamp(2.25rem, 6.2vw, 4.75rem); }
+
+.under {
+  font-size: var(--t-lede);
+  color: var(--ink-2);
+  max-width: 46ch;
+  margin-block-start: var(--s-6);
+}
+
+.ctarow { margin-block-start: var(--s-7); }
+.pad    { margin-block-start: var(--s-7); }
+.pad-sm { margin-block-start: var(--s-6); }
+
+/* Key/value facts table */
+.facts {
+  width: 100%;
+  border-collapse: collapse;
+  margin-block-start: var(--s-6);
+  font-size: var(--t-small);
+}
+.facts th, .facts td {
+  text-align: left;
+  padding: var(--s-3) 0;
+  border-block-end: 1px solid var(--rule);
+  vertical-align: baseline;
+}
+.facts th { font-weight: 500; color: var(--ink-2); }
+.facts td {
+  text-align: right;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.125rem;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.facts tr:last-child :is(th, td) { border-block-end: 0; }
+.panel--deep .facts :is(th, td) { border-block-end-color: var(--rule-deep); }
+.panel--deep .facts th { color: var(--on-deep-2); }
+.panel--deep .facts td { color: var(--on-deep); }
+
+/* Prose blocks — used sparingly, for the readers who stop */
+.prose { max-width: var(--measure); }
+.prose > * + * { margin-block-start: var(--s-4); }
+.prose p { color: var(--ink-2); }
+.panel--deep .prose p { color: var(--on-deep-2); }
+.prose strong { color: var(--ink); font-weight: 600; }
+.panel--deep .prose strong { color: var(--on-deep); }

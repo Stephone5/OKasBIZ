@@ -13,7 +13,11 @@ const links = [
 const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 ---
 
-<header class="nav" transition:persist transition:name="nav">
+<!-- transition:persist keeps the sticky header across navigations so it
+     does not flash. It carries no transition:name — naming a persisted
+     element asks the transition to animate between two copies of an
+     element that is being kept, which aborts it. -->
+<header class="nav" transition:persist>
   <div class="nav__inner wrap">
     <a class="nav__brand" href="/">Oklahoma&nbsp;Inc.</a>
 
@@ -136,10 +140,27 @@ const path = Astro.url.pathname.replace(/\/$/, '') || '/';
 </style>
 
 <script>
+  // The header is transition:persist, so it survives navigation and its
+  // server-rendered aria-current would otherwise stay on the page you came
+  // from. Re-mark it on every load.
+  const markCurrent = () => {
+    const here = location.pathname.replace(/\/$/, '') || '/';
+    document.querySelectorAll('.nav__link').forEach((a) => {
+      const href = (a as HTMLAnchorElement).getAttribute('href') || '';
+      const target = href.replace(/\/$/, '') || '/';
+      if (target === here) a.setAttribute('aria-current', 'page');
+      else a.removeAttribute('aria-current');
+    });
+  };
+
   const wire = () => {
+    markCurrent();
+
     const toggle = document.querySelector('.nav__toggle');
     const links = document.getElementById('nav-links');
     if (!toggle || !links) return;
+    if (toggle.dataset.wired) return;
+    toggle.dataset.wired = '1';
 
     toggle.addEventListener('click', () => {
       const open = links.classList.toggle('is-open');

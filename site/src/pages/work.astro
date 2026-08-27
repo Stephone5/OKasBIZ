@@ -1,0 +1,160 @@
+---
+import Base from '../layouts/Base.astro';
+import StatGrid from '../components/StatGrid.astro';
+import Facts from '../components/Facts.astro';
+import Cta from '../components/Cta.astro';
+import { WORK_STATS, JOBLESS, PRESSURE, HOUSING, HOMELESSNESS, SUBSIDY_LEDGER, SUPPORT } from '../data/pages.js';
+---
+
+<Base
+  title="Work & Money — Oklahoma Inc."
+  description="Low joblessness alongside thin household savings, and the public subsidy behind the economy."
+>
+  <section class="panel panel--tight">
+    <div class="wrap">
+      <p class="kick">Work</p>
+      <h1 class="mega">Low joblessness,<br />high hustle.</h1>
+      <p class="under">
+        By the headline numbers Oklahomans are working and starting businesses briskly.
+        The state added 140,000 jobs in five years and has the highest rate of new
+        business ownership in at least two decades.
+      </p>
+
+      <div class="pad"><StatGrid stats={WORK_STATS} /></div>
+
+      <div class="pad" style="max-width:44rem">
+        <Facts caption="The jobless picture, 2025" rows={JOBLESS} />
+      </div>
+
+      <p class="source pad-sm">
+        “Marginally attached” means people who want work and looked in the past year but
+        not the past four weeks. Source: BLS Southwest Region, 2025; Global
+        Entrepreneurship Monitor; U.S. Chamber of Commerce.
+      </p>
+    </div>
+  </section>
+
+  <section class="panel panel--deep">
+    <div class="wrap">
+      <p class="kick kick--deep">The kitchen table</p>
+      <h2 class="mega mega--sm">The state runs<br />a surplus.<br />Many households<br />do not.</h2>
+
+      <p class="bignum tabular">−43.7%</p>
+      <p class="under">
+        The fall in the average Oklahoma household's savings balance between 2019 and
+        2023 — the second-steepest decline in the country. Per-capita income of $62,661
+        ranks 40th, and median household income sits about 18% under the national figure.
+      </p>
+
+      <div class="cols pad">
+        <Facts caption="Pressure gauges" rows={PRESSURE} />
+        <Facts caption="Housing squeeze" rows={HOUSING} />
+        <Facts caption="Homelessness" rows={HOMELESSNESS} />
+      </div>
+
+      <p class="source pad-sm">
+        Point-in-time homelessness counts undercount and should be treated as a floor.
+        Sources: Census SAIPE; America's Health Rankings; USDA and Feeding America;
+        National Low Income Housing Coalition; HUD; Federal Reserve.
+      </p>
+    </div>
+  </section>
+
+  <section class="panel panel--tint">
+    <div class="wrap">
+      <p class="kick">What it costs to keep the engine running</p>
+      <h2 class="mega mega--sm">Cash out,<br />and revenue<br />never collected.</h2>
+
+      <div class="pad" style="max-width:48rem">
+        <Facts caption="Annual, approximate" rows={SUBSIDY_LEDGER} />
+      </div>
+
+      <p class="source pad-sm">
+        These items are different in kind — direct cash against revenue foregone — and are
+        not strictly additive. They are shown together to size the public cost. Sources:
+        Oklahoma Policy Institute; Oklahoma Tax Commission; HB2764.
+      </p>
+
+      <div class="prose pad">
+        <p>
+          The <strong>Quality Jobs Program</strong> pays qualifying companies up to 5% of
+          new payroll in cash. A 2021 analysis found that $524.8 million of payouts between
+          2011 and 2018 generated about $4 billion in added state tax revenue. Manufacturing
+          and oil and gas took over half the rebates.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel panel--open">
+    <div class="wrap">
+      <p class="kick">Available infrastructure</p>
+      <h2 class="mega mega--sm">The support<br />already exists.</h2>
+      <p class="under">
+        Before you raise money or hire anyone, there are people whose job it is to help
+        you get there. Most of it is free.
+      </p>
+
+      <ul class="support pad">
+        {SUPPORT.map((s) => (
+          <li class="support__item reveal">
+            <h3 class="support__title">{s.title}</h3>
+            <p class="support__lead">{s.lead}</p>
+            <p class="support__body">{s.body}</p>
+          </li>
+        ))}
+      </ul>
+
+      <div class="ctarow"><Cta href="/wellbeing" /></div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .bignum {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(3.5rem, 12vw, 9rem);
+    line-height: 1;
+    letter-spacing: -0.05em;
+    color: var(--on-deep);
+    margin-block-start: var(--s-7);
+  }
+
+  .cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
+    gap: var(--s-7);
+  }
+
+  .support {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(19rem, 100%), 1fr));
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .support__item { background: var(--surface); padding: var(--s-6) var(--s-5); }
+
+  .support__title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+
+  .support__lead {
+    font-size: var(--t-small);
+    font-weight: 500;
+    color: var(--accent);
+    margin-block: var(--s-2) var(--s-3);
+  }
+
+  .support__body { font-size: var(--t-small); color: var(--ink-2); }
+</style>
