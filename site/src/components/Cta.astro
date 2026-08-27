@@ -1,0 +1,49 @@
+---
+// One action, repeated verbatim down the page. StoryBrand's own homepage
+// repeats its single call to action six times, word for word — the
+// wording never varies, so there is only ever one thing to do.
+interface Props {
+  href?: string;
+  variant?: 'solid' | 'ghost' | 'deep';
+}
+const { href = '/books', variant = 'solid' } = Astro.props as Props;
+---
+
+<a class={`cta cta--${variant}`} href={href}>
+  <span>See what you own</span>
+  <svg width="20" height="11" viewBox="0 0 20 11" fill="none" aria-hidden="true">
+    <path d="M1 1l9 8 9-8" stroke="currentColor" stroke-width="1.6" />
+  </svg>
+</a>
+
+<style>
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-3);
+    padding: var(--s-4) var(--s-6);
+    border-radius: 999px;
+    text-decoration: none;
+    font-family: var(--font-text);
+    font-size: var(--t-body);
+    font-weight: 500;
+    border: 1px solid transparent;
+    transition: background var(--dur) var(--ease),
+                color var(--dur) var(--ease),
+                gap var(--dur) var(--ease),
+                border-color var(--dur) var(--ease);
+  }
+
+  .cta svg { transition: transform var(--dur) var(--ease); flex: none; }
+  .cta:hover { gap: var(--s-5); }
+  .cta:hover svg { transform: translateY(3px); }
+
+  .cta--solid { background: var(--ink); color: var(--paper); }
+  .cta--solid:hover { background: var(--accent); }
+
+  .cta--ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
+  .cta--ghost:hover { background: var(--ink); color: var(--paper); }
+
+  .cta--deep { background: var(--on-deep); color: var(--deep); }
+  .cta--deep:hover { background: var(--accent); color: var(--paper); }
+</style>

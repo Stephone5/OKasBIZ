@@ -2,7 +2,9 @@
 import Base from '../layouts/Base.astro';
 import StatGrid from '../components/StatGrid.astro';
 import BarSet from '../components/BarSet.astro';
+import Cta from '../components/Cta.astro';
 import SpendCounter from '../components/SpendCounter.svelte';
+import BudgetGuess from '../components/BudgetGuess.svelte';
 import { GLANCE, SPEND } from '../data/overview.js';
 import { LINE_ITEMS, STAKE, POPULATION_LABEL } from '../data/stake.js';
 import { BALANCE, YEAR } from '../data/books.js';
@@ -12,27 +14,29 @@ import { BALANCE, YEAR } from '../data/books.js';
   title="Oklahoma Inc. — For the Okies Who Build"
   description="Oklahoma is a $213.5 billion enterprise. Every dollar you spend here is money you put into it. An open set of books for the Okies who build."
 >
-  <!-- ══════════════ 1 · the claim ══════════════ -->
+  <!-- ══════════ 1 · the claim ══════════ -->
   <section class="panel panel--hero">
     <div class="wrap panel__inner">
       <p class="brand">For the Okies who build</p>
-
-      <h1 class="mega">
-        You already<br />own a piece<br />of this state.
-      </h1>
-
+      <h1 class="mega">You already<br />own a piece<br />of this state.</h1>
       <p class="under">Most people who built it have never seen the books.</p>
-
-      <a class="cta" href="#receipt">
-        <span>Show me</span>
-        <svg width="20" height="11" viewBox="0 0 20 11" fill="none" aria-hidden="true">
-          <path d="M1 1l9 8 9-8" stroke="currentColor" stroke-width="1.6" />
-        </svg>
-      </a>
+      <div class="ctarow"><Cta href="#receipt" /></div>
     </div>
   </section>
 
-  <!-- ══════════════ 2 · the receipt ══════════════ -->
+  <!-- ══════════ 2 · empathy ══════════ -->
+  <section class="panel panel--tight">
+    <div class="wrap">
+      <h2 class="mega mega--sm">Nobody hands<br />you the books.</h2>
+      <p class="under">
+        The numbers are public. They sit in audited reports that run to hundreds of
+        pages, written for accountants, and almost nobody reads them. That is the
+        only reason any of this is hard to find.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════ 3 · the receipt ══════════ -->
   <section class="panel panel--tint" id="receipt">
     <div class="wrap">
       <p class="kick">Where it starts</p>
@@ -47,19 +51,15 @@ import { BALANCE, YEAR } from '../data/books.js';
         ))}
       </ul>
 
-      <p class="turn">
-        Every one of these is<br /><em>money you put in.</em>
-      </p>
+      <p class="turn">Every one of these is<br /><em>money you put in.</em></p>
     </div>
   </section>
 
-  <!-- ══════════════ 3 · what that makes you ══════════════ -->
+  <!-- ══════════ 4 · your share ══════════ -->
   <section class="panel panel--deep">
     <div class="wrap">
       <p class="kick kick--deep">What that makes you</p>
-
       <h2 class="mega mega--sm">Put money in,<br />own a piece.</h2>
-
       <p class="under under--deep">
         Take what the state publishes and split it across everyone who lives here.
         That is the size of the piece you already own.
@@ -80,21 +80,19 @@ import { BALANCE, YEAR } from '../data/books.js';
         Each number is a published total divided by {POPULATION_LABEL} (U.S. Census
         Bureau, Vintage 2025). Plain division, nothing guessed or filled in.
       </p>
+
+      <div class="ctarow"><Cta variant="deep" /></div>
     </div>
   </section>
 
-  <!-- ══════════════ 4 · the books ══════════════ -->
+  <!-- ══════════ 5 · the books ══════════ -->
   <section class="panel panel--open" id="books">
     <div class="wrap">
       <p class="kick">The books</p>
       <h2 class="mega mega--sm">Here is what<br />you own.</h2>
 
       <div class="ledgers">
-        <BarSet
-          caption={BALANCE.caption}
-          rows={BALANCE.rows}
-          source={BALANCE.source}
-        />
+        <BarSet caption={BALANCE.caption} rows={BALANCE.rows} source={BALANCE.source} />
         <BarSet
           caption={YEAR.caption}
           rows={YEAR.rows}
@@ -104,74 +102,83 @@ import { BALANCE, YEAR } from '../data/books.js';
       </div>
 
       <p class="source pad-sm">
-        Both sets of bars share one scale, so their lengths can be compared
-        directly. Government figures are for the fiscal year ended June 30, 2024 —
-        the most recent audited report.
+        Both sets of bars share one scale, so their lengths can be compared directly.
+        Government figures are for the fiscal year ended June 30, 2024 — the most
+        recent audited report.
       </p>
     </div>
   </section>
 
-  <!-- ══════════════ 5 · the question ══════════════ -->
+  <!-- ══════════ 6 · guess, then see ══════════ -->
   <section class="panel panel--ask">
     <div class="wrap">
+      <p class="kick">Before you scroll on</p>
+      <BudgetGuess client:visible />
+
       <h2 class="mega mega--ask">
         So &mdash; do you like<br />how it&rsquo;s been<br /><em>invested?</em>
       </h2>
+
+      <div class="ctarow"><Cta variant="ghost" /></div>
     </div>
   </section>
 
-  <!-- ══════════════ 6 · the wider picture ══════════════ -->
-  <section class="panel panel--open">
+  <!-- ══════════ 7 · authority ══════════ -->
+  <section class="panel panel--tight">
+    <div class="wrap">
+      <p class="kick">Where every number comes from</p>
+      <h2 class="mega mega--sm">Nothing here<br />is invented.</h2>
+
+      <ul class="auth">
+        <li><strong>The state&rsquo;s own audited annual report</strong> for what it owns, owes and spends</li>
+        <li><strong>The U.S. Census Bureau</strong> for population and migration</li>
+        <li><strong>The Bureau of Economic Analysis</strong> for the size of the economy</li>
+        <li><strong>The Bureau of Labor Statistics</strong> for work and wages</li>
+      </ul>
+
+      <p class="under">
+        Nothing is modelled, estimated, or filled in. Where a figure was never
+        published, this site says so rather than guessing at it.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════ 8 · the rest ══════════ -->
+  <section class="panel panel--tint">
     <div class="wrap">
       <p class="kick">The wider picture</p>
       <h2 class="mega mega--sm">The rest of<br />the holdings.</h2>
 
-      <div class="pad">
-        <StatGrid stats={GLANCE} />
-      </div>
+      <div class="pad"><StatGrid stats={GLANCE} /></div>
 
       <p class="source pad-sm">
         GDP is 2025, released April 2026. Migration is Census Vintage 2025. Full
         source list at the foot of every page.
       </p>
+
+      <div class="ctarow"><Cta /></div>
     </div>
   </section>
 
-  <!-- ══════════════ 7 · it is moving now ══════════════ -->
+  <!-- ══════════ 9 · moving now ══════════ -->
   <section class="panel panel--deep">
     <div class="wrap">
       <p class="kick kick--deep">Right now</p>
       <h2 class="mega mega--sm">The money is<br />already moving.</h2>
-
-      <div class="pad">
-        <SpendCounter perSecond={SPEND.perSecond} client:visible />
-      </div>
+      <div class="pad"><SpendCounter perSecond={SPEND.perSecond} client:visible /></div>
+      <div class="ctarow"><Cta variant="deep" /></div>
     </div>
   </section>
 </Base>
 
 <style>
-  /* ─────────── panels ─────────── */
+  .panel { padding-block: clamp(var(--s-8), 11vh, var(--s-10)); position: relative; }
 
-  .panel {
-    padding-block: clamp(var(--s-8), 11vh, var(--s-10));
-    position: relative;
-  }
-
-  /* Land and sky, made of colour rather than a picture: pale light at the
-     top settling into warm red-dirt ground, with a horizon where they meet. */
   .panel--hero {
     min-height: min(90svh, 52rem);
     display: grid;
     align-items: center;
-    background:
-      linear-gradient(
-        180deg,
-        #fdfcfa 0%,
-        #fbf8f2 42%,
-        #f6ece0 74%,
-        #efdfcd 100%
-      );
+    background: linear-gradient(180deg, #fdfcfa 0%, #fbf8f2 42%, #f6ece0 74%, #efdfcd 100%);
   }
 
   .panel--hero::after {
@@ -180,33 +187,24 @@ import { BALANCE, YEAR } from '../data/books.js';
     inset-inline: 0;
     inset-block-end: 0;
     height: 1px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      var(--accent) 18%,
-      var(--accent) 82%,
-      transparent
-    );
+    background: linear-gradient(90deg, transparent, var(--accent) 18%, var(--accent) 82%, transparent);
     opacity: 0.4;
   }
 
+  .panel--tight { padding-block: clamp(var(--s-7), 8vh, var(--s-9)); background: var(--paper); }
   .panel--tint { background: var(--paper-2); }
   .panel--open { background: var(--paper); }
 
-  .panel--deep {
-    background: var(--deep);
-    color: var(--on-deep);
-  }
+  .panel--deep { background: var(--deep); color: var(--on-deep); }
   .panel--deep :is(h1, h2) { color: var(--on-deep); }
 
-  .panel--ask {
-    background: var(--accent-soft);
-    padding-block: clamp(var(--s-9), 16vh, var(--s-10));
-  }
+  .panel--ask { background: var(--accent-soft); }
 
   .panel__inner { display: grid; justify-items: start; }
 
-  /* ─────────── the scan layer ─────────── */
+  .ctarow { margin-block-start: var(--s-7); }
+
+  /* ─────────── scan layer ─────────── */
 
   .brand {
     font-size: var(--t-micro);
@@ -227,13 +225,14 @@ import { BALANCE, YEAR } from '../data/books.js';
   }
   .kick--deep { color: var(--on-deep-2); }
 
-  /* Instrument Serif needs air. Lines were colliding at 0.94/-0.035em. */
+  /* Grotesque, tracked tight and led under 1.0 — verified clear of glyph
+     collision by measuring ink extents rather than font boxes. */
   .mega {
     font-family: var(--font-display);
+    font-weight: 700;
     font-size: clamp(2.75rem, 8.8vw, 7.5rem);
     line-height: 0.97;
     letter-spacing: -0.045em;
-    font-weight: 700;
     text-wrap: balance;
   }
 
@@ -242,36 +241,19 @@ import { BALANCE, YEAR } from '../data/books.js';
   .mega--ask {
     font-size: clamp(2.4rem, 7vw, 5.5rem);
     max-width: 15ch;
+    margin-block-start: var(--s-9);
   }
   .mega--ask em { font-style: italic; color: var(--accent); }
 
   .under {
     font-size: var(--t-lede);
     color: var(--ink-2);
-    max-width: 38ch;
+    max-width: 46ch;
     margin-block-start: var(--s-6);
   }
   .under--deep { color: var(--on-deep-2); }
 
-  .cta {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--s-3);
-    margin-block-start: var(--s-7);
-    padding: var(--s-4) var(--s-6);
-    background: var(--ink);
-    color: var(--paper);
-    border-radius: 999px;
-    text-decoration: none;
-    font-size: var(--t-body);
-    font-weight: 500;
-    transition: background var(--dur) var(--ease), gap var(--dur) var(--ease);
-  }
-  .cta:hover { background: var(--accent); gap: var(--s-5); }
-  .cta svg { transition: transform var(--dur) var(--ease); }
-  .cta:hover svg { transform: translateY(3px); }
-
-  /* ─────────── the receipt ─────────── */
+  /* ─────────── receipt ─────────── */
 
   .receipt {
     list-style: none;
@@ -293,10 +275,10 @@ import { BALANCE, YEAR } from '../data/books.js';
 
   .receipt__item {
     font-family: var(--font-display);
+    font-weight: 600;
     font-size: clamp(1.75rem, 3.6vw, 2.75rem);
     line-height: 1.05;
     letter-spacing: -0.035em;
-    font-weight: 600;
     color: var(--ink);
   }
 
@@ -320,10 +302,10 @@ import { BALANCE, YEAR } from '../data/books.js';
 
   .turn {
     font-family: var(--font-display);
-    font-size: clamp(2rem, 5.2vw, 4rem);
-    line-height: 1.0;
-    letter-spacing: -0.04em;
     font-weight: 700;
+    font-size: clamp(2rem, 5.2vw, 4rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
     margin-block-start: var(--s-7);
     padding-block-start: var(--s-5);
     border-block-start: 3px double var(--ink);
@@ -360,9 +342,10 @@ import { BALANCE, YEAR } from '../data/books.js';
 
   .stake__value {
     font-family: var(--font-display);
+    font-weight: 700;
     font-size: clamp(2.4rem, 7vw, 5rem);
-    line-height: 1.04;
-    letter-spacing: -0.025em;
+    line-height: 1;
+    letter-spacing: -0.04em;
     color: var(--on-deep);
   }
 
@@ -382,6 +365,35 @@ import { BALANCE, YEAR } from '../data/books.js';
   }
 
   .source--deep { color: #6f7681; margin-block-start: var(--s-5); }
+
+  /* ─────────── authority ─────────── */
+
+  .auth {
+    list-style: none;
+    padding: 0;
+    margin-block-start: var(--s-6);
+    display: grid;
+    gap: var(--s-3);
+    max-width: 52ch;
+  }
+
+  .auth li {
+    padding-inline-start: var(--s-5);
+    position: relative;
+    color: var(--ink-2);
+  }
+
+  .auth li::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block-start: 0.7em;
+    width: 10px;
+    height: 2px;
+    background: var(--accent);
+  }
+
+  .auth strong { color: var(--ink); font-weight: 600; }
 
   /* ─────────── ledgers ─────────── */
 
