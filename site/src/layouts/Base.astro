@@ -3,6 +3,28 @@ import { ClientRouter } from 'astro:transitions';
 import '../styles/base.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import Feedback from '../components/Feedback.svelte';
+
+// Carried over from the previous site so search engines keep the same
+// description of what this is.
+const SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Oklahoma Inc.',
+  url: 'https://oklahomaasabusiness.com',
+  description:
+    'An integrated financial and economic atlas of Oklahoma — state finances, GDP, households, and civic opportunity presented objectively and translated to human scale for every Oklahoman.',
+  about: {
+    '@type': 'AdministrativeArea',
+    name: 'Oklahoma',
+    containedInPlace: { '@type': 'Country', name: 'United States' },
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Oklahoma Inc.',
+    url: 'https://oklahomaasabusiness.com',
+  },
+};
 
 interface Props {
   title: string;
@@ -35,6 +57,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
       href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700&family=Inter:wght@400;500;600&display=swap"
     />
 
+    <script type="application/ld+json" set:html={JSON.stringify(SCHEMA)} is:inline />
+
     <ClientRouter />
   </head>
 
@@ -45,6 +69,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
       <slot />
     </main>
     <Footer />
+    <Feedback client:idle />
 
     <script>
       // One shared entrance observer. Re-armed after every view transition

@@ -70,6 +70,25 @@ import { ENGINES, ENGINES_CAVEAT, ECONOMY_RANKS, VALUE_PER_ACRE, RECIRCULATION, 
         to $24,831 an acre in Oklahoma County — a 436-fold spread.
       </p>
 
+      <!-- The interactive choropleth of all 77 counties, carried over from
+           the previous site. The table below it is a readable fallback and
+           covers the extremes; the map covers every county. -->
+      <figure class="dwmap pad">
+        <iframe
+          title="Property value per acre, by Oklahoma county"
+          src="https://datawrapper.dwcdn.net/IKYax/2/"
+          scrolling="no"
+          frameborder="0"
+          height="409"
+          loading="lazy"
+          data-external="1"
+        ></iframe>
+        <figcaption class="source">
+          All 77 counties with accurate boundaries; major lakes shown
+          approximately. Interactive — hover or tap a county for its figure.
+        </figcaption>
+      </figure>
+
       <div class="tablewrap pad">
         <table class="vpa">
           <caption class="visually-hidden">Assessed value and value per acre, selected counties</caption>
@@ -149,7 +168,36 @@ import { ENGINES, ENGINES_CAVEAT, ECONOMY_RANKS, VALUE_PER_ACRE, RECIRCULATION, 
   </section>
 </Base>
 
+<script>
+  // Datawrapper posts its rendered height back; without this the frame is
+  // fixed at its fallback height and clips on narrow screens.
+  const sizeMaps = () => {
+    window.addEventListener('message', (event) => {
+      const data = event.data?.['datawrapper-height'];
+      if (!data) return;
+      document.querySelectorAll('iframe').forEach((frame) => {
+        for (const key in data) {
+          if (frame.contentWindow === event.source) {
+            frame.style.height = data[key] + 'px';
+          }
+        }
+      });
+    });
+  };
+  sizeMaps();
+  document.addEventListener('astro:page-load', sizeMaps);
+</script>
+
 <style>
+  .dwmap { margin: 0; }
+  .dwmap iframe {
+    width: 100%;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    background: var(--surface);
+  }
+  .dwmap figcaption { margin-block-start: var(--s-3); }
+
   .tablewrap { overflow-x: auto; }
 
   .vpa {

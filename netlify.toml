@@ -1,0 +1,42 @@
+# Build configuration lives here rather than only in the Netlify dashboard,
+# so switching what gets published is a commit that can be reverted.
+#
+# `base` moves Netlify into site/ before installing and building.
+# `publish` is resolved relative to base, so this publishes site/dist.
+
+[build]
+  base = "site"
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# The old site was a single page that faked its own routing, so it needed a
+# catch-all sending every path to index.html. That is why a missing file
+# returned the whole homepage with a 200 instead of a real 404.
+#
+# Every route is now a real page, so no catch-all is needed and unknown
+# paths correctly return 404.
+
+# Paths the previous site served without a trailing slash.
+[[redirects]]
+  from = "/verdict"
+  to = "/verdict/"
+  status = 301
+
+[[redirects]]
+  from = "/atlas"
+  to = "/atlas/"
+  status = 301
+
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    cache-control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
