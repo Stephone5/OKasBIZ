@@ -1,82 +1,114 @@
 ---
 import Base from '../layouts/Base.astro';
-import SectionHead from '../components/SectionHead.astro';
 import StatGrid from '../components/StatGrid.astro';
-import CompareTable from '../components/CompareTable.astro';
 import Action from '../components/Action.astro';
 import SpendCounter from '../components/SpendCounter.svelte';
-import { GLANCE, VS_US, VS_US_NOTE, SPEND } from '../data/overview.js';
+import { GLANCE, SPEND } from '../data/overview.js';
+import { LINE_ITEMS, STAKE, POPULATION_LABEL } from '../data/stake.js';
 ---
 
 <Base
-  title="Oklahoma Inc. — A Financial Portrait of the Sooner State"
-  description="An integrated financial and economic atlas of the State of Oklahoma, compiled from public data and presented without editorial conclusions."
+  title="Oklahoma Inc. — For the Okies Who Build"
+  description="Oklahoma is a $213.5 billion enterprise. Every dollar you spend here is money you put into it. An open set of books for the Okies who build."
 >
-  <section class="hero">
-    <div class="wrap">
-      <p class="eyebrow hero__eyebrow">A financial portrait of the state</p>
-      <h1 class="hero__title">
-        Oklahoma is a <span class="hero__figure">$213&nbsp;billion</span> enterprise.
+  <!-- ══════════════ 1 · the claim ══════════════ -->
+  <section class="panel panel--hero textured">
+    <div class="wrap panel__inner">
+      <p class="brand">For the Okies who build</p>
+
+      <h1 class="mega">
+        You already<br />own a piece<br />of this state.
       </h1>
-      <p class="hero__sub">
-        Most of the people who built it have never seen the books.
-      </p>
-      <a class="hero__cta" href="#glance">See what you own</a>
+
+      <p class="under">Most people who built it have never seen the books.</p>
+
+      <a class="cta" href="#receipt">
+        <span>Show me</span>
+        <svg width="20" height="11" viewBox="0 0 20 11" fill="none" aria-hidden="true">
+          <path d="M1 1l9 8 9-8" stroke="currentColor" stroke-width="1.6" />
+        </svg>
+      </a>
     </div>
   </section>
 
-  <section class="section" id="glance">
+  <!-- ══════════════ 2 · the receipt ══════════════ -->
+  <section class="panel panel--tint" id="receipt">
+    <div class="wrap panel__inner">
+      <p class="kick">Where it starts</p>
+
+      <ul class="items" aria-label="Everyday spending">
+        {LINE_ITEMS.map((w, i) => (
+          <li class="item reveal" style={`--d:${i * 45}ms`}>{w}</li>
+        ))}
+      </ul>
+
+      <p class="turn">
+        Every one of these is<br /><em>money you put in.</em>
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════════ 3 · what that makes you ══════════════ -->
+  <section class="panel panel--deep">
+    <div class="wrap panel__inner">
+      <p class="kick kick--deep">What that makes you</p>
+
+      <h2 class="mega mega--sm">Put money in,<br />own a piece.</h2>
+
+      <p class="under under--deep">
+        Take what the state publishes and split it across everyone who lives here.
+        That is the size of the piece you already own.
+      </p>
+
+      <ul class="stake">
+        {STAKE.map((s) => (
+          <li class="stake__row reveal" style={`--mark:var(--series-${s.series})`}>
+            <span class="stake__mark" aria-hidden="true"></span>
+            <p class="stake__value tabular">{s.value}</p>
+            <p class="stake__label">{s.label}</p>
+            <p class="stake__working">{s.working}</p>
+          </li>
+        ))}
+      </ul>
+
+      <p class="source source--deep">
+        Each number is a published total divided by {POPULATION_LABEL} (U.S. Census
+        Bureau, Vintage 2025). Plain division, nothing guessed or filled in.
+      </p>
+    </div>
+  </section>
+
+  <!-- ══════════════ 4 · the books ══════════════ -->
+  <section class="panel panel--open" id="books">
     <div class="wrap">
-      <SectionHead
-        eyebrow="Section 01"
-        title="Oklahoma at a glance"
-        lede="Two sets of books. The government — a low-debt, oil-levered public enterprise with a growing net worth. And the economy — a $213-billion machine still pumping crude, rebuilt over time on aerospace, wind, and tribal enterprise."
-      />
+      <p class="kick">The books</p>
+      <h2 class="mega mega--sm">Here is what<br />you own.</h2>
 
       <div class="pad">
         <StatGrid stats={GLANCE} />
       </div>
 
       <p class="source pad-sm">
-        Government figures are for the fiscal year ended June 30, 2024 — the most recent
-        audited report. GDP is 2025, released April 2026. Migration is Census Vintage 2025.
-        Full source list at the foot of every page.
+        Government figures are for the fiscal year ended June 30, 2024 — the most
+        recent audited report. GDP is 2025. Migration is Census Vintage 2025. Full
+        source list at the foot of every page.
       </p>
 
       <Action>
-        Look up one fact about your county&rsquo;s economy this week. Just one. Search
-        your county name and &ldquo;Oklahoma economy&rdquo; and read for five minutes.
+        Look up one fact about your county&rsquo;s economy this week. Just one.
       </Action>
     </div>
   </section>
 
-  <section class="section">
+  <!-- ══════════════ 5 · it is moving now ══════════════ -->
+  <section class="panel panel--deep">
     <div class="wrap">
-      <SectionHead
-        eyebrow="Section 02"
-        title="Oklahoma against the United States"
-        lede="Every row is a strict one-to-one: the same metric, the same year, the same source. The only thing that changes is the geography."
-      />
-
-      <CompareTable rows={VS_US} />
-
-      <p class="source pad-sm">{VS_US_NOTE}</p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="wrap">
-      <SectionHead
-        eyebrow="Live estimate"
-        title="Oklahoma spends while you read"
-        lede={SPEND.note}
-      />
+      <p class="kick kick--deep">Right now</p>
+      <h2 class="mega mega--sm">The money is<br />already moving.</h2>
 
       <div class="pad">
         <SpendCounter perSecond={SPEND.perSecond} client:visible />
       </div>
-
-      <p class="source pad-sm">Source: {SPEND.source}.</p>
 
       <Action>
         Track where your last ten purchases went. Locally owned, or not. Just notice.
@@ -86,42 +118,173 @@ import { GLANCE, VS_US, VS_US_NOTE, SPEND } from '../data/overview.js';
 </Base>
 
 <style>
-  .hero {
-    padding-block: clamp(var(--s-8), 14vh, var(--s-10));
+  /* ─────────── panels: one idea per screen ─────────── */
+
+  .panel {
+    padding-block: clamp(var(--s-8), 11vh, var(--s-10));
+    position: relative;
+  }
+
+  .panel--hero {
+    min-height: min(92svh, 54rem);
+    display: grid;
+    align-items: center;
     border-block-end: 1px solid var(--rule);
   }
 
-  .hero__eyebrow { margin-block-end: var(--s-5); }
+  .panel--tint  { background: var(--paper-2); }
+  .panel--open  { background: var(--paper); }
 
-  .hero__title {
-    font-size: var(--t-h1);
-    max-width: 18ch;
-    line-height: var(--lh-tight);
+  .panel--deep {
+    background: var(--deep);
+    color: var(--on-deep);
+  }
+  .panel--deep :is(h1, h2) { color: var(--on-deep); }
+
+  .panel__inner { display: grid; justify-items: start; }
+
+  /* ─────────── the scan layer: big type only ─────────── */
+
+  .brand {
+    font-size: var(--t-micro);
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-block-end: var(--s-6);
   }
 
-  .hero__figure { font-style: italic; }
+  .kick {
+    font-size: var(--t-micro);
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-block-end: var(--s-5);
+  }
+  .kick--deep { color: var(--on-deep-2); }
 
-  .hero__sub {
+  /* The argument is carried entirely by this. If you read only the
+     .mega lines top to bottom, you get the whole point of the page. */
+  .mega {
+    font-family: var(--font-display);
+    font-size: clamp(2.9rem, 9.5vw, 8rem);
+    line-height: 0.94;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+  }
+
+  .mega--sm { font-size: clamp(2.4rem, 7vw, 5.5rem); }
+
+  .under {
     font-size: var(--t-lede);
     color: var(--ink-2);
-    max-width: 34ch;
-    margin-block-start: var(--s-5);
+    max-width: 38ch;
+    margin-block-start: var(--s-6);
   }
+  .under--deep { color: var(--on-deep-2); }
 
-  .hero__cta {
-    display: inline-block;
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-3);
     margin-block-start: var(--s-7);
-    padding: var(--s-3) var(--s-5);
-    border: 1px solid var(--ink);
-    border-radius: var(--radius-sm);
+    padding: var(--s-4) var(--s-6);
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 999px;
     text-decoration: none;
-    font-size: var(--t-small);
+    font-size: var(--t-body);
     font-weight: 500;
-    transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+    transition: background var(--dur) var(--ease), gap var(--dur) var(--ease);
+  }
+  .cta:hover { background: var(--accent); gap: var(--s-5); }
+  .cta svg { transition: transform var(--dur) var(--ease); }
+  .cta:hover svg { transform: translateY(3px); }
+
+  /* ─────────── the receipt ─────────── */
+
+  .items {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-3) var(--s-6);
+    max-width: 20ch;
   }
 
-  .hero__cta:hover { background: var(--ink); color: var(--paper); }
+  .item {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5.5vw, 4rem);
+    line-height: 1.04;
+    letter-spacing: -0.03em;
+    color: var(--ink-2);
+    transition-delay: var(--d);
+  }
 
-  .pad { margin-block-start: var(--s-6); }
+  .turn {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 6.5vw, 5rem);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    margin-block-start: var(--s-8);
+    padding-block-start: var(--s-6);
+    border-block-start: 2px solid var(--ink);
+    max-width: 16ch;
+  }
+  .turn em { font-style: italic; color: var(--accent); }
+
+  /* ─────────── the stake ─────────── */
+
+  .stake {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+    margin-block-start: var(--s-8);
+    display: grid;
+    gap: 1px;
+    background: var(--rule-deep);
+    border-block: 1px solid var(--rule-deep);
+  }
+
+  .stake__row {
+    position: relative;
+    background: var(--deep);
+    padding: var(--s-6) 0 var(--s-6) var(--s-5);
+  }
+
+  .stake__mark {
+    position: absolute;
+    inset-block: var(--s-6);
+    inset-inline-start: 0;
+    width: 3px;
+    background: var(--mark);
+  }
+
+  .stake__value {
+    font-family: var(--font-display);
+    font-size: clamp(2.6rem, 8vw, 5.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    color: var(--on-deep);
+  }
+
+  .stake__label {
+    font-size: var(--t-lede);
+    color: var(--on-deep-2);
+    margin-block-start: var(--s-3);
+    max-width: 34ch;
+  }
+
+  .stake__working {
+    font-size: var(--t-micro);
+    color: #6f7681;
+    margin-block-start: var(--s-2);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .source--deep { color: #6f7681; margin-block-start: var(--s-5); }
+
+  .pad { margin-block-start: var(--s-7); }
   .pad-sm { margin-block-start: var(--s-4); }
 </style>

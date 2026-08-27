@@ -44,33 +44,52 @@
 
 <style>
   .counter {
-    padding: var(--s-7) var(--s-5);
-    border: 1px solid var(--rule);
-    border-radius: var(--radius);
-    background: var(--surface);
+    padding: clamp(var(--s-7), 8vw, var(--s-9)) var(--s-5);
+    border: 1px solid var(--rule-deep, var(--rule));
+    border-radius: var(--radius-lg);
+    background: var(--deep-2, var(--surface));
     text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* A single hairline sweep in the accent, marking the live figure. */
+  .counter::before {
+    content: '';
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline: 0;
+    height: 2px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      var(--accent) 35%,
+      var(--accent) 65%,
+      transparent
+    );
   }
 
   .counter__label {
     font-size: var(--t-micro);
     letter-spacing: var(--track-wide);
     text-transform: uppercase;
-    color: var(--ink-3);
+    color: var(--on-deep-2, var(--ink-3));
   }
 
   .counter__value {
     font-family: var(--font-display);
-    font-size: var(--t-display);
+    font-size: clamp(3.25rem, 11vw, 8rem);
     line-height: var(--lh-tight);
-    letter-spacing: var(--track-tight);
-    margin-block: var(--s-3);
-    color: var(--ink);
+    letter-spacing: -0.04em;
+    margin-block: var(--s-5) var(--s-4);
+    color: var(--on-deep, var(--ink));
   }
 
   .counter__note {
     font-size: var(--t-micro);
-    color: var(--ink-4);
-    max-width: 44ch;
+    color: #6f7681;
+    max-width: 52ch;
     margin-inline: auto;
+    line-height: 1.6;
   }
 </style>

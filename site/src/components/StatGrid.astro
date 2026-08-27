@@ -1,23 +1,42 @@
 ---
+import { GLANCE_GROUPS } from '../data/overview.js';
+
 interface Stat {
   value: string;
   label: string;
   meta?: string;
+  group?: string;
   delta?: 'up' | 'down';
   deltaText?: string;
 }
 
-interface Props {
-  stats: Stat[];
-  columns?: number;
-}
+const { stats } = Astro.props as { stats: Stat[] };
 
-const { stats, columns = 4 } = Astro.props as Props;
+const seriesOf = (key?: string) =>
+  GLANCE_GROUPS.find((g) => g.key === key)?.series ?? 1;
+const labelOf = (key?: string) =>
+  GLANCE_GROUPS.find((g) => g.key === key)?.label ?? '';
+
+// Only the groups actually present, in the fixed series order.
+const legend = GLANCE_GROUPS.filter((g) => stats.some((s) => s.group === g.key));
 ---
 
-<ul class="stats reveal" style={`--cols:${columns}`}>
+{legend.length > 1 && (
+  <ul class="legend reveal">
+    {legend.map((g) => (
+      <li class="legend__item">
+        <span class="legend__swatch" style={`background:var(--series-${g.series})`} aria-hidden="true"></span>
+        {g.label}
+      </li>
+    ))}
+  </ul>
+)}
+
+<ul class="stats reveal">
   {stats.map((s) => (
-    <li class="stat">
+    <li class="stat" style={`--mark:var(--series-${seriesOf(s.group)})`}>
+      <span class="stat__mark" aria-hidden="true"></span>
+      {s.group && <p class="stat__group">{labelOf(s.group)}</p>}
       <p class="stat__value tabular">{s.value}</p>
       <p class="stat__label">{s.label}</p>
       {s.meta && <p class="stat__meta">{s.meta}</p>}
@@ -32,6 +51,32 @@ const { stats, columns = 4 } = Astro.props as Props;
 </ul>
 
 <style>
+  .legend {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2) var(--s-5);
+    margin-block-end: var(--s-4);
+  }
+
+  .legend__item {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--s-2);
+    font-size: var(--t-micro);
+    letter-spacing: var(--track-wide);
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+
+  .legend__swatch {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    flex: none;
+  }
+
   .stats {
     list-style: none;
     padding: 0;
@@ -41,20 +86,42 @@ const { stats, columns = 4 } = Astro.props as Props;
     border: 1px solid var(--rule);
     border-radius: var(--radius);
     overflow: hidden;
-    grid-template-columns: repeat(auto-fit, minmax(min(13rem, 100%), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr));
   }
 
   .stat {
+    position: relative;
     background: var(--surface);
-    padding: var(--s-5) var(--s-5) var(--s-5);
+    padding: var(--s-6) var(--s-5) var(--s-5);
     display: flex;
     flex-direction: column;
     gap: var(--s-1);
+    transition: background var(--dur) var(--ease);
+  }
+
+  .stat:hover { background: var(--paper); }
+
+  /* The one place series colour appears on a tile. It marks the group,
+     which is the only thing the colour means. */
+  .stat__mark {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline: 0;
+    height: 3px;
+    background: var(--mark);
+  }
+
+  .stat__group {
+    font-size: var(--t-micro);
+    letter-spacing: var(--track-wide);
+    text-transform: uppercase;
+    color: var(--ink-4);
+    margin-block-end: var(--s-2);
   }
 
   .stat__value {
     font-family: var(--font-display);
-    font-size: clamp(1.75rem, 3.4vw, 2.5rem);
+    font-size: clamp(2.25rem, 4.4vw, 3.25rem);
     line-height: var(--lh-tight);
     letter-spacing: var(--track-tight);
   }
@@ -63,7 +130,7 @@ const { stats, columns = 4 } = Astro.props as Props;
     font-size: var(--t-small);
     font-weight: 500;
     color: var(--ink);
-    margin-block-start: var(--s-2);
+    margin-block-start: var(--s-3);
   }
 
   .stat__meta,
@@ -80,6 +147,16 @@ const { stats, columns = 4 } = Astro.props as Props;
     gap: var(--s-2);
     align-items: baseline;
     margin-block-start: auto;
-    padding-block-start: var(--s-2);
+    padding-block-start: var(--s-3);
   }
+
+  /* On the inverted band the tiles invert with it. */
+  :global(.section--deep) .stats { background: var(--rule-deep); border-color: var(--rule-deep); }
+  :global(.section--deep) .stat { background: var(--deep-2); }
+  :global(.section--deep) .stat:hover { background: #23272e; }
+  :global(.section--deep) .stat__value,
+  :global(.section--deep) .stat__label { color: var(--on-deep); }
+  :global(.section--deep) .stat__meta,
+  :global(.section--deep) .stat__delta,
+  :global(.section--deep) .stat__group { color: var(--on-deep-2); }
 </style>

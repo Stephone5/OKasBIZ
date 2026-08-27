@@ -18,6 +18,14 @@
   --paper-2:      #f4f2ed;   /* recessed panels                       */
   --surface:      #ffffff;   /* raised cards                          */
 
+  /* Inverted band. Used sparingly — it is the loudest thing here, so
+     it marks a turn in the argument rather than decorating a section. */
+  --deep:         #14161a;
+  --deep-2:       #1e2127;
+  --on-deep:      #f4f2ed;
+  --on-deep-2:    #9aa1ab;
+  --rule-deep:    #2c3037;
+
   --rule:         #e2ded6;   /* hairlines, borders                    */
   --rule-strong:  #c8c3b8;   /* emphasised dividers                   */
 
