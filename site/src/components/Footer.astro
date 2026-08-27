@@ -1,0 +1,68 @@
+---
+import { SOURCES, LAST_UPDATED } from '../data/sources.js';
+---
+
+<footer class="foot">
+  <div class="wrap">
+    <p class="eyebrow">Sources &amp; notes</p>
+
+    <div class="foot__grid">
+      {SOURCES.map((s) => (
+        <div class="foot__item">
+          <h3 class="foot__label">{s.label}</h3>
+          <p class="source">{s.text}</p>
+        </div>
+      ))}
+    </div>
+
+    <hr class="rule foot__rule" />
+
+    <div class="foot__notes stack">
+      <p class="source">
+        <strong>On correlation.</strong> This site does not draw causal conclusions between any
+        two metrics. Where a relationship between data points appears, it is presented as
+        correlation only. No figure here is offered as the cause of another.
+      </p>
+      <p class="source">
+        <strong>Method.</strong> &ldquo;Oklahoma Inc.&rdquo; presents public data in the shape of
+        corporate financial statements for clarity. The State is not a company and these are
+        interpretive constructs rather than GAAP filings. Some figures span different fiscal
+        years depending on the most recent source available, and each is labelled accordingly.
+      </p>
+      <p class="source">
+        <strong>Last updated {LAST_UPDATED}.</strong> Data is compiled and built into the page
+        when it is published; figures reflect the most recent source available on that date.
+        Corrections and data challenges are welcome.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .foot {
+    border-block-start: 1px solid var(--rule);
+    padding-block: var(--s-8) var(--s-9);
+    margin-block-start: var(--s-9);
+    background: var(--paper-2);
+  }
+
+  .foot__grid {
+    display: grid;
+    gap: var(--s-5);
+    grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
+    margin-block-start: var(--s-5);
+  }
+
+  .foot__label {
+    font-size: var(--t-micro);
+    font-weight: 600;
+    letter-spacing: var(--track-wide);
+    text-transform: uppercase;
+    color: var(--ink-2);
+    margin-block-end: var(--s-1);
+  }
+
+  .foot__rule { margin-block: var(--s-7); }
+
+  .foot__notes { max-width: var(--measure); }
+</style>

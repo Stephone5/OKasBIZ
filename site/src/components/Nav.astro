@@ -1,0 +1,159 @@
+---
+const links = [
+  { href: '/',           label: 'Overview'   },
+  { href: '/books',      label: 'The Books'  },
+  { href: '/economy',    label: 'Economy'    },
+  { href: '/people',     label: 'People'     },
+  { href: '/work',       label: 'Work'       },
+  { href: '/wellbeing',  label: 'Wellbeing'  },
+  { href: '/atlas',      label: 'OKC Atlas'  },
+  { href: '/verdict',    label: 'Your Move'  },
+];
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+
+<header class="nav" transition:persist transition:name="nav">
+  <div class="nav__inner wrap">
+    <a class="nav__brand" href="/">Oklahoma&nbsp;Inc.</a>
+
+    <button class="nav__toggle" aria-expanded="false" aria-controls="nav-links">
+      <span class="nav__bars" aria-hidden="true"></span>
+      <span class="nav__toggle-text">Menu</span>
+    </button>
+
+    <nav id="nav-links" class="nav__links" aria-label="Sections">
+      {links.map((l) => (
+        <a
+          href={l.href}
+          class="nav__link"
+          aria-current={path === l.href ? 'page' : undefined}
+        >
+          {l.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-block-end: 1px solid var(--rule);
+  }
+
+  .nav__inner {
+    display: flex;
+    align-items: center;
+    gap: var(--s-5);
+    min-height: 3.5rem;
+  }
+
+  .nav__brand {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    letter-spacing: var(--track-tight);
+    text-decoration: none;
+    margin-inline-end: auto;
+    white-space: nowrap;
+  }
+
+  .nav__links {
+    display: flex;
+    gap: var(--s-1);
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .nav__link {
+    font-size: var(--t-small);
+    color: var(--ink-3);
+    text-decoration: none;
+    padding: var(--s-2) var(--s-3);
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+    transition: color var(--dur-fast) var(--ease),
+                background var(--dur-fast) var(--ease);
+  }
+
+  .nav__link:hover { color: var(--ink); background: var(--paper-2); }
+
+  .nav__link[aria-current='page'] {
+    color: var(--ink);
+    font-weight: 600;
+    background: var(--paper-2);
+  }
+
+  .nav__toggle { display: none; }
+
+  @media (max-width: 62rem) {
+    .nav__toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--s-2);
+      background: none;
+      border: 1px solid var(--rule);
+      border-radius: var(--radius-sm);
+      padding: var(--s-2) var(--s-3);
+      font-size: var(--t-small);
+      color: var(--ink-2);
+      cursor: pointer;
+    }
+
+    .nav__bars,
+    .nav__bars::before,
+    .nav__bars::after {
+      display: block;
+      width: 14px;
+      height: 1.5px;
+      background: currentColor;
+    }
+    .nav__bars { position: relative; }
+    .nav__bars::before { content: ''; position: absolute; top: -4px; }
+    .nav__bars::after  { content: ''; position: absolute; top: 4px; }
+
+    .nav__links {
+      display: none;
+      position: absolute;
+      inset-inline: 0;
+      top: 100%;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: var(--s-2) var(--gutter) var(--s-4);
+      background: var(--paper);
+      border-block-end: 1px solid var(--rule);
+    }
+
+    .nav__links.is-open { display: flex; }
+
+    .nav__link { padding: var(--s-3) var(--s-2); font-size: var(--t-body); }
+  }
+</style>
+
+<script>
+  const wire = () => {
+    const toggle = document.querySelector('.nav__toggle');
+    const links = document.getElementById('nav-links');
+    if (!toggle || !links) return;
+
+    toggle.addEventListener('click', () => {
+      const open = links.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+
+    links.addEventListener('click', (e) => {
+      if ((e.target as HTMLElement).tagName === 'A') {
+        links.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  };
+
+  wire();
+  document.addEventListener('astro:page-load', wire);
+</script>

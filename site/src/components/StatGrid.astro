@@ -1,0 +1,85 @@
+---
+interface Stat {
+  value: string;
+  label: string;
+  meta?: string;
+  delta?: 'up' | 'down';
+  deltaText?: string;
+}
+
+interface Props {
+  stats: Stat[];
+  columns?: number;
+}
+
+const { stats, columns = 4 } = Astro.props as Props;
+---
+
+<ul class="stats reveal" style={`--cols:${columns}`}>
+  {stats.map((s) => (
+    <li class="stat">
+      <p class="stat__value tabular">{s.value}</p>
+      <p class="stat__label">{s.label}</p>
+      {s.meta && <p class="stat__meta">{s.meta}</p>}
+      {s.deltaText && (
+        <p class="stat__delta">
+          <span aria-hidden="true">{s.delta === 'down' ? '▼' : '▲'}</span>
+          <span>{s.deltaText}</span>
+        </p>
+      )}
+    </li>
+  ))}
+</ul>
+
+<style>
+  .stats {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    overflow: hidden;
+    grid-template-columns: repeat(auto-fit, minmax(min(13rem, 100%), 1fr));
+  }
+
+  .stat {
+    background: var(--surface);
+    padding: var(--s-5) var(--s-5) var(--s-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-1);
+  }
+
+  .stat__value {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 3.4vw, 2.5rem);
+    line-height: var(--lh-tight);
+    letter-spacing: var(--track-tight);
+  }
+
+  .stat__label {
+    font-size: var(--t-small);
+    font-weight: 500;
+    color: var(--ink);
+    margin-block-start: var(--s-2);
+  }
+
+  .stat__meta,
+  .stat__delta {
+    font-size: var(--t-micro);
+    color: var(--ink-3);
+    line-height: 1.4;
+  }
+
+  /* Deliberately uncoloured. An arrow and a word, so no figure is
+     implied to be good or bad by its colour. */
+  .stat__delta {
+    display: flex;
+    gap: var(--s-2);
+    align-items: baseline;
+    margin-block-start: auto;
+    padding-block-start: var(--s-2);
+  }
+</style>

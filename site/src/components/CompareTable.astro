@@ -1,0 +1,89 @@
+---
+interface Row {
+  metric: string;
+  ok: string;
+  us: string;
+  gap: string;
+  better: boolean;
+  source: string;
+}
+
+interface Props { rows: Row[] }
+const { rows } = Astro.props as Props;
+---
+
+<div class="tablewrap reveal">
+  <table class="cmp">
+    <caption class="visually-hidden">
+      Oklahoma compared with the United States. Each row uses the same metric,
+      the same year, and the same source for both figures.
+    </caption>
+    <thead>
+      <tr>
+        <th scope="col">Metric</th>
+        <th scope="col" class="num">Oklahoma</th>
+        <th scope="col" class="num">United States</th>
+        <th scope="col" class="num">Gap</th>
+        <th scope="col">For residents</th>
+        <th scope="col">Source &amp; year</th>
+      </tr>
+    </thead>
+    <tbody>
+      {rows.map((r) => (
+        <tr>
+          <th scope="row">{r.metric}</th>
+          <td class="num">{r.ok}</td>
+          <td class="num">{r.us}</td>
+          <td class="num">{r.gap}</td>
+          <td class="verdict">{r.better ? 'Better' : 'Worse'}</td>
+          <td class="src">{r.source}</td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .tablewrap { overflow-x: auto; margin-block-start: var(--s-6); }
+
+  .cmp {
+    width: 100%;
+    min-width: 46rem;
+    border-collapse: collapse;
+    font-size: var(--t-small);
+  }
+
+  .cmp th,
+  .cmp td {
+    text-align: left;
+    padding: var(--s-3) var(--s-4);
+    border-block-end: 1px solid var(--rule);
+    vertical-align: baseline;
+  }
+
+  .cmp thead th {
+    font-size: var(--t-micro);
+    font-weight: 600;
+    letter-spacing: var(--track-wide);
+    text-transform: uppercase;
+    color: var(--ink-3);
+    border-block-end-color: var(--rule-strong);
+  }
+
+  .cmp tbody th { font-weight: 500; color: var(--ink); }
+
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .verdict { color: var(--ink-2); }
+  .src { color: var(--ink-4); font-size: var(--t-micro); white-space: nowrap; }
+
+  .cmp tbody tr:last-child th,
+  .cmp tbody tr:last-child td { border-block-end: 0; }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden; clip-path: inset(50%);
+    white-space: nowrap;
+  }
+</style>

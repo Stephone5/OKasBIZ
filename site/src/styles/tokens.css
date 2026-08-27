@@ -1,0 +1,122 @@
+/* ============================================================
+   Design tokens — the single source of truth.
+   Nothing in this project sets a raw colour, size, or spacing
+   value. Everything reads from here.
+   ============================================================ */
+
+:root {
+  /* ---------- Colour ------------------------------------------------
+     Deliberately apolitical. No partisan red, no partisan blue.
+     One warm accent carries emphasis; everything else is neutral.     */
+
+  --ink:          #16181c;   /* primary text                          */
+  --ink-2:        #3d434c;   /* secondary text                        */
+  --ink-3:        #6b727d;   /* tertiary, captions, axis labels       */
+  --ink-4:        #9aa1ab;   /* faintest legible text                 */
+
+  --paper:        #fbfaf7;   /* page ground, warm off-white           */
+  --paper-2:      #f4f2ed;   /* recessed panels                       */
+  --surface:      #ffffff;   /* raised cards                          */
+
+  --rule:         #e2ded6;   /* hairlines, borders                    */
+  --rule-strong:  #c8c3b8;   /* emphasised dividers                   */
+
+  --accent:       #a8621b;   /* warm ochre — the one emphasis colour  */
+  --accent-soft:  #f3e6d6;   /* accent wash                           */
+
+  /* Categorical data series.
+     Assigned in this fixed order and never cycled. Validated against
+     the light surface: passes lightness band, chroma floor, adjacent
+     CVD separation, normal-vision floor, and 3:1 contrast.
+     Do not reorder or substitute without re-running the validator —
+     the order is what makes the CVD check pass.                      */
+  --series-1: #00805a;   /* green   */
+  --series-2: #4f63b5;   /* indigo  */
+  --series-3: #c07414;   /* ochre   */
+  --series-4: #95307f;   /* plum    */
+  --series-5: #7a9218;   /* olive   */
+  --series-6: #ab461a;   /* clay    */
+
+  /* Sequential ramp, low to high. One hue, monotonic lightness, so
+     magnitude reads as magnitude and never as good or bad.            */
+  --ramp-1: #e8f2ed;
+  --ramp-2: #c0ded1;
+  --ramp-3: #8cc4ac;
+  --ramp-4: #4aa383;
+  --ramp-5: #00805a;
+
+  --no-data:  #d9d5cc;   /* explicit absence — never zero, never grey-out */
+
+  /* ---------- Type -------------------------------------------------- */
+
+  --font-display: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --font-text:    'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono:    ui-monospace, 'SF Mono', 'Cascadia Mono', Menlo, monospace;
+
+  /* Fluid scale. Each step is used for one job and one job only.      */
+  --t-display: clamp(3rem, 8vw, 6.5rem);      /* the one number per screen */
+  --t-h1:      clamp(2.25rem, 5vw, 3.75rem);
+  --t-h2:      clamp(1.5rem, 3vw, 2.125rem);
+  --t-h3:      clamp(1.125rem, 2vw, 1.375rem);
+  --t-lede:    clamp(1.0625rem, 1.6vw, 1.25rem);
+  --t-body:    1rem;
+  --t-small:   0.875rem;
+  --t-micro:   0.75rem;
+
+  --lh-tight: 0.95;
+  --lh-snug:  1.2;
+  --lh-body:  1.65;
+
+  --track-tight: -0.02em;
+  --track-wide:   0.14em;   /* eyebrows only */
+
+  /* ---------- Space -------------------------------------------------
+     A single rhythm. Sections breathe at --s-9 and above.            */
+
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4rem;
+  --s-9: 6rem;
+  --s-10: 9rem;
+
+  /* ---------- Structure --------------------------------------------- */
+
+  --measure:    68ch;      /* readable line length            */
+  --width-text: 44rem;     /* prose column                    */
+  --width-wide: 78rem;     /* full content width              */
+  --gutter:     clamp(1.25rem, 4vw, 2.5rem);
+
+  --radius-sm: 4px;
+  --radius:    8px;
+  --radius-lg: 16px;
+
+  /* ---------- Motion ------------------------------------------------
+     Restraint is the rule: motion only where it carries meaning.      */
+
+  --ease:      cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-out:  cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast:  140ms;
+  --dur:       260ms;
+  --dur-slow:  620ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 0ms;
+    --dur: 0ms;
+    --dur-slow: 0ms;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

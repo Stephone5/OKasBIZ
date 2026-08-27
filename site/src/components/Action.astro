@@ -1,0 +1,33 @@
+---
+// The single call to action, repeated once per section.
+// Never a link, never a form, never an email capture — an invitation
+// to a private act. The follow-through belongs to the reader.
+interface Props { children?: any }
+---
+
+<aside class="action reveal">
+  <p class="action__label">1% action</p>
+  <p class="action__text"><slot /></p>
+</aside>
+
+<style>
+  .action {
+    margin-block-start: var(--s-7);
+    padding: var(--s-5);
+    border-inline-start: 2px solid var(--accent);
+    background: var(--accent-soft);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    max-width: var(--measure);
+  }
+
+  .action__label {
+    font-size: var(--t-micro);
+    font-weight: 600;
+    letter-spacing: var(--track-wide);
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-block-end: var(--s-2);
+  }
+
+  .action__text { color: var(--ink); }
+</style>

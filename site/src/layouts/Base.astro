@@ -1,0 +1,94 @@
+---
+import { ClientRouter } from 'astro:transitions';
+import '../styles/base.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap"
+    />
+
+    <ClientRouter />
+  </head>
+
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <Nav />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+
+    <script>
+      // One shared entrance observer. Re-armed after every view transition
+      // so navigated-to pages animate the same way a first load does.
+      //
+      // The .js-reveal class is what switches on the hidden starting state.
+      // It is only ever added here, so if this script never runs the content
+      // simply stays visible.
+      const arm = () => {
+        document.documentElement.classList.add('js-reveal');
+
+        const targets = document.querySelectorAll('.reveal:not(.is-in)');
+        if (!targets.length) return;
+
+        if (!window.matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+          targets.forEach((el) => el.classList.add('is-in'));
+          return;
+        }
+
+        // A hidden document never fires IntersectionObserver. Reveal
+        // everything rather than leave the page blank, and let the normal
+        // path take over once it becomes visible.
+        if (document.visibilityState !== 'visible') {
+          targets.forEach((el) => el.classList.add('is-in'));
+          document.addEventListener('visibilitychange', arm, { once: true });
+          return;
+        }
+
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add('is-in');
+              io.unobserve(entry.target);
+            });
+          },
+          { rootMargin: '0px 0px -10% 0px', threshold: 0.05 }
+        );
+
+        targets.forEach((el) => io.observe(el));
+      };
+
+      arm();
+      document.addEventListener('astro:page-load', arm);
+    </script>
+  </body>
+</html>
