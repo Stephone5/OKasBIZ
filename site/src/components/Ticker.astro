@@ -37,6 +37,11 @@ const { items, sep = '·', speed = 42 } = Astro.props as Props;
 
 <style>
   .ticker {
+    /* A max-content track inside a grid or flex item will force the page
+       wider unless the item is allowed to shrink. min-width:0 is what
+       permits that; without it this blew the layout out on phones. */
+    min-width: 0;
+    max-width: 100%;
     overflow: hidden;
     border-block: 1px solid var(--rule);
     padding-block: var(--s-4);

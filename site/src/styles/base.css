@@ -315,3 +315,14 @@ td.num,
 
 /* Content sits above the grain. */
 main, .nav, .foot { position: relative; z-index: 2; }
+
+/* ---------- Overflow guard -------------------------------------------
+   Grid and flex items default to min-width:auto, which refuses to shrink
+   below their content. Any wide child — a max-content track, a long
+   number, a table — then forces the whole page sideways. These let the
+   shell shrink, and the page itself never scrolls horizontally.        */
+
+.panel, .panel__inner, .wrap, .pinwrap, .pinwrap__side, .pinwrap__flow { min-width: 0; }
+.panel > *, .panel__inner > * { min-width: 0; }
+
+html, body { overflow-x: clip; }
