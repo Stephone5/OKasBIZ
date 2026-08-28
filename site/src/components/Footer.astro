@@ -1,11 +1,21 @@
 ---
-import { SOURCES, LAST_UPDATED } from '../data/sources.js';
+import { SOURCES, GLOBAL_NOTES, LAST_UPDATED } from '../data/sources.js';
+
+interface Note { title: string; text: string }
+
+interface Props {
+  sources?: string[];   // ids from SOURCES — only what this page uses
+  notes?: Note[];       // notes specific to this page
+}
+
+const { sources = Object.keys(SOURCES), notes = [] } = Astro.props as Props;
+const used = sources.map((id) => SOURCES[id]).filter(Boolean);
 ---
 
 <footer class="foot">
   <div class="wrap foot__bar">
     <p class="foot__line">
-      Every figure on this site traces to a published source. Nothing is modelled,
+      Every figure on this page traces to a published source. Nothing is modelled,
       estimated, or filled in.
     </p>
     <button class="foot__open" data-sources-open>
@@ -21,7 +31,7 @@ import { SOURCES, LAST_UPDATED } from '../data/sources.js';
 <dialog class="sheet" id="sources-sheet" aria-labelledby="sources-title">
   <div class="sheet__head">
     <div>
-      <p class="eyebrow">Where every number comes from</p>
+      <p class="eyebrow">For this page</p>
       <h2 class="sheet__title" id="sources-title">Sources &amp; notes</h2>
     </div>
     <button class="sheet__x" data-sources-close aria-label="Close sources">✕</button>
@@ -29,7 +39,7 @@ import { SOURCES, LAST_UPDATED } from '../data/sources.js';
 
   <div class="sheet__body">
     <div class="sheet__grid">
-      {SOURCES.map((s) => (
+      {used.map((s) => (
         <div>
           <h3 class="sheet__label">{s.label}</h3>
           <p class="sheet__text">{s.text}</p>
@@ -40,28 +50,15 @@ import { SOURCES, LAST_UPDATED } from '../data/sources.js';
     <hr class="rule sheet__rule" />
 
     <div class="sheet__notes">
-      <p class="sheet__text">
-        <strong>On correlation.</strong> This site does not draw causal conclusions
-        between any two metrics. Where a relationship between data points appears, it is
-        presented as correlation only. No figure here is offered as the cause of another.
-      </p>
-      <p class="sheet__text">
-        <strong>Method.</strong> &ldquo;Oklahoma Inc.&rdquo; presents public data in the
-        shape of corporate financial statements for clarity. The State is not a company
-        and these are interpretive constructs rather than GAAP filings. Some figures span
-        different fiscal years depending on the most recent source available, and each is
-        labelled accordingly.
-      </p>
-      <p class="sheet__text">
-        <strong>On missing figures.</strong> Where something was never published, this
-        site says so rather than guessing. A missing figure is never rendered as zero and
-        never averaged around.
-      </p>
+      {notes.map((n) => (
+        <p class="sheet__text"><strong>{n.title}.</strong> {n.text}</p>
+      ))}
+      {GLOBAL_NOTES.map((n) => (
+        <p class="sheet__text"><strong>{n.title}.</strong> {n.text}</p>
+      ))}
       <p class="sheet__text">
         <strong>Last updated {LAST_UPDATED}.</strong> Data is compiled and built into the
-        page when it is published; figures reflect the most recent source available on
-        that date. Corrections and data challenges are welcome through the feedback
-        button on any page.
+        page when it is published. Corrections are welcome through the feedback button.
       </p>
     </div>
   </div>
@@ -70,8 +67,8 @@ import { SOURCES, LAST_UPDATED } from '../data/sources.js';
 <style>
   .foot {
     border-block-start: 1px solid var(--rule);
-    padding-block: var(--s-7) var(--s-8);
-    margin-block-start: var(--s-9);
+    padding-block: var(--s-6) var(--s-7);
+    margin-block-start: var(--s-7);
     background: var(--paper-2);
   }
 
@@ -83,11 +80,7 @@ import { SOURCES, LAST_UPDATED } from '../data/sources.js';
     flex-wrap: wrap;
   }
 
-  .foot__line {
-    font-size: var(--t-small);
-    color: var(--ink-2);
-    max-width: 46ch;
-  }
+  .foot__line { font-size: var(--t-small); color: var(--ink-2); max-width: 46ch; }
 
   .foot__open {
     display: inline-flex;
@@ -106,11 +99,7 @@ import { SOURCES, LAST_UPDATED } from '../data/sources.js';
   }
   .foot__open:hover { background: var(--ink); color: var(--paper); }
 
-  .foot__stamp {
-    font-size: var(--t-micro);
-    color: var(--ink-4);
-    margin-block-start: var(--s-5);
-  }
+  .foot__stamp { font-size: var(--t-micro); color: var(--ink-4); margin-block-start: var(--s-4); }
 
   /* ---------- the sheet ---------- */
 
@@ -131,19 +120,14 @@ import { SOURCES, LAST_UPDATED } from '../data/sources.js';
 
   .sheet[open] { display: flex; flex-direction: column; }
 
-  .sheet::backdrop {
-    background: rgba(20, 22, 26, 0.55);
-    backdrop-filter: blur(3px);
-  }
+  .sheet::backdrop { background: rgba(20, 22, 26, 0.55); backdrop-filter: blur(3px); }
 
   @media (prefers-reduced-motion: no-preference) {
     .sheet[open] { animation: sheet-in var(--dur) var(--ease-out); }
     .sheet[open]::backdrop { animation: fade-in var(--dur) var(--ease-out); }
   }
 
-  @keyframes sheet-in {
-    from { opacity: 0; transform: translateY(12px) scale(0.99); }
-  }
+  @keyframes sheet-in { from { opacity: 0; transform: translateY(12px) scale(0.99); } }
   @keyframes fade-in { from { opacity: 0; } }
 
   .sheet__head {
@@ -151,7 +135,7 @@ import { SOURCES, LAST_UPDATED } from '../data/sources.js';
     align-items: flex-start;
     justify-content: space-between;
     gap: var(--s-5);
-    padding: var(--s-6) var(--s-7);
+    padding: var(--s-5) var(--s-6);
     border-block-end: 1px solid var(--rule);
     flex: none;
   }
@@ -159,7 +143,7 @@ import { SOURCES, LAST_UPDATED } from '../data/sources.js';
   .sheet__title {
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-size: clamp(1.4rem, 2.6vw, 2rem);
     letter-spacing: -0.035em;
     line-height: 1.05;
     margin-block-start: var(--s-2);
@@ -182,15 +166,15 @@ import { SOURCES, LAST_UPDATED } from '../data/sources.js';
 
   .sheet__body {
     overflow-y: auto;
-    padding: var(--s-6) var(--s-7) var(--s-8);
+    padding: var(--s-5) var(--s-6) var(--s-7);
     flex: 1;
     overscroll-behavior: contain;
   }
 
   .sheet__grid {
     display: grid;
-    gap: var(--s-5) var(--s-7);
-    grid-template-columns: repeat(auto-fit, minmax(min(19rem, 100%), 1fr));
+    gap: var(--s-5) var(--s-6);
+    grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
   }
 
   .sheet__label {
@@ -202,24 +186,14 @@ import { SOURCES, LAST_UPDATED } from '../data/sources.js';
     margin-block-end: var(--s-2);
   }
 
-  .sheet__text {
-    font-size: var(--t-small);
-    color: var(--ink-2);
-    line-height: 1.6;
-  }
+  .sheet__text { font-size: var(--t-small); color: var(--ink-2); line-height: 1.6; }
   .sheet__text strong { color: var(--ink); font-weight: 600; }
+  .sheet__text + .sheet__text { margin-block-start: var(--s-4); }
 
-  .sheet__rule { margin-block: var(--s-7); }
-
-  .sheet__notes {
-    display: grid;
-    gap: var(--s-4);
-    max-width: var(--measure);
-  }
+  .sheet__rule { margin-block: var(--s-6); }
+  .sheet__notes { max-width: var(--measure); }
 
   @media (max-width: 48rem) {
-    /* Full-bleed on small screens. margin must be reset too — the dialog's
-       centring margin otherwise leaves it a few pixels short of the edges. */
     .sheet {
       width: 100vw;
       height: 100dvh;
@@ -229,7 +203,7 @@ import { SOURCES, LAST_UPDATED } from '../data/sources.js';
       border: 0;
     }
     .sheet__head { padding: var(--s-5); }
-    .sheet__body { padding: var(--s-5) var(--s-5) var(--s-8); }
+    .sheet__body { padding: var(--s-5) var(--s-5) var(--s-7); }
   }
 </style>
 
@@ -249,14 +223,10 @@ import { SOURCES, LAST_UPDATED } from '../data/sources.js';
         if (!sheet.open) sheet.showModal();
         return;
       }
-
       if (target.closest('[data-sources-close]')) {
         sheet.close();
         return;
       }
-
-      // A click landing on the dialog element itself is a click on the
-      // backdrop, since the sheet's own content sits inside it.
       if (target === sheet) sheet.close();
     });
   }

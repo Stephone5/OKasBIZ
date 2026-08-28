@@ -2,7 +2,6 @@
 import Base from '../layouts/Base.astro';
 import StatGrid from '../components/StatGrid.astro';
 import BarSet from '../components/BarSet.astro';
-import Cta from '../components/Cta.astro';
 import SpendCounter from '../components/SpendCounter.svelte';
 import SplitText from '../components/SplitText.astro';
 import Ticker from '../components/Ticker.astro';
@@ -16,6 +15,14 @@ import { BALANCE, YEAR } from '../data/books.js';
 <Base
   title="Oklahoma Inc. — For the Okies Who Build"
   description="Oklahoma is a $213.5 billion enterprise. Every dollar you spend here is money you put into it. An open set of books for the Okies who build."
+  sources={['acfr','budget','economy','population','tribal','jobs','households','health','justice']}
+  notes={[
+    { title: 'On the per-person figures', text: 'Each is a published total divided by the Census Vintage 2025 population of Oklahoma, 4,123,288. Plain division — nothing modelled, nothing weighted.' },
+    { title: 'On the spending estimate', text: 'The live counter divides an annual personal-consumption figure down to a per-second rate and resets each 60-second cycle. It illustrates a rate. It is not a measurement of money moving in real time.' },
+    { title: 'On the budget question', text: 'The figures behind it are FY2026 appropriations: education $5.76B, health and social services $2.32B, everything else $4.00B, of $12.08B total. Your answer is not stored, scored or sent anywhere.' },
+  ]}
+  image="/hero.jpg"
+  imageAlt="Oklahoma landscape"
 >
   <!-- ══════════ 1 · the claim ══════════ -->
   <section class="panel panel--hero">
@@ -23,7 +30,6 @@ import { BALANCE, YEAR } from '../data/books.js';
       <p class="brand">For the Okies who build</p>
       <SplitText as="h1" class="mega" text="You already / own a piece / of this state." />
       <p class="under">Most people who built it have never seen the books.</p>
-      <div class="ctarow"><Cta href="#receipt" /></div>
     </div>
 
     <div class="hero__band">
@@ -93,8 +99,6 @@ import { BALANCE, YEAR } from '../data/books.js';
       </p>
         </div>
       </div>
-
-      <div class="ctarow"><Cta variant="deep" /></div>
     </div>
   </section>
 
@@ -131,8 +135,6 @@ import { BALANCE, YEAR } from '../data/books.js';
       <h2 class="mega mega--ask">
         So &mdash; do you like<br />how it&rsquo;s been<br /><em>invested?</em>
       </h2>
-
-      <div class="ctarow"><Cta variant="ghost" /></div>
     </div>
   </section>
 
@@ -168,8 +170,6 @@ import { BALANCE, YEAR } from '../data/books.js';
         GDP is 2025, released April 2026. Migration is Census Vintage 2025. Full
         source list at the foot of every page.
       </p>
-
-      <div class="ctarow"><Cta /></div>
     </div>
   </section>
 
@@ -179,7 +179,6 @@ import { BALANCE, YEAR } from '../data/books.js';
       <p class="kick kick--deep">Right now</p>
       <SplitText class="mega mega--sm" text="The money is / already moving." />
       <div class="pad"><SpendCounter perSecond={SPEND.perSecond} client:visible /></div>
-      <div class="ctarow"><Cta variant="deep" /></div>
     </div>
   </section>
 </Base>

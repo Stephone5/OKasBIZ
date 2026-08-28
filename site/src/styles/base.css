@@ -176,8 +176,8 @@ td.num,
    Shared by every page. Panels alternate ground; the scan layer carries
    the argument in the largest type.                                    */
 
-.panel { padding-block: clamp(var(--s-8), 11vh, var(--s-10)); position: relative; }
-.panel--tight { padding-block: clamp(var(--s-7), 8vh, var(--s-9)); background: var(--paper); }
+.panel { padding-block: clamp(var(--s-6), 5vh, var(--s-8)); position: relative; }
+.panel--tight { padding-block: clamp(var(--s-5), 4vh, var(--s-7)); background: var(--paper); }
 .panel--tint  { background: var(--paper-2); }
 .panel--open  { background: var(--paper); }
 .panel--ask   { background: var(--accent-soft); }
@@ -202,7 +202,7 @@ td.num,
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--ink-3);
-  margin-block-end: var(--s-5);
+  margin-block-end: var(--s-3);
 }
 .kick--deep { color: var(--on-deep-2); }
 
@@ -211,23 +211,23 @@ td.num,
 .mega {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(2.75rem, 8.8vw, 7.5rem);
-  line-height: 0.97;
+  font-size: clamp(2.25rem, 6.4vw, 5rem);
+  line-height: 1;
   letter-spacing: -0.045em;
   text-wrap: balance;
 }
-.mega--sm { font-size: clamp(2.25rem, 6.2vw, 4.75rem); }
+.mega--sm { font-size: clamp(1.875rem, 4.4vw, 3.25rem); }
 
 .under {
   font-size: var(--t-lede);
   color: var(--ink-2);
   max-width: 46ch;
-  margin-block-start: var(--s-6);
+  margin-block-start: var(--s-4);
 }
 
-.ctarow { margin-block-start: var(--s-7); }
-.pad    { margin-block-start: var(--s-7); }
-.pad-sm { margin-block-start: var(--s-6); }
+.ctarow { margin-block-start: var(--s-5); }
+.pad    { margin-block-start: var(--s-5); }
+.pad-sm { margin-block-start: var(--s-4); }
 
 /* Key/value facts table */
 .facts {
@@ -326,3 +326,18 @@ main, .nav, .foot { position: relative; z-index: 2; }
 .panel > *, .panel__inner > * { min-width: 0; }
 
 html, body { overflow-x: clip; }
+
+/* ---------- Page banner ----------------------------------------------
+   Each page carries its own photograph. Full width, deliberately shallow
+   so it sets the subject without pushing the content off the screen.   */
+
+.banner { margin: 0; }
+
+.banner img {
+  width: 100%;
+  height: clamp(11rem, 26vh, 18rem);
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-block-end: 1px solid var(--rule);
+}

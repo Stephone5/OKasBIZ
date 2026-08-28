@@ -86,13 +86,13 @@ const legend = GLANCE_GROUPS.filter((g) => stats.some((s) => s.group === g.key))
     border: 1px solid var(--rule);
     border-radius: var(--radius);
     overflow: hidden;
-    grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(11.5rem, 100%), 1fr));
   }
 
   .stat {
     position: relative;
     background: var(--surface);
-    padding: var(--s-6) var(--s-5) var(--s-5);
+    padding: var(--s-4) var(--s-4) var(--s-4);
     display: flex;
     flex-direction: column;
     gap: var(--s-1);
@@ -116,12 +116,12 @@ const legend = GLANCE_GROUPS.filter((g) => stats.some((s) => s.group === g.key))
     letter-spacing: var(--track-wide);
     text-transform: uppercase;
     color: var(--ink-4);
-    margin-block-end: var(--s-2);
+    margin-block-end: var(--s-1);
   }
 
   .stat__value {
     font-family: var(--font-display);
-    font-size: clamp(2.25rem, 4.4vw, 3.25rem);
+    font-size: clamp(1.5rem, 2.6vw, 2rem);
     line-height: var(--lh-tight);
     letter-spacing: var(--track-tight);
   }
@@ -130,7 +130,7 @@ const legend = GLANCE_GROUPS.filter((g) => stats.some((s) => s.group === g.key))
     font-size: var(--t-small);
     font-weight: 500;
     color: var(--ink);
-    margin-block-start: var(--s-3);
+    margin-block-start: var(--s-2);
   }
 
   .stat__meta,
@@ -147,7 +147,7 @@ const legend = GLANCE_GROUPS.filter((g) => stats.some((s) => s.group === g.key))
     gap: var(--s-2);
     align-items: baseline;
     margin-block-start: auto;
-    padding-block-start: var(--s-3);
+    padding-block-start: var(--s-2);
   }
 
   /* On the inverted band the tiles invert with it. */

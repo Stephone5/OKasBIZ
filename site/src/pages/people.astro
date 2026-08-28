@@ -1,13 +1,18 @@
 ---
 import Base from '../layouts/Base.astro';
 import Facts from '../components/Facts.astro';
-import Cta from '../components/Cta.astro';
 import { MIGRATION, MOMENTUM } from '../data/pages.js';
 ---
 
 <Base
   title="People — Oklahoma Inc."
   description="4.12 million people, 63 arriving a day, and the four forces already moving in the state."
+  sources={['population','tribal','jobs']}
+  notes={[
+    { title: 'On components of change', text: 'Migration and natural change are shown separately because they are different things and are routinely conflated. Net migration is domestic plus international; it excludes births and deaths.' },
+  ]}
+  image="/people.jpg"
+  imageAlt="Oklahomans"
 >
   <section class="panel panel--tight">
     <div class="wrap">
@@ -56,28 +61,27 @@ import { MIGRATION, MOMENTUM } from '../data/pages.js';
           </li>
         ))}
       </ul>
-
-      <div class="ctarow"><Cta href="/work" variant="deep" /></div>
     </div>
   </section>
 </Base>
 
 <style>
-  .mom { list-style: none; padding: 0; display: grid; gap: var(--s-7); }
+  .mom { list-style: none; padding: 0; display: grid; gap: var(--s-5);
+    grid-template-columns: repeat(auto-fit, minmax(min(22rem, 100%), 1fr)); }
 
   .mom__item {
     position: relative;
     padding-inline-start: var(--s-5);
     border-block-end: 1px solid var(--rule-deep);
-    padding-block-end: var(--s-7);
-    max-width: 54rem;
+    padding-block-end: var(--s-5);
+    max-width: none;
   }
   .mom__item:last-child { border-block-end: 0; padding-block-end: 0; }
 
   .mom__bar {
     position: absolute;
     inset-inline-start: 0;
-    inset-block: 0 var(--s-7);
+    inset-block: 0 var(--s-5);
     width: 3px;
     background: var(--mark);
   }
@@ -85,7 +89,7 @@ import { MIGRATION, MOMENTUM } from '../data/pages.js';
   .mom__value {
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: clamp(2.75rem, 7vw, 5rem);
+    font-size: clamp(2rem, 3.6vw, 2.75rem);
     line-height: 1;
     letter-spacing: -0.04em;
     color: var(--on-deep);

@@ -1,11 +1,16 @@
 ---
 import Base from '../layouts/Base.astro';
-import Cta from '../components/Cta.astro';
 ---
 
 <Base
   title="OKC Atlas — Oklahoma Inc."
   description="Oklahoma City in nine highway-bounded quadrants, filterable across 29 research categories. What is in each part of the city, and where the gaps are."
+  sources={['atlas','land']}
+  notes={[
+    { title: 'On the quantities', text: 'Quantities count named items found in the research, so each is a floor rather than a full census. Nothing is estimated to fill a gap.' },
+    { title: 'On the rolled-up figures', text: 'Figures are averaged across the ZIP codes that fall inside a quadrant, and every one shows how many ZIPs it rests on. ZIP boundaries do not follow the highway lines that define the quadrants.' },
+    { title: 'On safety grades', text: 'These come from commercial aggregators rather than the Oklahoma City Police Department. The index those services publish alongside a grade is not comparable between grades, so grades drive the ranking.' },
+  ]}
 >
   <section class="panel panel--tight">
     <div class="wrap">
@@ -26,21 +31,6 @@ import Cta from '../components/Cta.astro';
 
   <okc-atlas></okc-atlas>
 
-  <section class="panel panel--tight">
-    <div class="wrap">
-      <p class="source">
-        Quantities count named items found in the research, so each is a floor rather than
-        a full census. Figures are averaged across the ZIP codes that fall inside a
-        quadrant, and every one shows how many ZIPs it rests on; ZIP boundaries do not
-        follow the highway lines. A figure that was never published renders as “no data” —
-        never as zero, and never averaged around. Safety grades come from commercial
-        aggregators rather than the Oklahoma City Police Department, and the index those
-        services publish alongside a grade is not comparable between grades.
-      </p>
-
-      <div class="ctarow"><Cta href="/economy" /></div>
-    </div>
-  </section>
 </Base>
 
 <!-- The atlas is the point of this page, so it loads with it rather than

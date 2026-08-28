@@ -1,13 +1,18 @@
 ---
 import Base from '../layouts/Base.astro';
 import Facts from '../components/Facts.astro';
-import Cta from '../components/Cta.astro';
 import { RANKS, JUSTICE } from '../data/pages.js';
 ---
 
 <Base
   title="Wellbeing & Justice — Oklahoma Inc."
   description="Where Oklahoma ranks on education and health, and the incarceration figures, presented without conclusions."
+  sources={['health','justice','acfr']}
+  notes={[
+    { title: 'On the rankings', text: 'Each row places Oklahoma against the other 49 states on the same measure, drawn on one shared scale so positions can be read against each other. The colour ramp is a single hue running light to dark, so position reads as position rather than as good or bad.' },
+  ]}
+  image="/wellbeing.jpg"
+  imageAlt="Health and community in Oklahoma"
 >
   <section class="panel panel--tight">
     <div class="wrap">
@@ -71,8 +76,6 @@ import { RANKS, JUSTICE } from '../data/pages.js';
         Sources: Prison Policy Initiative, 2024; Vera Institute; Bureau of Justice
         Statistics; ACFR FY2024; Oklahoma Watch.
       </p>
-
-      <div class="ctarow"><Cta href="/verdict" variant="deep" /></div>
     </div>
   </section>
 </Base>

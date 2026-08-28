@@ -2,13 +2,19 @@
 import Base from '../layouts/Base.astro';
 import StatGrid from '../components/StatGrid.astro';
 import Facts from '../components/Facts.astro';
-import Cta from '../components/Cta.astro';
 import { WORK_STATS, JOBLESS, PRESSURE, HOUSING, HOMELESSNESS, SUBSIDY_LEDGER, SUPPORT } from '../data/pages.js';
 ---
 
 <Base
   title="Work & Money — Oklahoma Inc."
   description="Low joblessness alongside thin household savings, and the public subsidy behind the economy."
+  sources={['jobs','households','budget']}
+  notes={[
+    { title: 'On the homelessness counts', text: 'Point-in-time counts are known to undercount and should be treated as a floor rather than a total.' },
+    { title: 'On the subsidy ledger', text: 'These items are different in kind — direct cash against revenue never collected — and are not strictly additive. They are shown together to size the public cost, not summed.' },
+  ]}
+  image="/work.jpg"
+  imageAlt="Oklahomans at work"
 >
   <section class="panel panel--tight">
     <div class="wrap">
@@ -104,8 +110,6 @@ import { WORK_STATS, JOBLESS, PRESSURE, HOUSING, HOMELESSNESS, SUBSIDY_LEDGER, S
           </li>
         ))}
       </ul>
-
-      <div class="ctarow"><Cta href="/wellbeing" /></div>
     </div>
   </section>
 </Base>

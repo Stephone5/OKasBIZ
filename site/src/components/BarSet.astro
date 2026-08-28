@@ -61,17 +61,17 @@ const pct = (v: number) => Math.max((v / max) * 100, 0.6);
     letter-spacing: var(--track-wide);
     text-transform: uppercase;
     color: var(--ink-3);
-    margin-block-end: var(--s-5);
+    margin-block-end: var(--s-3);
   }
 
-  .barset__rows { list-style: none; padding: 0; display: grid; gap: var(--s-6); }
+  .barset__rows { list-style: none; padding: 0; display: grid; gap: var(--s-4); }
 
   .barset__head {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
     gap: var(--s-4);
-    margin-block-end: var(--s-3);
+    margin-block-end: var(--s-2);
   }
 
   .barset__label {
@@ -82,19 +82,19 @@ const pct = (v: number) => Math.max((v / max) * 100, 0.6);
 
   .barset__value {
     font-family: var(--font-display);
-    font-size: clamp(1.6rem, 3.4vw, 2.5rem);
+    font-size: clamp(1.25rem, 2.4vw, 1.75rem);
     line-height: 1;
     letter-spacing: -0.03em;
     color: var(--ink);
     white-space: nowrap;
   }
 
-  .is-emph .barset__value { font-size: clamp(2rem, 4.6vw, 3.25rem); }
+  .is-emph .barset__value { font-size: clamp(1.5rem, 3vw, 2.25rem); }
 
   /* Thin marks on a recessive track, rounded at the data end only so the
      bar reads as anchored to its baseline. */
   .barset__track {
-    height: 10px;
+    height: 8px;
     background: var(--paper-2);
     border-radius: 2px;
     overflow: hidden;
@@ -116,7 +116,7 @@ const pct = (v: number) => Math.max((v / max) * 100, 0.6);
   .barset__source {
     font-size: var(--t-micro);
     color: var(--ink-4);
-    margin-block-start: var(--s-6);
+    margin-block-start: var(--s-4);
   }
 
   /* Inverted band */

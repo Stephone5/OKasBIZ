@@ -2,7 +2,6 @@
 import Base from '../layouts/Base.astro';
 import BarSet from '../components/BarSet.astro';
 import Facts from '../components/Facts.astro';
-import Cta from '../components/Cta.astro';
 import { BALANCE, YEAR } from '../data/books.js';
 import { NET_POSITION_SPLIT, APPROPRIATIONS, RESERVES } from '../data/pages.js';
 ---
@@ -10,6 +9,13 @@ import { NET_POSITION_SPLIT, APPROPRIATIONS, RESERVES } from '../data/pages.js';
 <Base
   title="The Books — Oklahoma Inc."
   description="What Oklahoma owns, what it owes, what came in and what went out. Taken from the state's audited annual report for the year ended June 30, 2024."
+  sources={['acfr','budget']}
+  notes={[
+    { title: 'On these statements', text: '“Oklahoma Inc.” presents public data in the shape of corporate financial statements for clarity. The State is not a company and these are interpretive constructs rather than GAAP filings.' },
+    { title: 'On the shared scale', text: 'Both sets of bars are drawn against the same maximum, so their lengths can be compared directly against one another rather than only within their own group.' },
+  ]}
+  image="/books.jpg"
+  imageAlt="Ledgers and record keeping"
 >
   <section class="panel panel--tight">
     <div class="wrap">
@@ -73,7 +79,6 @@ import { NET_POSITION_SPLIT, APPROPRIATIONS, RESERVES } from '../data/pages.js';
       </div>
 
       <div class="pad"><Facts caption="Reserves and fund balances" rows={RESERVES} /></div>
-      <div class="ctarow"><Cta href="/economy" variant="deep" /></div>
     </div>
   </section>
 
@@ -95,8 +100,6 @@ import { NET_POSITION_SPLIT, APPROPRIATIONS, RESERVES } from '../data/pages.js';
           scale={5.76}
         />
       </div>
-
-      <div class="ctarow"><Cta href="/economy" /></div>
     </div>
   </section>
 </Base>

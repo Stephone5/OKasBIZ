@@ -29,9 +29,13 @@ const SCHEMA = {
 interface Props {
   title: string;
   description: string;
+  sources?: string[];                    // source ids used by this page
+  notes?: { title: string; text: string }[];
+  image?: string;                        // page banner
+  imageAlt?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, sources, notes, image, imageAlt } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
@@ -72,9 +76,14 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     <div class="progress" aria-hidden="true"></div>
     <Nav />
     <main id="main">
+      {image && (
+        <figure class="banner">
+          <img src={image} alt={imageAlt ?? ''} width="1400" height="860" fetchpriority="high" />
+        </figure>
+      )}
       <slot />
     </main>
-    <Footer />
+    <Footer sources={sources} notes={notes} />
     <Feedback client:idle />
 
     <script>

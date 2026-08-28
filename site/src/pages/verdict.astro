@@ -1,13 +1,18 @@
 ---
 import Base from '../layouts/Base.astro';
 import Facts from '../components/Facts.astro';
-import Cta from '../components/Cta.astro';
 import { PILLARS, SESSION_CHANGES, ELECTION } from '../data/pages.js';
 ---
 
 <Base
   title="Your Move — Oklahoma Inc."
   description="Three ways to act on what you own, the budget changes each session made, and the next election."
+  sources={['acfr','budget','elections']}
+  notes={[
+    { title: 'On the session table', text: 'No party labels, no individual names, no vote tallies. The gross production tax line reflects commodity price movement; the statutory rate was unchanged.' },
+  ]}
+  image="/verdict.jpg"
+  imageAlt="Oklahoma ahead"
 >
   <section class="panel panel--hero-deep">
     <div class="wrap">
@@ -123,8 +128,6 @@ import { PILLARS, SESSION_CHANGES, ELECTION } from '../data/pages.js';
           </p>
         </div>
       </div>
-
-      <div class="ctarow"><Cta href="/" /></div>
     </div>
   </section>
 </Base>
