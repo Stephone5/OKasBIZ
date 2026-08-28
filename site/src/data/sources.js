@@ -57,7 +57,7 @@ export const SOURCES = {
       'Oklahoma State Election Board, 2026 statutory election dates and deadlines. Oklahoma Legislature public legislator lookup.',
   },
   atlas: {
-    label: 'OKC Atlas',
+    label: 'OKC Metro',
     text:
       'Compiled from public research across the nine highway-bounded quadrants. Safety grades come from commercial aggregators rather than the Oklahoma City Police Department.',
   },
@@ -80,4 +80,21 @@ export const GLOBAL_NOTES = [
     text:
       'Where something was never published, this site says so rather than guessing. A missing figure is never rendered as zero and never averaged around.',
   },
+];
+
+// Named plainly for the band under the hero — who the figures come from,
+// not where they live.
+export const TICKER_SOURCES = [
+  'U.S. Census Bureau',
+  'Bureau of Economic Analysis',
+  'Bureau of Labor Statistics',
+  'Oklahoma Annual Comprehensive Financial Report',
+  'Oklahoma Tax Commission',
+  'Oklahoma Policy Institute',
+  'United for Oklahoma',
+  'Federal Reserve Bank of Kansas City',
+  'Oklahoma State Election Board',
+  'Prison Policy Initiative',
+  "America's Health Rankings",
+  'U.S. Energy Information Administration',
 ];

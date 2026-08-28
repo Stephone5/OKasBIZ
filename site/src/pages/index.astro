@@ -5,10 +5,11 @@ import BarSet from '../components/BarSet.astro';
 import SpendCounter from '../components/SpendCounter.svelte';
 import SplitText from '../components/SplitText.astro';
 import Ticker from '../components/Ticker.astro';
+import { TICKER_SOURCES } from '../data/sources.js';
 import CountUp from '../components/CountUp.svelte';
 import BudgetGuess from '../components/BudgetGuess.svelte';
 import { GLANCE, SPEND } from '../data/overview.js';
-import { LINE_ITEMS, STAKE, POPULATION_LABEL } from '../data/stake.js';
+import { LINE_ITEMS, LINE_ITEMS_SOURCE, STAKE, POPULATION_LABEL } from '../data/stake.js';
 import { BALANCE, YEAR } from '../data/books.js';
 ---
 
@@ -33,7 +34,7 @@ import { BALANCE, YEAR } from '../data/books.js';
     </div>
 
     <div class="hero__band">
-      <Ticker items={LINE_ITEMS} />
+      <Ticker items={TICKER_SOURCES} />
     </div>
   </section>
 
@@ -52,19 +53,21 @@ import { BALANCE, YEAR } from '../data/books.js';
   <!-- ══════════ 3 · the receipt ══════════ -->
   <section class="panel panel--tint" id="receipt">
     <div class="wrap">
-      <p class="kick">Where it starts</p>
+      <h2 class="mega mega--sm">Where it starts</h2>
 
-      <ul class="receipt" aria-label="Everyday spending">
-        {LINE_ITEMS.map((w, i) => (
-          <li class="receipt__row reveal" style={`--d:${i * 55}ms`}>
-            <span class="receipt__item">{w}</span>
+      <ul class="receipt" aria-label="Everyday prices in Oklahoma">
+        {LINE_ITEMS.map((it, n) => (
+          <li class="receipt__row reveal" style={`--d:${n * 55}ms`}>
+            <span class="receipt__item">{it.item}</span>
             <span class="receipt__leader" aria-hidden="true"></span>
-            <span class="receipt__tag">money in</span>
+            <span class="receipt__price tabular">{it.price}</span>
+            <span class="receipt__unit">{it.unit}</span>
           </li>
         ))}
       </ul>
 
       <p class="turn">Every one of these is<br /><em>money you put in.</em></p>
+      <p class="source pad-sm">{LINE_ITEMS_SOURCE}</p>
     </div>
   </section>
 
@@ -73,7 +76,6 @@ import { BALANCE, YEAR } from '../data/books.js';
     <div class="wrap">
       <div class="pinwrap">
         <div class="pinwrap__side">
-          <p class="kick kick--deep">What that makes you</p>
           <SplitText class="mega mega--sm" text="Put money in, / own a piece." />
           <p class="under under--deep">
             Take what the state publishes and split it across everyone who lives here.
@@ -105,7 +107,6 @@ import { BALANCE, YEAR } from '../data/books.js';
   <!-- ══════════ 5 · the books ══════════ -->
   <section class="panel panel--open" id="books">
     <div class="wrap">
-      <p class="kick">The books</p>
       <SplitText class="mega mega--sm" text="Here is what / you own." />
 
       <div class="ledgers">
@@ -129,7 +130,6 @@ import { BALANCE, YEAR } from '../data/books.js';
   <!-- ══════════ 6 · guess, then see ══════════ -->
   <section class="panel panel--ask">
     <div class="wrap">
-      <p class="kick">Before you scroll on</p>
       <BudgetGuess client:load />
 
       <h2 class="mega mega--ask">
@@ -141,7 +141,6 @@ import { BALANCE, YEAR } from '../data/books.js';
   <!-- ══════════ 7 · authority ══════════ -->
   <section class="panel panel--tight">
     <div class="wrap">
-      <p class="kick">Where every number comes from</p>
       <h2 class="mega mega--sm">Nothing here<br />is invented.</h2>
 
       <ul class="auth">
@@ -161,7 +160,6 @@ import { BALANCE, YEAR } from '../data/books.js';
   <!-- ══════════ 8 · the rest ══════════ -->
   <section class="panel panel--tint">
     <div class="wrap">
-      <p class="kick">The wider picture</p>
       <SplitText class="mega mega--sm" text="The rest of / the holdings." />
 
       <div class="pad"><StatGrid stats={GLANCE} /></div>
@@ -176,7 +174,6 @@ import { BALANCE, YEAR } from '../data/books.js';
   <!-- ══════════ 9 · moving now ══════════ -->
   <section class="panel panel--deep">
     <div class="wrap">
-      <p class="kick kick--deep">Right now</p>
       <SplitText class="mega mega--sm" text="The money is / already moving." />
       <div class="pad"><SpendCounter perSecond={SPEND.perSecond} client:visible /></div>
     </div>
@@ -302,6 +299,21 @@ import { BALANCE, YEAR } from '../data/books.js';
     background-repeat: repeat-x;
     align-self: center;
     min-width: var(--s-5);
+  }
+
+  .receipt__price {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+
+  .receipt__unit {
+    font-size: var(--t-micro);
+    color: var(--ink-3);
+    white-space: nowrap;
+    min-width: 4.5rem;
   }
 
   .receipt__tag {
@@ -445,7 +457,7 @@ import { BALANCE, YEAR } from '../data/books.js';
   @media (max-width: 30rem) {
     .receipt__item { font-size: 1.35rem; }
     .receipt__row { padding-block: var(--s-3); }
-    .receipt__tag { display: none; }
+    .receipt__unit { min-width: 0; }
     .stake__row { padding-block: var(--s-4); }
     .stake__value { font-size: 2rem; }
     .stake__label { font-size: var(--t-body); }

@@ -19,7 +19,6 @@ import { NET_POSITION_SPLIT, APPROPRIATIONS, RESERVES } from '../data/pages.js';
 >
   <section class="panel panel--tight">
     <div class="wrap">
-      <p class="kick">The books</p>
       <h1 class="mega">What the state<br />owns and owes.</h1>
       <p class="under">
         Government-wide statement of net position, June 30, 2024. Against $46.29 billion
@@ -31,6 +30,8 @@ import { NET_POSITION_SPLIT, APPROPRIATIONS, RESERVES } from '../data/pages.js';
 
   <section class="panel panel--open">
     <div class="wrap">
+      <h2 class="mega mega--sm">The two statements</h2>
+
       <div class="ledgers">
         <BarSet caption={BALANCE.caption} rows={BALANCE.rows} source={BALANCE.source} />
         <BarSet
@@ -56,7 +57,6 @@ import { NET_POSITION_SPLIT, APPROPRIATIONS, RESERVES } from '../data/pages.js';
 
   <section class="panel panel--deep">
     <div class="wrap">
-      <p class="kick kick--deep">What is left, split three ways</p>
       <h2 class="mega mega--sm">Not all of it<br />can be spent.</h2>
 
       <div class="pad">
@@ -84,7 +84,6 @@ import { NET_POSITION_SPLIT, APPROPRIATIONS, RESERVES } from '../data/pages.js';
 
   <section class="panel panel--tint">
     <div class="wrap">
-      <p class="kick">What the legislature controls</p>
       <h2 class="mega mega--sm">$12.08 billion<br />of it is a choice.</h2>
       <p class="under">
         The audited statements count every federal dollar and every fee. The appropriated
