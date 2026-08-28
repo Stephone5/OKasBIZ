@@ -86,7 +86,7 @@ const legend = GLANCE_GROUPS.filter((g) => stats.some((s) => s.group === g.key))
     border: 1px solid var(--rule);
     border-radius: var(--radius);
     overflow: hidden;
-    grid-template-columns: repeat(auto-fit, minmax(min(11.5rem, 100%), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(8.5rem, 100%), 1fr));
   }
 
   .stat {
@@ -159,4 +159,13 @@ const legend = GLANCE_GROUPS.filter((g) => stats.some((s) => s.group === g.key))
   :global(.section--deep) .stat__meta,
   :global(.section--deep) .stat__delta,
   :global(.section--deep) .stat__group { color: var(--on-deep-2); }
+</style>
+
+<style>
+  @media (max-width: 30rem) {
+    .stat { padding: var(--s-3); }
+    .stat__value { font-size: 1.35rem; }
+    .stat__label { font-size: var(--t-micro); margin-block-start: var(--s-1); }
+    .stat__meta, .stat__delta { font-size: 0.6875rem; }
+  }
 </style>

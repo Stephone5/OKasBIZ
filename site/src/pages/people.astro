@@ -51,7 +51,24 @@ import { MIGRATION, MOMENTUM } from '../data/pages.js';
       </p>
 
       <ul class="mom pad">
-        {MOMENTUM.map((m) => (
+        {MOMENTUM.slice(0, 2).map((m) => (
+          <li class="mom__item reveal" style={`--mark:var(--series-${m.series})`}>
+            <span class="mom__bar" aria-hidden="true"></span>
+            <p class="mom__value tabular">{m.value}</p>
+            <p class="mom__label">{m.label}</p>
+            <p class="mom__body">{m.body}</p>
+            <p class="source">{m.source}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="panel panel--deep">
+    <div class="wrap">
+      <p class="kick kick--deep">And the two biggest employers you may not count</p>
+      <ul class="mom">
+        {MOMENTUM.slice(2).map((m) => (
           <li class="mom__item reveal" style={`--mark:var(--series-${m.series})`}>
             <span class="mom__bar" aria-hidden="true"></span>
             <p class="mom__value tabular">{m.value}</p>

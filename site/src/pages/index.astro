@@ -271,7 +271,7 @@ import { BALANCE, YEAR } from '../data/books.js';
     list-style: none;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(13rem, 100%), 1fr));
     column-gap: var(--s-8);
     border-block-start: 1px solid var(--rule-strong);
   }
@@ -441,6 +441,16 @@ import { BALANCE, YEAR } from '../data/books.js';
   }
 
   .stake--flow { margin-block-start: 0; }
+
+  @media (max-width: 30rem) {
+    .receipt__item { font-size: 1.35rem; }
+    .receipt__row { padding-block: var(--s-3); }
+    .receipt__tag { display: none; }
+    .stake__row { padding-block: var(--s-4); }
+    .stake__value { font-size: 2rem; }
+    .stake__label { font-size: var(--t-body); }
+    .stake__working { font-size: var(--t-micro); }
+  }
 
   .pad { margin-block-start: var(--s-7); }
   .pad-sm { margin-block-start: var(--s-6); }

@@ -341,3 +341,20 @@ html, body { overflow-x: clip; }
   display: block;
   border-block-end: 1px solid var(--rule);
 }
+
+/* ---------- Phone density -------------------------------------------
+   Everything stacks to one column below this width, so sections that fit
+   a desktop screen were running to nearly three phone screens. These cuts
+   keep a section readable in roughly one.                              */
+
+@media (max-width: 30rem) {
+  .panel { padding-block: var(--s-5); }
+  .panel--tight { padding-block: var(--s-4); }
+  .under { font-size: 1rem; margin-block-start: var(--s-3); }
+  .kick { margin-block-end: var(--s-2); }
+  .pad { margin-block-start: var(--s-4); }
+  .pad-sm { margin-block-start: var(--s-3); }
+  .banner img { height: 8rem; }
+  .facts :is(th, td) { padding-block: var(--s-2); }
+  .facts td { font-size: 1rem; }
+}
