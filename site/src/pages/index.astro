@@ -61,7 +61,7 @@ import { BALANCE, YEAR } from '../data/books.js';
             <span class="receipt__item">{it.item}</span>
             <span class="receipt__leader" aria-hidden="true"></span>
             <span class="receipt__price tabular">{it.price}</span>
-            <span class="receipt__unit">{it.unit}</span>
+            <span class="receipt__unit">{it.unit}<span class="receipt__where">{it.where}</span></span>
           </li>
         ))}
       </ul>
@@ -313,8 +313,13 @@ import { BALANCE, YEAR } from '../data/books.js';
     font-size: var(--t-micro);
     color: var(--ink-3);
     white-space: nowrap;
-    min-width: 4.5rem;
+    min-width: 6.5rem;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
   }
+
+  .receipt__where { color: var(--ink-4); font-size: 0.625rem; }
 
   .receipt__tag {
     font-size: var(--t-micro);

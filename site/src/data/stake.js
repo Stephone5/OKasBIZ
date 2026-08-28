@@ -10,19 +10,23 @@ export const POPULATION_LABEL = '4,123,288 residents';
 
 // The everyday purchases that make the point. Ordinary, unpolitical, and
 // the kind of spending nobody thinks of as investing.
-// Everyday prices. BLS publishes no state-level average prices for these,
-// only the South Census Region (urban), which is the geography Oklahoma
-// sits in. All four are the same series family, same month, so they are
-// comparable with each other. July 2026.
+// Everyday prices in Oklahoma.
+//
+// Rent and tuition are Oklahoma-specific published figures. BLS publishes
+// no state-level average prices for groceries or fuel — only the South
+// Census Region, which is the geography containing Oklahoma — so those four
+// are regional. Each item carries its own geography and date on the page.
 export const LINE_ITEMS = [
-  { item: 'Eggs',   unit: 'a dozen',   price: '$2.21' },
-  { item: 'Bread',  unit: 'a loaf',    price: '$1.75' },
-  { item: 'Milk',   unit: 'a gallon',  price: '$4.00' },
-  { item: 'Gas',    unit: 'a gallon',  price: '$3.67' },
+  { item: 'Eggs',    unit: 'a dozen',  price: '$2.21',  where: 'South region, Jul 2026' },
+  { item: 'Bread',   unit: 'a loaf',   price: '$1.75',  where: 'South region, Jul 2026' },
+  { item: 'Milk',    unit: 'a gallon', price: '$4.00',  where: 'South region, Jul 2026' },
+  { item: 'Gas',     unit: 'a gallon', price: '$3.67',  where: 'South region, Jul 2026' },
+  { item: 'Rent',    unit: 'a month',  price: '$1,014', where: 'Oklahoma median' },
+  { item: 'Tuition', unit: 'a year',   price: '$8,519', where: 'Oklahoma public 4-year' },
 ];
 
 export const LINE_ITEMS_SOURCE =
-  'Bureau of Labor Statistics average prices, South Census Region (urban), July 2026. BLS does not publish these at state level; the South region is the geography that contains Oklahoma.';
+  'Rent is the Oklahoma median gross rent (U.S. Census Bureau, American Community Survey 2020–2024). Tuition is the Oklahoma average for in-state undergraduates at public four-year institutions (National Center for Education Statistics, Digest of Education Statistics table 330.20, 2022–23). Groceries and fuel are Bureau of Labor Statistics average prices for the South Census Region, urban, July 2026 — BLS does not publish these at state level, and the South region is the geography that contains Oklahoma.';
 
 
 export const STAKE = [
