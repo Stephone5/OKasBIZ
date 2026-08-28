@@ -39,10 +39,10 @@ const used = sources.map((id) => SOURCES[id]).filter(Boolean);
 
   <div class="sheet__body">
     <div class="sheet__grid">
-      {used.map((s) => (
-        <div>
-          <h3 class="sheet__label">{s.label}</h3>
-          <p class="sheet__text">{s.text}</p>
+      {sources.map((id) => SOURCES[id] && (
+        <div class="sheet__item" id={`src-${id}`}>
+          <h3 class="sheet__label">{SOURCES[id].label}</h3>
+          <p class="sheet__text">{SOURCES[id].text}</p>
         </div>
       ))}
     </div>
@@ -51,7 +51,9 @@ const used = sources.map((id) => SOURCES[id]).filter(Boolean);
 
     <div class="sheet__notes">
       {notes.map((n) => (
-        <p class="sheet__text"><strong>{n.title}.</strong> {n.text}</p>
+        <p class="sheet__text sheet__item" id={`note-${n.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}>
+          <strong>{n.title}.</strong> {n.text}
+        </p>
       ))}
       {GLOBAL_NOTES.map((n) => (
         <p class="sheet__text"><strong>{n.title}.</strong> {n.text}</p>
@@ -190,6 +192,18 @@ const used = sources.map((id) => SOURCES[id]).filter(Boolean);
   .sheet__text strong { color: var(--ink); font-weight: 600; }
   .sheet__text + .sheet__text { margin-block-start: var(--s-4); }
 
+  .sheet__item {
+    scroll-margin-block: var(--s-5);
+    border-radius: var(--radius-sm);
+    transition: background var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  }
+
+  /* Held just long enough to find and read, then it releases. */
+  .sheet__item.is-flash {
+    background: var(--accent-soft);
+    box-shadow: 0 0 0 8px var(--accent-soft);
+  }
+
   .sheet__rule { margin-block: var(--s-6); }
   .sheet__notes { max-width: var(--measure); }
 
@@ -219,6 +233,23 @@ const used = sources.map((id) => SOURCES[id]).filter(Boolean);
       const sheet = document.getElementById('sources-sheet') as HTMLDialogElement | null;
       if (!sheet) return;
 
+      const ref = target.closest('[data-ref-to]') as HTMLElement | null;
+      if (ref) {
+        if (!sheet.open) sheet.showModal();
+        const id = ref.dataset.refTo || '';
+        const item =
+          sheet.querySelector('#src-' + CSS.escape(id)) ||
+          sheet.querySelector('#note-' + CSS.escape(id));
+        if (item) {
+          item.scrollIntoView({ block: 'center', behavior: 'smooth' });
+          item.classList.remove('is-flash');
+          void (item as HTMLElement).offsetWidth;   // restart the transition
+          item.classList.add('is-flash');
+          setTimeout(() => item.classList.remove('is-flash'), 1800);
+        }
+        return;
+      }
+
       if (target.closest('[data-sources-open]')) {
         if (!sheet.open) sheet.showModal();
         return;
@@ -230,4 +261,13 @@ const used = sources.map((id) => SOURCES[id]).filter(Boolean);
       if (target === sheet) sheet.close();
     });
   }
+
+  // Numbered in document order so they read 1, 2, 3 down the page.
+  const numberRefs = () => {
+    document.querySelectorAll('[data-ref-to] .ref__n').forEach((n, i) => {
+      n.textContent = String(i + 1);
+    });
+  };
+  numberRefs();
+  document.addEventListener('astro:page-load', numberRefs);
 </script>

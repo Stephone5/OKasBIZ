@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Ref from '../components/Ref.astro';
 import Facts from '../components/Facts.astro';
 import { RANKS, JUSTICE } from '../data/pages.js';
 ---
@@ -45,12 +46,7 @@ import { RANKS, JUSTICE } from '../data/pages.js';
           </li>
         ))}
       </ul>
-
-      <p class="source pad-sm">
-        Sources: NAEP and state education reporting; America's Health Rankings;
-        Commonwealth Fund; U.S. Census. Positions are shown on a single scale so they can
-        be read against one another.
-      </p>
+      <Ref to="on-the-rankings" />
     </div>
   </section>
 
@@ -71,11 +67,7 @@ import { RANKS, JUSTICE } from '../data/pages.js';
           among the highest of any country with available data.
         </p>
       </div>
-
-      <p class="source pad-sm">
-        Sources: Prison Policy Initiative, 2024; Vera Institute; Bureau of Justice
-        Statistics; ACFR FY2024; Oklahoma Watch.
-      </p>
+      <Ref to="justice" />
     </div>
   </section>
 </Base>

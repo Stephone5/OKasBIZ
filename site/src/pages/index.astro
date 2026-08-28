@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Ref from '../components/Ref.astro';
 import StatGrid from '../components/StatGrid.astro';
 import BarSet from '../components/BarSet.astro';
 import SpendCounter from '../components/SpendCounter.svelte';
@@ -18,6 +19,8 @@ import { BALANCE, YEAR } from '../data/books.js';
   description="Oklahoma is a $213.5 billion enterprise. Every dollar you spend here is money you put into it. An open set of books for the Okies who build."
   sources={['acfr','budget','economy','population','tribal','jobs','households','health','justice']}
   notes={[
+    { title: 'On the shared scale', text: 'Both sets of bars are drawn against the same maximum, so their lengths can be compared directly rather than only within their own group. Government figures are for the fiscal year ended June 30, 2024, the most recent audited report.' },
+    { title: 'On these prices', text: 'Rent is the Oklahoma median gross rent (U.S. Census Bureau, American Community Survey 2020–2024). Tuition is the Oklahoma average for in-state undergraduates at public four-year institutions (National Center for Education Statistics, Digest of Education Statistics table 330.20, 2022–23). Groceries and fuel are Bureau of Labor Statistics average prices for the South Census Region, urban, July 2026 — BLS publishes no state-level average prices for those, and the South region is the geography that contains Oklahoma.' },
     { title: 'On the per-person figures', text: 'Each is a published total divided by the Census Vintage 2025 population of Oklahoma, 4,123,288. Plain division — nothing modelled, nothing weighted.' },
     { title: 'On the spending estimate', text: 'The live counter divides an annual personal-consumption figure down to a per-second rate and resets each 60-second cycle. It illustrates a rate. It is not a measurement of money moving in real time.' },
     { title: 'On the budget question', text: 'The figures behind it are FY2026 appropriations: education $5.76B, health and social services $2.32B, everything else $4.00B, of $12.08B total. Your answer is not stored, scored or sent anywhere.' },
@@ -67,7 +70,7 @@ import { BALANCE, YEAR } from '../data/books.js';
       </ul>
 
       <p class="turn">Every one of these is<br /><em>money you put in.</em></p>
-      <p class="source pad-sm">{LINE_ITEMS_SOURCE}</p>
+      <Ref to="on-these-prices" />
     </div>
   </section>
 
@@ -94,11 +97,7 @@ import { BALANCE, YEAR } from '../data/books.js';
           </li>
         ))}
       </ul>
-
-      <p class="source source--deep">
-        Each number is a published total divided by {POPULATION_LABEL} (U.S. Census
-        Bureau, Vintage 2025). Plain division, nothing guessed or filled in.
-      </p>
+      <Ref to="on-the-per-person-figures" />
         </div>
       </div>
     </div>
@@ -110,20 +109,15 @@ import { BALANCE, YEAR } from '../data/books.js';
       <SplitText class="mega mega--sm" text="Here is what / you own." />
 
       <div class="ledgers">
-        <BarSet caption={BALANCE.caption} rows={BALANCE.rows} source={BALANCE.source} />
+        <BarSet caption={BALANCE.caption} rows={BALANCE.rows} ref="acfr" />
         <BarSet
           caption={YEAR.caption}
           rows={YEAR.rows}
-          source={YEAR.source}
+          ref="acfr"
           scale={Math.max(...BALANCE.rows.map((r) => r.value))}
         />
       </div>
-
-      <p class="source pad-sm">
-        Both sets of bars share one scale, so their lengths can be compared directly.
-        Government figures are for the fiscal year ended June 30, 2024 — the most
-        recent audited report.
-      </p>
+      <Ref to="on-the-shared-scale" />
     </div>
   </section>
 
@@ -163,11 +157,7 @@ import { BALANCE, YEAR } from '../data/books.js';
       <SplitText class="mega mega--sm" text="The rest of / the holdings." />
 
       <div class="pad"><StatGrid stats={GLANCE} /></div>
-
-      <p class="source pad-sm">
-        GDP is 2025, released April 2026. Migration is Census Vintage 2025. Full
-        source list at the foot of every page.
-      </p>
+      <Ref to="economy" />
     </div>
   </section>
 

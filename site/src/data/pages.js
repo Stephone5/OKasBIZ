@@ -88,6 +88,7 @@ export const MOMENTUM = [
     label: 'people chose Oklahoma as home every day',
     body: 'Between July 2024 and July 2025 the state gained a net 22,912 people through migration — 14,492 from other states and 8,420 from abroad. Millennial in-migration ran 53% above out-migration in 2023, and Oklahoma City ranked 8th nationally for millennial moves.',
     source: 'U.S. Census Bureau, Vintage 2025; Oklahoma Council of Public Affairs; Federal Reserve Bank of Kansas City.',
+    ref: 'population',
     series: 1,
   },
   {
@@ -95,6 +96,7 @@ export const MOMENTUM = [
     label: 'working adults started a business in the last two years',
     body: 'About 19% of working adults are new business owners, the highest rate in over two decades, up from 12.8% a decade ago. Oklahoma County alone logged 14,955 new business applications in 2023.',
     source: 'Global Entrepreneurship Monitor; U.S. Chamber of Commerce; BLS Southwest Region, 2025.',
+    ref: 'jobs',
     series: 2,
   },
   {
@@ -102,6 +104,7 @@ export const MOMENTUM = [
     label: "contributed by the state's 39 tribal nations",
     body: 'About 8% of state GDP, supporting an estimated 139,860 jobs and $7.8 billion in wages — growth of $4.9 billion since FY2019. In many rural counties the tribal nation is the largest employer.',
     source: 'United for Oklahoma economic-impact report, 2023 data.',
+    ref: 'tribal',
     series: 3,
   },
   {
@@ -109,6 +112,7 @@ export const MOMENTUM = [
     label: 'people employed in aerospace and defense',
     body: "An estimated $44 billion in economic activity, anchored by Tinker Air Force Base — the country's largest air-logistics depot — and the state's fastest-growing industry sector.",
     source: 'Oklahoma Aerospace & Defense Initiative; Oklahoma Department of Commerce.',
+    ref: 'economy',
     series: 5,
   },
 ];

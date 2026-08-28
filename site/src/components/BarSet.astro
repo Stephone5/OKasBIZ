@@ -1,4 +1,6 @@
 ---
+import Ref from './Ref.astro';
+
 interface Row {
   label: string;
   sub?: string;
@@ -11,12 +13,13 @@ interface Row {
 interface Props {
   caption: string;
   rows: Row[];
-  source: string;
+  source?: string;
+  ref?: string;
   scale?: number;
   deep?: boolean;
 }
 
-const { caption, rows, source, scale, deep = false } = Astro.props as Props;
+const { caption, rows, source, ref, scale, deep = false } = Astro.props as Props;
 
 // One shared scale across every bar so the lengths are comparable and the
 // arithmetic reads visually.
@@ -49,7 +52,8 @@ const pct = (v: number) => Math.max((v / max) * 100, 0.6);
     ))}
   </ul>
 
-  <p class="barset__source">Source: {source}</p>
+  {ref ? <p class="barset__source"><Ref to={ref} label={caption} /></p>
+       : source && <p class="barset__source">Source: {source}</p>}
 </figure>
 
 <style>

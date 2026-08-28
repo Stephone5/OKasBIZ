@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Ref from '../components/Ref.astro';
 import Facts from '../components/Facts.astro';
 import { MIGRATION, MOMENTUM } from '../data/pages.js';
 ---
@@ -7,7 +8,7 @@ import { MIGRATION, MOMENTUM } from '../data/pages.js';
 <Base
   title="People — Oklahoma Inc."
   description="4.12 million people, 63 arriving a day, and the four forces already moving in the state."
-  sources={['population','tribal','jobs']}
+  sources={['population','tribal','jobs','economy']}
   notes={[
     { title: 'On components of change', text: 'Migration and natural change are shown separately because they are different things and are routinely conflated. Net migration is domestic plus international; it excludes births and deaths.' },
   ]}
@@ -31,12 +32,7 @@ import { MIGRATION, MOMENTUM } from '../data/pages.js';
       <div class="pad" style="max-width:44rem">
         <Facts caption="Components of change, July 2024 to July 2025" rows={MIGRATION} />
       </div>
-
-      <p class="source pad-sm">
-        U.S. Census Bureau, Vintage 2025 population estimates. Migration and natural
-        change are shown separately because they are different things and are often
-        conflated.
-      </p>
+      <Ref to="on-components-of-change" />
     </div>
   </section>
 
@@ -54,7 +50,7 @@ import { MIGRATION, MOMENTUM } from '../data/pages.js';
             <p class="mom__value tabular">{m.value}</p>
             <p class="mom__label">{m.label}</p>
             <p class="mom__body">{m.body}</p>
-            <p class="source">{m.source}</p>
+            <p class="mom__ref"><Ref to={m.ref} label={m.label} /></p>
           </li>
         ))}
       </ul>
@@ -71,7 +67,7 @@ import { MIGRATION, MOMENTUM } from '../data/pages.js';
             <p class="mom__value tabular">{m.value}</p>
             <p class="mom__label">{m.label}</p>
             <p class="mom__body">{m.body}</p>
-            <p class="source">{m.source}</p>
+            <p class="mom__ref"><Ref to={m.ref} label={m.label} /></p>
           </li>
         ))}
       </ul>
@@ -122,5 +118,5 @@ import { MIGRATION, MOMENTUM } from '../data/pages.js';
     max-width: var(--measure);
   }
 
-  .mom__item .source { margin-block-start: var(--s-3); }
+  .mom__ref { margin-block-start: var(--s-3); }
 </style>

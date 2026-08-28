@@ -33,11 +33,11 @@ import { NET_POSITION_SPLIT, APPROPRIATIONS, RESERVES } from '../data/pages.js';
       <h2 class="mega mega--sm">The two statements</h2>
 
       <div class="ledgers">
-        <BarSet caption={BALANCE.caption} rows={BALANCE.rows} source={BALANCE.source} />
+        <BarSet caption={BALANCE.caption} rows={BALANCE.rows} ref="acfr" />
         <BarSet
           caption={YEAR.caption}
           rows={YEAR.rows}
-          source={YEAR.source}
+          ref="acfr"
           scale={Math.max(...BALANCE.rows.map((r) => r.value))}
         />
       </div>
@@ -63,7 +63,7 @@ import { NET_POSITION_SPLIT, APPROPRIATIONS, RESERVES } from '../data/pages.js';
         <BarSet
           caption="Composition of the $34.08 billion net position"
           rows={NET_POSITION_SPLIT}
-          source="ACFR FY2024, Statement of Net Position."
+          ref="acfr"
           scale={34.08}
           deep={true}
         />
@@ -95,7 +95,7 @@ import { NET_POSITION_SPLIT, APPROPRIATIONS, RESERVES } from '../data/pages.js';
         <BarSet
           caption="FY2026 appropriations by area"
           rows={APPROPRIATIONS}
-          source="Oklahoma Policy Institute, FY2026 Budget Highlights; HB 2766."
+          ref="budget"
           scale={5.76}
         />
       </div>

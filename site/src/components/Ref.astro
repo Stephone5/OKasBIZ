@@ -1,0 +1,56 @@
+---
+// A small numbered marker in place of a paragraph of sourcing.
+//
+// Numbers are assigned on load in document order, so they always read 1, 2,
+// 3 down the page no matter what order the components appear in the source.
+// Tapping one opens the notes panel and briefly highlights the entry it
+// points at.
+
+interface Props {
+  to: string;        // a source id, or a note title
+  label?: string;    // what it is a source for, read out to screen readers
+}
+
+const { to, label } = Astro.props as Props;
+---
+
+<button
+  class="ref"
+  data-ref-to={to}
+  aria-label={label ? `Source for ${label}` : 'Show the source for this'}
+><span class="ref__n">·</span></button>
+
+<style>
+  .ref {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.15rem;
+    height: 1.15rem;
+    padding: 0 0.3rem;
+    margin-inline-start: 0.3em;
+    vertical-align: super;
+    border: 1px solid var(--rule-strong);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--ink-3);
+    font-family: var(--font-text);
+    font-size: 0.625rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    cursor: pointer;
+    transition: background var(--dur-fast) var(--ease),
+                color var(--dur-fast) var(--ease),
+                border-color var(--dur-fast) var(--ease);
+  }
+
+  .ref:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  :global(.panel--deep) .ref { border-color: var(--rule-deep); color: var(--on-deep-2); }
+  :global(.panel--deep) .ref:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+</style>

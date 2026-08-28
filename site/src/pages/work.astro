@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Ref from '../components/Ref.astro';
 import StatGrid from '../components/StatGrid.astro';
 import Facts from '../components/Facts.astro';
 import { WORK_STATS, JOBLESS, PRESSURE, HOUSING, HOMELESSNESS, SUBSIDY_LEDGER, SUPPORT } from '../data/pages.js';
@@ -10,6 +11,7 @@ import { WORK_STATS, JOBLESS, PRESSURE, HOUSING, HOMELESSNESS, SUBSIDY_LEDGER, S
   description="Low joblessness alongside thin household savings, and the public subsidy behind the economy."
   sources={['jobs','households','budget']}
   notes={[
+    { title: 'On marginally attached', text: '“Marginally attached” means people who want work and looked for it in the past year but not in the past four weeks, so they are not counted as unemployed. Source: BLS Southwest Region, 2025; Global Entrepreneurship Monitor; U.S. Chamber of Commerce.' },
     { title: 'On the homelessness counts', text: 'Point-in-time counts are known to undercount and should be treated as a floor rather than a total.' },
     { title: 'On the subsidy ledger', text: 'These items are different in kind — direct cash against revenue never collected — and are not strictly additive. They are shown together to size the public cost, not summed.' },
   ]}
@@ -30,12 +32,7 @@ import { WORK_STATS, JOBLESS, PRESSURE, HOUSING, HOMELESSNESS, SUBSIDY_LEDGER, S
       <div class="pad" style="max-width:44rem">
         <Facts caption="The jobless picture, 2025" rows={JOBLESS} />
       </div>
-
-      <p class="source pad-sm">
-        “Marginally attached” means people who want work and looked in the past year but
-        not the past four weeks. Source: BLS Southwest Region, 2025; Global
-        Entrepreneurship Monitor; U.S. Chamber of Commerce.
-      </p>
+      <Ref to="on-marginally-attached" />
     </div>
   </section>
 
@@ -61,12 +58,7 @@ import { WORK_STATS, JOBLESS, PRESSURE, HOUSING, HOMELESSNESS, SUBSIDY_LEDGER, S
         <Facts caption="Housing squeeze" rows={HOUSING} />
         <Facts caption="Homelessness" rows={HOMELESSNESS} />
       </div>
-
-      <p class="source pad-sm">
-        Point-in-time homelessness counts undercount and should be treated as a floor.
-        Sources: Census SAIPE; America's Health Rankings; USDA and Feeding America;
-        National Low Income Housing Coalition; HUD; Federal Reserve.
-      </p>
+      <Ref to="on-the-homelessness-counts" />
     </div>
   </section>
 
@@ -77,12 +69,7 @@ import { WORK_STATS, JOBLESS, PRESSURE, HOUSING, HOMELESSNESS, SUBSIDY_LEDGER, S
       <div class="pad" style="max-width:48rem">
         <Facts caption="Annual, approximate" rows={SUBSIDY_LEDGER} />
       </div>
-
-      <p class="source pad-sm">
-        These items are different in kind — direct cash against revenue foregone — and are
-        not strictly additive. They are shown together to size the public cost. Sources:
-        Oklahoma Policy Institute; Oklahoma Tax Commission; HB2764.
-      </p>
+      <Ref to="on-the-subsidy-ledger" />
 
       <div class="prose pad">
         <p>

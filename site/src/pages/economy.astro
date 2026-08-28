@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Ref from '../components/Ref.astro';
 import BarSet from '../components/BarSet.astro';
 import StatGrid from '../components/StatGrid.astro';
 import { ENGINES, ENGINES_CAVEAT, ECONOMY_RANKS, VALUE_PER_ACRE, RECIRCULATION, IMPORT_GAPS } from '../data/pages.js';
@@ -36,12 +37,11 @@ import { ENGINES, ENGINES_CAVEAT, ECONOMY_RANKS, VALUE_PER_ACRE, RECIRCULATION, 
         <BarSet
           caption="Headline output and footprint by sector"
           rows={ENGINES}
-          source="BEA; OERB (oil and gas, FY2024); Oklahoma Department of Commerce (aerospace); United for Oklahoma (tribal); USDA (agriculture)."
+          ref="economy"
           scale={60.3}
         />
       </div>
-
-      <p class="source pad-sm">{ENGINES_CAVEAT}</p>
+      <Ref to="on-the-sector-figures" />
     </div>
   </section>
 
@@ -96,15 +96,10 @@ import { ENGINES, ENGINES_CAVEAT, ECONOMY_RANKS, VALUE_PER_ACRE, RECIRCULATION, 
           data-external="1"
         ></iframe>
         <figcaption class="source">
-          All 77 counties with accurate boundaries; major lakes shown
-          approximately. Interactive — hover or tap a county for its figure.
+          Hover or tap a county for its figure.<Ref to="land" label="the county map" />
         </figcaption>
       </figure>
-
-      <p class="source pad-sm">
-        Value is 2024 gross assessed valuation (Oklahoma Tax Commission, Ad Valorem
-        Division) divided by county land area.
-      </p>
+      <Ref to="on-value-per-acre" />
     </div>
   </section>
 
@@ -151,7 +146,7 @@ import { ENGINES, ENGINES_CAVEAT, ECONOMY_RANKS, VALUE_PER_ACRE, RECIRCULATION, 
         <BarSet
           caption="Estimated share of revenue that recirculates locally before leaving the state"
           rows={RECIRCULATION}
-          source='Institute for Local Self-Reliance, "The Economics of Local"; American Independent Business Alliance. Multiplier figures are ranges rather than point estimates.'
+          ref="local"
           scale={100}
           deep={true}
         />
@@ -171,11 +166,7 @@ import { ENGINES, ENGINES_CAVEAT, ECONOMY_RANKS, VALUE_PER_ACRE, RECIRCULATION, 
           </li>
         ))}
       </ul>
-
-      <p class="source pad-sm">
-        Sources: Census trade data; OMES procurement records. Here is demand, and here is
-        the local supply gap. Nothing more is claimed.
-      </p>
+      <Ref to="on-the-import-gaps" />
     </div>
   </section>
 </Base>

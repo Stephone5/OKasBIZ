@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Ref from '../components/Ref.astro';
 import Facts from '../components/Facts.astro';
 import { PILLARS, SESSION_CHANGES, ELECTION } from '../data/pages.js';
 ---
@@ -9,6 +10,7 @@ import { PILLARS, SESSION_CHANGES, ELECTION } from '../data/pages.js';
   description="Three ways to act on what you own, the budget changes each session made, and the next election."
   sources={['acfr','budget','elections']}
   notes={[
+    { title: 'On the election dates', text: 'The June 16 primary and the August 25 runoff have been held. The general election is the next statewide date. Early voting is available and no excuse is required. Source: Oklahoma State Election Board.' },
     { title: 'On the session table', text: 'No party labels, no individual names, no vote tallies. The gross production tax line reflects commodity price movement; the statutory rate was unchanged.' },
   ]}
   image="/verdict.jpg"
@@ -95,12 +97,7 @@ import { PILLARS, SESSION_CHANGES, ELECTION } from '../data/pages.js';
           </tbody>
         </table>
       </div>
-
-      <p class="source pad-sm">
-        The gross production tax line reflects commodity price movement; the statutory rate
-        was unchanged. No party labels, no individual names, no vote tallies. Sources:
-        Oklahoma Policy Institute FY2026; HB 2764; HB 2766; ACFR FY2024.
-      </p>
+      <Ref to="on-the-session-table" />
 
     </div>
   </section>
@@ -111,10 +108,7 @@ import { PILLARS, SESSION_CHANGES, ELECTION } from '../data/pages.js';
       <div class="grid-2">
         <div>
           <Facts caption="The next election" rows={ELECTION} />
-          <p class="source pad-sm">
-            The June 16 primary and the August 25 runoff have been held. Early voting is
-            available and no excuse is required. Source: Oklahoma State Election Board.
-          </p>
+      <Ref to="on-the-election-dates" />
         </div>
         <div class="prose">
           <p>

@@ -2,25 +2,25 @@
 // FY2024 statement of activities. ACFR FY2024. Figures in $ billions.
 
 export const BALANCE = {
-  caption: 'What the state owns, what it owes, and what is left',
+  caption: 'Assets, liabilities and equity',
   rows: [
     {
-      label: 'What it owns',
+      label: 'Assets',
       sub: 'Cash, roads, buildings, land, investments',
       value: 46.29,
       display: '$46.29B',
       series: 1,
     },
     {
-      label: 'What it owes',
+      label: 'Liabilities',
       sub: 'Debt, pensions, current liabilities',
       value: 12.93,
       display: '$12.93B',
       series: 6,
     },
     {
-      label: 'What is left',
-      sub: 'Net position — owns minus owes',
+      label: 'Equity',
+      sub: 'Net position — assets minus liabilities',
       value: 34.08,
       display: '$34.08B',
       series: 2,
@@ -31,24 +31,24 @@ export const BALANCE = {
 };
 
 export const YEAR = {
-  caption: 'The year itself',
+  caption: 'Profit and loss',
   rows: [
     {
-      label: 'Came in',
+      label: 'Profit',
       sub: 'Taxes, fees, federal grants',
       value: 33.29,
       display: '$33.29B',
       series: 1,
     },
     {
-      label: 'Went out',
+      label: 'Expenses',
       sub: 'Health, education, transport, safety',
       value: 31.45,
       display: '$31.45B',
       series: 6,
     },
     {
-      label: 'Left over',
+      label: 'Net income',
       sub: 'Surplus kept for the year',
       value: 1.84,
       display: '+$1.84B',
