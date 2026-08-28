@@ -44,6 +44,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
 
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="mask-icon" href="/favicon.svg" color="#16181c" />
+    <meta name="theme-color" content="#fbfaf7" />
+
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
